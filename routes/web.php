@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TwoFactorController;
 
 Route::get('/', function () {
-    return view('pages.top');
+    return view('top-page');
 });
 
 Route::middleware('auth')->group(function () {
