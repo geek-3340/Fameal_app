@@ -6,7 +6,7 @@
         </div>
         <nav class=" flex mr-5">
             @auth
-                <a href="{{ url('/dashboard') }}"
+                <a href="{{ route('contents') }}"
                     class="flex items-center justify-center mx-2 w-28 h-10 text-sm bg-main rounded-full shadow-custom hover:shadow-none transition-shadow">
                     マイページ
                 </a>
