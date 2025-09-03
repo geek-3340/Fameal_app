@@ -24,18 +24,11 @@
 </head>
 
 <body class="font-sans">
-    @isset($header)
-        @auth
-            <header class=" fixed top-0 left-0 w-screen h-20 border-filter">
-                @include('layouts.navigation')
-                {{ $header }}
-            </header>
-        @else
-            <header class=" fixed top-0 left-1/2 -translate-x-1/2 w-11/12 h-20 border-b border-filter">
-                {{ $header }}
-            </header>
-        @endauth
-    @endisset
+    @if (request()->routeIs('top.page'))
+        @include('modules.top-header')
+    @else
+        @include('modules.app-header')
+    @endif
     <main>
         {{ $slot }}
     </main>

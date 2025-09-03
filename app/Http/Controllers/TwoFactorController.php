@@ -33,6 +33,6 @@ class TwoFactorController extends Controller
         
         session(['two_factor_authenticated' => true]);
 
-        return redirect()->intended('/dashboard');
+        return redirect()->intended('/contents');
     }
 }
