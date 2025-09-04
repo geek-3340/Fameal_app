@@ -35,4 +35,14 @@ class TwoFactorController extends Controller
 
         return redirect()->intended('/contents');
     }
+
+    public function regenerate()
+    {
+        $user = Auth::user();
+        $user->two_factor_code = null;
+        $user->two_factor_expires_at = null;
+        $user->save();
+        $user->generateTwoFactorCode();
+        return redirect()->route('verify.pin');
+    }
 }

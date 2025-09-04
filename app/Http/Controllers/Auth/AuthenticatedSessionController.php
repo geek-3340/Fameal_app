@@ -30,7 +30,7 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
 
         $user = Auth::user();
-        $user->generateTwoFactorCode(); 
+        $user->generateTwoFactorCode();
         return redirect()->route('verify.pin');
     }
 

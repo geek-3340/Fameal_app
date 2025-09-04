@@ -11,6 +11,7 @@ Route::get('/', function () {
 Route::middleware('auth')->group(function () {
     Route::get('/verify-pin', [TwoFactorController::class, 'show'])->name('verify.pin');
     Route::post('/verify-pin', [TwoFactorController::class, 'verify'])->name('verify.pin.store');
+    Route::post('/verify-pin/regenerate', [TwoFactorController::class, 'regenerate'])->name('verify.pin.regenerate');
 });
 
 Route::middleware('auth', 'two_factor')->group(function () {
