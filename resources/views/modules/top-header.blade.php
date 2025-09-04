@@ -15,10 +15,6 @@
                     class="flex items-center justify-center mx-2 w-28 h-10 text-sm bg-main rounded-full shadow-custom hover:shadow-none transition-shadow">
                     ログイン
                 </a>
-                <a href="{{ route('register') }}"
-                    class="flex items-center justify-center ml-2 w-28 h-10 text-sm bg-main rounded-full shadow-custom hover:shadow-none transition-shadow">
-                    新規登録
-                </a>
             @endauth
         </nav>
     </div>

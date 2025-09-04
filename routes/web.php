@@ -15,9 +15,9 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware('auth', 'two_factor')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    // Route::get('/dashboard', function () {
+    //     return view('dashboard');
+    // })->name('dashboard');
     Route::get('/contents', function () {
         return view('contents');
     })->name('contents');
