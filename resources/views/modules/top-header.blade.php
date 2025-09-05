@@ -1,4 +1,4 @@
-<header class=" fixed top-0 left-1/2 -translate-x-1/2 w-11/12 h-20 border-b border-filter">
+<header class="w-11/12 h-20 mx-auto border-b border-filter">
     <div class=" h-full flex justify-between items-center">
         <div class=" flex items-end">
             <h1 class=" ml-28 mr-3 font-monoton text-main text-4xl leading-none">Fameal</h1>

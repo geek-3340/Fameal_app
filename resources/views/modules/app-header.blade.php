@@ -54,7 +54,7 @@
 
     <!-- 左メニュー(レスポンシブハンバーガーメニュー) -->
     <div class="fixed top-0 left-0 w-max h-screen pt-20 bg-transparent z-40 flex flex-col max-md:hidden">
-        <div class="absolute top-20 left-full h-[calc(100%-80px)] border border-r-main"></div>
+        <div class="absolute top-20 left-full h-[calc(100%-80px)] border border-r-filter"></div>
         <nav class="flex flex-col px-5 mt-8 space-y-8">
             <a href="#" class="text-main text-2xl font-bold">献立表</a>
             <a href="#" class="text-main text-2xl font-bold">料理登録</a>
