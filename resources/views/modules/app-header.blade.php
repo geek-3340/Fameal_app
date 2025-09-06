@@ -1,8 +1,8 @@
 <header x-data="{ openLeft: false, openRight: false }" class="fixed top-0 left-0 w-screen h-20 border-b border-filter z-50">
     <div class="h-full flex justify-between items-center w-11/12 mx-auto">
-        <div class="flex items-end">
-            <h1 class="ml-28 mr-3 font-monoton text-main text-4xl leading-none">Fameal</h1>
-            <p class="text-main text-base leading-6">親子献立カレンダーアプリ</p>
+        <div class="flex items-end max-md:block">
+            <h1 class="ml-28 mr-3 font-monoton text-main text-4xl leading-none max-md:text-3xl">Fameal</h1>
+            <p class="text-main text-base leading-6 max-md:ml-28 max-md:text-sm">親子献立カレンダーアプリ</p>
         </div>
         <!-- 左ハンバーガーボタン -->
         <button type="button" @click="openLeft = !openLeft"
@@ -24,7 +24,7 @@
         </button>
 
         <!-- 右アカウントメニューボタン -->
-        <button x-show="!openRight" type="button" @click="openRight = !openRight"
+        <button x-show="!openRight" type="button" @click="openRight = true"
             class="absolute top-0 right-0 flex flex-col justify-center items-center w-20 h-20  z-50">
             <svg xmlns="http://www.w3.org/2000/svg" fill="#f89900" viewBox="0 0 24 24" stroke="#f89900"
                 class=" w-14 h-14">
@@ -37,7 +37,7 @@
                 </g>
             </svg>
         </button>
-        <button x-show="openRight" type="button" @click="openRight = !openRight"
+        <button x-show="openRight" type="button" @click="openRight = false"
             class="absolute top-0 right-0 flex flex-col justify-center items-center w-20 h-20  z-50"
             style="display: none">
             <svg xmlns="http://www.w3.org/2000/svg" fill="#ffff" viewBox="0 0 24 24" stroke="#ffff" class="w-14 h-14">
@@ -84,18 +84,17 @@
         class="fixed top-0 right-0 w-64 h-screen pt-20 bg-main shadow-lg z-40 flex flex-col rounded-l-xl"
         @click.away="openRight = false" style="display: none;">
         <nav class="flex flex-col px-5 mt-8 space-y-8">
-            <a href="#" class="text-subtext text-2xl font-bold">アカウント名変更</a>
-            <a href="#" class="text-subtext text-2xl font-bold">メールアドレス変更</a>
-            <a href="#" class="text-subtext text-2xl font-bold">パスワード変更</a>
-            <nav class="flex mr-5">
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <a href="{{ route('logout') }}" onclick="event.preventDefault();this.closest('form').submit();"
-                        class="text-subtext text-2xl font-bold">
-                        {{ __('Log Out') }}
-                    </a>
-                </form>
-            </nav>
+            <a href="{{ route('profile.edit') }}" class="text-subtext text-2xl font-bold">
+                {{ __('Profile Menu') }}
+            </a>
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <a href="{{ route('logout') }}" onclick="event.preventDefault();this.closest('form').submit();"
+                    class="text-subtext text-2xl font-bold">
+                    {{ __('Log Out') }}
+                </a>
+            </form>
+
         </nav>
     </div>
 </header>

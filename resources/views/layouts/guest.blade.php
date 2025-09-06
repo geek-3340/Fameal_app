@@ -29,9 +29,16 @@
         </div>
     </header>
     <main class=" w-full flex justify-center">
-        <div class="w-full max-w-sm mt-12 px-6 py-4 bg-white border border-filter rounded-xl">
-            {{ $slot }}
-        </div>
+        @if (request()->routeIs('profile.edit'))
+            <div class="w-full max-w-md mt-8 px-6 py-4 bg-white border border-filter rounded-xl">
+                {{ $slot }}
+            </div>
+        @else
+            <div class="w-full max-w-xs mt-8 px-6 py-4 bg-white border border-filter rounded-xl">
+                {{ $slot }}
+            </div>
+        @endif
+
     </main>
 </body>
 

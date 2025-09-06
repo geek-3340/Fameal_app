@@ -1,7 +1,8 @@
 {
-    "Name": "名前",
+    "Name": "アカウント名",
     "Profile": "アカウント",
     "Profile Information": "アカウント情報",
+    "Profile Menu": "アカウント設定",
     "Cancel": "キャンセル",
     "Delete Account": "アカウントを削除",
     "Delete account": "アカウントを削除",
@@ -22,7 +23,7 @@
     "Save": "保存",
     "Saved.": "保存されました",
     "Already registered?": "既に登録済みの方",
-    "Register": "登録",
+    "Register": "新規登録",
     "Remember me": "このブラウザに認証情報を記憶",
     "Remember Me": "このブラウザに認証情報を記憶",
     "Forgot your password?": "パスワードを忘れた？",
