@@ -17,17 +17,30 @@
         rel="stylesheet">
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    <!-- fullcalendar -->
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.19/index.global.min.js'></script>
 </head>
 
 <body class="font-sans">
     @if (request()->routeIs('top.page'))
         @include('modules.top-header')
+        <main>
+            {{ $slot }}
+        </main>
     @else
         @include('modules.app-header')
+        <main>
+            <div class="w-full h-20"></div>
+            <div class="w-screen h-max flex">
+                <div class="w-48"></div>
+                <div class="w-3/4 h-auto my-10 mx-auto p-10 border border-filter rounded-xl shadow-custom">
+                    {{ $slot }}
+                </div>
+            </div>
+        </main>
     @endif
-    <main>
-        {{ $slot }}
-    </main>
+
 </body>
 
 </html>

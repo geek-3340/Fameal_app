@@ -1,4 +1,4 @@
-<header x-data="{ openLeft: false, openRight: false }" class="fixed top-0 left-0 w-screen h-20 border-b border-filter z-50">
+<header x-data="{ openLeft: false, openRight: false }" class="fixed top-0 left-0 w-screen h-20 bg-bg border-b border-filter z-50">
     <div class="h-full flex justify-between items-center w-11/12 mx-auto">
         <div class="flex items-end max-md:block">
             <h1 class="ml-28 mr-3 font-monoton text-main text-4xl leading-none max-md:text-3xl">Fameal</h1>
@@ -25,7 +25,7 @@
 
         <!-- 右アカウントメニューボタン -->
         <button x-show="!openRight" type="button" @click="openRight = true"
-            class="absolute top-0 right-0 flex flex-col justify-center items-center w-20 h-20  z-50">
+            class="absolute top-0 right-0 mr-5 flex flex-col justify-center items-center w-20 h-20  z-50">
             <svg xmlns="http://www.w3.org/2000/svg" fill="#f89900" viewBox="0 0 24 24" stroke="#f89900"
                 class=" w-14 h-14">
                 <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -38,7 +38,7 @@
             </svg>
         </button>
         <button x-show="openRight" type="button" @click="openRight = false"
-            class="absolute top-0 right-0 flex flex-col justify-center items-center w-20 h-20  z-50"
+            class="absolute top-0 right-0 mr-5 flex flex-col justify-center items-center w-20 h-20  z-50"
             style="display: none">
             <svg xmlns="http://www.w3.org/2000/svg" fill="#ffff" viewBox="0 0 24 24" stroke="#ffff" class="w-14 h-14">
                 <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -53,7 +53,7 @@
     </div>
 
     <!-- 左メニュー(レスポンシブハンバーガーメニュー) -->
-    <div class="fixed top-0 left-0 w-max h-screen pt-20 bg-transparent z-40 flex flex-col max-md:hidden">
+    <div class="fixed top-0 left-0 w-48 h-screen pt-20 bg-transparent z-40 flex flex-col max-md:hidden">
         <div class="absolute top-20 left-full h-[calc(100%-80px)] border border-r-filter"></div>
         <nav class="flex flex-col px-5 mt-8 space-y-8">
             <a href="#" class="text-main text-2xl font-bold">献立表</a>
@@ -94,7 +94,6 @@
                     {{ __('Log Out') }}
                 </a>
             </form>
-
         </nav>
     </div>
 </header>

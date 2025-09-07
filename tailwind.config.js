@@ -25,7 +25,7 @@ export default {
                 link: "#0022ff",
             },
             boxShadow: {
-                custom: "0 0 8px 3px rgba(0,0,0,0.15)",
+                custom: "0 0 8px 2px rgba(0,0,0,0.15)",
             },
         },
     },
