@@ -33,7 +33,7 @@
         <main>
             <div class="w-full h-20"></div>
             <div class="w-screen h-max flex">
-                <div class="w-48"></div>
+                <div class="w-48 max-md:hidden"></div>
                 <div class="w-3/4 h-auto my-10 mx-auto p-10 border border-filter rounded-xl shadow-custom">
                     {{ $slot }}
                 </div>
