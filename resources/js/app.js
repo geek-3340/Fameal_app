@@ -7,10 +7,19 @@ window.Alpine = Alpine;
 Alpine.start();
 
 // fullcalendar
-document.addEventListener("DOMContentLoaded", function () {
-    var calendarEl = document.getElementById("calendar");
-    var calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: "dayGridMonth",
-    });
-    calendar.render();
-});
+document.addEventListener('DOMContentLoaded', function () {
+  const calendarEl = document.getElementById('calendar')
+
+  const calendar = new Calendar(calendarEl, {
+    plugins: [dayGridPlugin],
+    initialView: 'dayGridMonth',
+
+    headerToolbar: {
+      left: 'title',
+      center: 'prev,next today',
+      right: 'dayGridMonth,dayGridWeek' // ← 月と週を切り替え
+    }
+  })
+
+  calendar.render()
+})
