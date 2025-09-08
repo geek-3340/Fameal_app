@@ -1,3 +1,93 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* FullCalendar*/
+.fc {
+    font-family: "Noto Sans JP";
+    color: #3d3d3d;
+}
+.fc .fc-toolbar-chunk div {
+    display: flex;
+}
+.fc .fc-toolbar-title {
+    font-weight: bold;
+    margin-right: 2px;
+}
+.fc .fc-prev-button {
+    background-color: #f89900;
+    border: none;
+    transform: scale(0.8);
+}
+.fc .fc-next-button {
+    background-color: #f89900;
+    border: none;
+    transform: scale(0.8);
+}
+.fc .fc-prev-button:hover {
+    background-color: #f77000;
+}
+.fc .fc-next-button:hover {
+    background-color: #f77000;
+}
+.fc .fc-button-group {
+    display: flex;
+    flex-direction: column;
+}
+.fc .fc-dayGridMonth-button {
+    background-color: #fff;
+    color: #f89900;
+    font-weight: bold;
+    border: 2px solid #f89900;
+    border-radius: 10px !important;
+    margin: 2px;
+}
+.fc .fc-dayGridWeek-button {
+    background-color: #fff;
+    color: #f89900;
+    font-weight: bold;
+    border: 2px solid #f89900;
+    border-radius: 10px !important;
+    margin: 2px;
+}
+.fc .fc-dayGridMonth-button:hover {
+    background-color: #fff999;
+    color: #f89900;
+    font-weight: bold;
+    border: 2px solid #f89900;
+    border-radius: 10px !important;
+    margin: 2px;
+}
+.fc .fc-dayGridWeek-button:hover {
+    background-color: #fff999;
+    color: #f89900;
+    font-weight: bold;
+    border: 2px solid #f89900;
+    border-radius: 10px !important;
+    margin: 2px;
+}
+.fc .fc-button-primary:not(:disabled).fc-button-active {
+    background-color: #f89900;
+    color: #fff;
+    font-weight: bold;
+    border: 2px solid #f89900;
+    border-radius: 10px !important;
+    margin: 2px;
+}
+.fc .fc-button-primary:not(:disabled).fc-button-active {
+    background-color: #f89900;
+    color: #fff;
+    font-weight: bold;
+    border: 2px solid #f89900;
+    border-radius: 10px !important;
+    margin: 2px;
+}
+.fc-direction-ltr .fc-button-group > .fc-button:not(:first-child) {
+    margin-left: 0;
+}
+.fc .fc-daygrid-day-top {
+    flex-direction: row;
+}
+.fc .fc-daygrid-day-number {
+    padding-left: 10px;
+}
