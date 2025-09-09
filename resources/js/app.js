@@ -25,5 +25,6 @@ document.addEventListener("DOMContentLoaded", function () {
             right: "dayGridMonth,dayGridWeek", // 月・週切り替えボタン
         },
     });
+
     calendar.render();
 });

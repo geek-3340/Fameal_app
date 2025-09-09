@@ -21,6 +21,9 @@ Route::middleware('auth', 'two_factor')->group(function () {
     Route::get('/contents', function () {
         return view('contents');
     })->name('contents');
+    Route::get('/contents/modal', function () {
+        return view('contents');
+    })->name('contents.modal');
 });
 
 
