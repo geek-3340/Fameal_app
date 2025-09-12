@@ -56,4 +56,9 @@ class User extends Authenticatable
         $this->save();
         Mail::to($this->email)->send(new TwoFactorCodeMail($this));
     }
+
+    public function dishes()
+    {
+        return $this->hasMany(Dishes::class);
+    }
 }

@@ -178,5 +178,9 @@
     "Please enter your new password below": "新しいパスワードを入力してください",
     "A reset link will be sent if the account exists.": "アカウントが存在する場合にはリセット用のリンクが送信されます",
     "Ensure your account is using a long, random password to stay secure": "十分に長くランダムなパスワードを使用して、アカウントのセキュリティを高めましょう",
-    "Delete your account and all of its resources": "アカウントを削除して全てのデータを消去"
+    "Delete your account and all of its resources": "アカウントを削除して全てのデータを消去",
+    "Dish name": "料理名",
+    "Ingredients": "材料",
+    "Recipe URL": "レシピURL",
+    "Register dish": "登録"
 }

@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TwoFactorController;
+use App\Http\Controllers\DishesController;
 
 Route::get('/', function () {
     return view('top-page');
@@ -21,13 +22,12 @@ Route::middleware('auth', 'two_factor')->group(function () {
     Route::get('/contents', function () {
         return view('contents');
     })->name('contents');
-    Route::get('/contents/modal', function () {
-        return view('contents');
-    })->name('contents.modal');
+    Route::get('/contents/modal', [DishesController::class, 'index'])->name('contents.modal');
+    Route::post('/dishes', [DishesController::class, 'store'])->name('dishes.store');
 });
 
 
-Route::middleware('auth')->group(function () {
+Route::middleware('auth', 'two_factor')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
