@@ -56,8 +56,8 @@
     <div class="fixed top-0 left-0 w-48 h-screen pt-20 bg-transparent z-40 flex flex-col max-md:hidden">
         <div class="absolute top-20 left-full h-[calc(100%-80px)] border border-r-filter"></div>
         <nav class="flex flex-col px-5 mt-8 space-y-8">
-            <a href="{{ route('contents') }}" class="text-main text-2xl font-bold">献立表</a>
-            <a href="{{ route('contents.modal') }}" class="text-main text-2xl font-bold">料理登録</a>
+            <a href="{{ route('menus.meal.month.index') }}" class="text-main text-2xl font-bold">献立表</a>
+            <a href="{{ route('dishes.index') }}" class="text-main text-2xl font-bold">料理登録</a>
             <a href="#" class="text-main text-2xl font-bold">離乳食登録</a>
             <a href="#" class="text-main text-2xl font-bold">買い物リスト</a>
         </nav>

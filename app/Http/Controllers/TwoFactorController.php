@@ -33,7 +33,7 @@ class TwoFactorController extends Controller
         
         session(['two_factor_authenticated' => true]);
 
-        return redirect()->intended('/contents');
+        return redirect()->intended('/menus.meal.month.index');
     }
 
     public function regenerate()

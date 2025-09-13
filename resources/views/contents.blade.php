@@ -1,8 +1,16 @@
 <x-app-layout>
-    @if (request()->routeIs('contents'))
-        <div id='calendar'></div>
+    @if (request()->routeIs('menus.meal.month.index') ||
+            request()->routeIs('menus.meal.week.index') ||
+            request()->routeIs('menus.baby.food.month.index') ||
+            request()->routeIs('menus.baby.food.week.index'))
+        <div
+            id="calendar"
+            data-initial-view="{{ request()->routeIs('menus.meal.week.index') ? 'dayGridWeek' : 'dayGridMonth' }}"
+            data-month-url="{{ route('menus.meal.month.index') }}"
+            data-week-url="{{ route('menus.meal.week.index') }}"
+        ></div>
     @endif
-    @if (request()->routeIs('contents.modal'))
+    @if (request()->routeIs('dishes.index'))
         <div class="flex mx-auto">
             <div class="w-1/2 h-max mx-5 p-10 border border-filter rounded-xl">
                 <h1 class=" text-2xl text-center font-bold mb-4">料理登録</h1>

@@ -16,6 +16,7 @@ class DishesController extends Controller
         $dishes = Dishes::create($validated);
         return back();
     }
+    
     public function index(){
         $dishes=Dishes::All();
         return view('contents',compact('dishes'));

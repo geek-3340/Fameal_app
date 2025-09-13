@@ -47,6 +47,5 @@ class RegisteredUserController extends Controller
 
         $user->generateTwoFactorCode();
         return redirect()->route('verify.pin');
-        // return redirect(route('dashboard', absolute: false));
     }
 }
