@@ -36,6 +36,7 @@
                     </path>
                 </g>
             </svg>
+            
         </button>
         <button x-show="openRight" type="button" @click="openRight = false"
             class="absolute top-0 right-0 mr-5 flex flex-col justify-center items-center w-20 h-20  z-50"
