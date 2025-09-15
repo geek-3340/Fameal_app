@@ -30,10 +30,10 @@ class TwoFactorController extends Controller
         $user->two_factor_code = null;
         $user->two_factor_expires_at = null;
         $user->save();
-        
+
         session(['two_factor_authenticated' => true]);
 
-        return redirect()->intended('/menus.meal.month.index');
+        return redirect()->intended(route('menus.month.index'));
     }
 
     public function regenerate()

@@ -20,13 +20,11 @@ Route::middleware('auth', 'two_factor')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
 
-Route::middleware('auth', 'two_factor')->group(function () {
-    Route::get('/menus/meal/month',[MenusController::class, 'index'])->name('menus.meal.month.index');
-    Route::get('/menus/meal/week',[MenusController::class, 'index'])->name('menus.meal.week.index');
-    Route::get('/menus/baby-food/month',[MenusController::class, 'index'])->name('menus.baby.food.month.index');
-    Route::get('/menus/baby-food/week',[MenusController::class, 'index'])->name('menus.baby.food.week.index');
+    Route::get('/menus/month',[MenusController::class, 'index'])->name('menus.month.index');
+    Route::get('/menus/week',[MenusController::class, 'index'])->name('menus.week.index');
+    Route::get('/baby-menus/month',[MenusController::class, 'index'])->name('baby.menus.month.index');
+    Route::get('/baby-menus/week',[MenusController::class, 'index'])->name('baby.menus.week.index');
 
     Route::get('/dishes', [DishesController::class, 'index'])->name('dishes.index');
     Route::post('/dishes', [DishesController::class, 'store'])->name('dishes.store');
