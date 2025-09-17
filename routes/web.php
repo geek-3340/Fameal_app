@@ -25,9 +25,11 @@ Route::middleware('auth', 'two_factor')->group(function () {
     Route::get('/menus/week',[MenusController::class, 'index'])->name('menus.week.index');
     Route::get('/baby-menus/month',[MenusController::class, 'index'])->name('baby.menus.month.index');
     Route::get('/baby-menus/week',[MenusController::class, 'index'])->name('baby.menus.week.index');
+    Route::post('/menus',[MenusController::class, 'store'])->name('menus.store');
 
     Route::get('/dishes', [DishesController::class, 'index'])->name('dishes.index');
     Route::post('/dishes', [DishesController::class, 'store'])->name('dishes.store');
+    Route::post('/dishes/{id}',[DishesController::class, 'destroy'])->name('dishes.destroy');
 });
 
 require __DIR__ . '/auth.php';

@@ -87,9 +87,10 @@
     margin-left: 0;
 }
 
-.fc .fc-daygrid-day-top {
+.fc .fc-dayGridMonth-view .fc-daygrid-day-top {
     flex-direction: row;
+    justify-content: space-between;
 }
-.fc .fc-daygrid-day-number {
-    padding-left: 10px;
+.fc .fc-dayGridMonth-view .fc-daygrid-day-number {
+    padding: 3px 0 0 10px;
 }

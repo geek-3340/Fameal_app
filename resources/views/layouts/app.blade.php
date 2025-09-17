@@ -45,7 +45,6 @@
             </div>
         </main>
     @endif
-
 </body>
 
 </html>
