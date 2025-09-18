@@ -94,3 +94,6 @@
 .fc .fc-dayGridMonth-view .fc-daygrid-day-number {
     padding: 3px 0 0 10px;
 }
+
+/* modal */
+[x-cloak] { display: none !important; }

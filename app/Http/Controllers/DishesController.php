@@ -19,7 +19,7 @@ class DishesController extends Controller
 
     public function index()
     {
-        $dishes = Dishes::All();
+        $dishes = Dishes::where('user_id', auth()->id())->get();
         return view('contents', compact('dishes'));
     }
 
