@@ -4,11 +4,13 @@ export default function fullCalendar() {
         const initialView = calendarEl.dataset.initialView || "dayGridMonth";
         const monthUrl = calendarEl.dataset.monthUrl;
         const weekUrl = calendarEl.dataset.weekUrl;
+        const events = JSON.parse(calendarEl.dataset.menusEvent || "[]");
 
         const calendar = new FullCalendar.Calendar(calendarEl, {
             // plugins: [dayGridPlugin], ←CDNで読み込む場合は不要
             initialView: initialView,
             locale: "ja",
+            events: events,
             dayCellContent: function (arg) {
                 return { html: arg.date.getDate() }; // 日付から「日」を消す
             },
@@ -71,14 +73,21 @@ export default function fullCalendar() {
                 // クリックイベントでAlpine.jsのカスタムイベントを発火
                 link.addEventListener("click", function (e) {
                     e.preventDefault();
+                    // JSTで日付を取得
+                    const jstDate = formatDateJST(arg.date);
                     window.dispatchEvent(
                         new CustomEvent("open-modal", {
                             detail: {
-                                date: arg.date.toISOString().slice(0, 10),
+                                date: jstDate,
                             },
                         })
                     );
                 });
+                // ファイルの先頭や関数外に追加
+                function formatDateJST(date) {
+                    const jst = new Date(date.getTime() + 9 * 60 * 60 * 1000);
+                    return jst.toISOString().slice(0, 10);
+                }
 
                 arg.el.querySelector(".fc-daygrid-day-top").appendChild(link);
             },

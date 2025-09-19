@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TwoFactorController;
 use App\Http\Controllers\DishesController;
 use App\Http\Controllers\MenusController;
+use App\Http\Controllers\MenusDishesController;
 
 Route::get('/', function () {
     return view('top-page');
@@ -21,15 +22,16 @@ Route::middleware('auth', 'two_factor')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::get('/menus/month',[MenusController::class, 'index'])->name('menus.month.index');
-    Route::get('/menus/week',[MenusController::class, 'index'])->name('menus.week.index');
-    Route::get('/baby-menus/month',[MenusController::class, 'index'])->name('baby.menus.month.index');
-    Route::get('/baby-menus/week',[MenusController::class, 'index'])->name('baby.menus.week.index');
-    Route::post('/menus',[MenusController::class, 'store'])->name('menus.store');
+    Route::get('/menus/month', [MenusController::class, 'index'])->name('menus.month.index');
+    Route::get('/menus/week', [MenusController::class, 'index'])->name('menus.week.index');
+    Route::get('/baby-menus/month', [MenusController::class, 'index'])->name('baby.menus.month.index');
+    Route::get('/baby-menus/week', [MenusController::class, 'index'])->name('baby.menus.week.index');
+
+    Route::post('/menus-dishes', [MenusDishesController::class, 'store'])->name('menus.dishes.store');
 
     Route::get('/dishes', [DishesController::class, 'index'])->name('dishes.index');
     Route::post('/dishes', [DishesController::class, 'store'])->name('dishes.store');
-    Route::post('/dishes/{id}',[DishesController::class, 'destroy'])->name('dishes.destroy');
+    Route::post('/dishes/{id}', [DishesController::class, 'destroy'])->name('dishes.destroy');
 });
 
 require __DIR__ . '/auth.php';

@@ -94,6 +94,20 @@
 .fc .fc-dayGridMonth-view .fc-daygrid-day-number {
     padding: 3px 0 0 10px;
 }
+.fc .fc-dayGridWeek-view .fc-daygrid-day-number {
+    display: none !important;
+}
+.fc .fc-h-event{
+    background-color: #ffb540;
+    border: none;
+    font-size: 0.8rem;
+    width: max-content;
+    padding: 2px;
+    margin: 2px 0;
+}
+.fc .fc-event-main{
+    color: #3d3d3d;
+}
 
 /* modal */
 [x-cloak] { display: none !important; }

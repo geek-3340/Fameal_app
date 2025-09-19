@@ -61,4 +61,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Dishes::class);
     }
+    public function menus()
+    {
+        return $this->hasMany(Menus::class);
+    }
 }

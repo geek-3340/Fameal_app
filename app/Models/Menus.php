@@ -2,15 +2,16 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Dishes extends Model
+class Menus extends Model
 {
     use HasFactory;
+    protected $table = 'menus';
     protected $fillable = [
-        'name',
         'user_id',
+        'date',
     ];
     public function user()
     {

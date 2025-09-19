@@ -1,0 +1,32 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\Menus;
+use App\Models\MenusDishes;
+
+class MenusDishesController extends Controller
+{
+    public function store(Request $request)
+    {
+        $request->validate([
+            'date' => 'required|date',
+            'dish_id' => 'required|exists:dishes,id',
+        ]);
+
+        // 献立（menus）を日付＆ユーザーで取得 or 作成
+        $menu = Menus::firstOrCreate([
+            'date' => $request->date,
+            'user_id' => auth()->id(),
+        ]);
+
+        // 献立と料理の紐付け（menus_dishes）
+        MenusDishes::create([
+            'menu_id' => $menu->id,
+            'dish_id' => $request->dish_id,
+        ]);
+
+        return redirect()->back()->with('success', '献立を登録しました');
+    }
+}
