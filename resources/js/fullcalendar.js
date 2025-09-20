@@ -12,8 +12,14 @@ export default function fullCalendar() {
             locale: "ja",
             events: events,
             dayCellContent: function (arg) {
-                return { html: arg.date.getDate() }; // 日付から「日」を消す
-            },
+    if (arg.view.type === "dayGridMonth") {
+        return { html: arg.date.getDate() }; // dayGridMonthでは日付のみ
+    } else if (arg.view.type === "dayGridWeek") {
+        const options = { weekday: 'short', month: 'short', day: 'numeric' }; // 曜日 + m月d日
+        const formattedDate = arg.date.toLocaleDateString('ja-JP', options);
+        return { html: formattedDate }; 
+    }
+},
             dayCellDidMount: function (arg) {
                 const link = document.createElement("a");
                 link.text = "link";
