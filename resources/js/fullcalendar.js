@@ -116,5 +116,32 @@ export default function fullCalendar() {
         });
 
         calendar.render();
+
+        // カスタムボタンのactive状態を切り替え
+        const setActiveButton = () => {
+            const currentUrl =
+                window.location.pathname + window.location.search;
+            const monthBtn = document.querySelector(".fc-monthButton-button");
+            const weekBtn = document.querySelector(".fc-weekButton-button");
+            if (
+                monthBtn &&
+                monthUrl &&
+                currentUrl ===
+                    new URL(monthUrl, window.location.origin).pathname +
+                        new URL(monthUrl, window.location.origin).search
+            ) {
+                monthBtn.classList.add("active");
+            }
+            if (
+                weekBtn &&
+                weekUrl &&
+                currentUrl ===
+                    new URL(weekUrl, window.location.origin).pathname +
+                        new URL(weekUrl, window.location.origin).search
+            ) {
+                weekBtn.classList.add("active");
+            }
+        };
+        setActiveButton();
     });
 }

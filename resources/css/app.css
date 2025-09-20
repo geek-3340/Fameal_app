@@ -14,35 +14,31 @@
     font-weight: bold;
     margin-right: 2px;
 }
-.fc .fc-prev-button {
-    background-color: #f89900;
-    border: none;
-    transform: scale(0.8);
-}
+.fc .fc-prev-button,
 .fc .fc-next-button {
     background-color: #f89900;
     border: none;
     transform: scale(0.8);
 }
-.fc .fc-prev-button:hover {
-    background-color: #f77000;
+.fc .fc-prev-button:hover,
+.fc .fc-prev-button:active,
+.fc .fc-prev-button:focus-visible,
+.fc .fc-next-button:hover,
+.fc .fc-next-button:active,
+.fc .fc-next-button:focus-visible {
+    background-color: #f77000 !important;
+    border: none !important;
+    box-shadow: none !important;
 }
-.fc .fc-next-button:hover {
-    background-color: #f77000;
+.fc .fc-prev-button:focus,
+.fc .fc-next-button:focus {
+    box-shadow: none !important;
 }
 .fc .fc-button-group {
     display: flex;
     flex-direction: column;
 }
-
-.fc .fc-monthButton-button {
-    background-color: #fff;
-    color: #f89900;
-    font-weight: bold;
-    border: 2px solid #f89900;
-    border-radius: 10px !important;
-    margin: 2px;
-}
+.fc .fc-monthButton-button,
 .fc .fc-weekButton-button {
     background-color: #fff;
     color: #f89900;
@@ -51,53 +47,44 @@
     border-radius: 10px !important;
     margin: 2px;
 }
-.fc .fc-monthButton-button:hover {
-    background-color: #fff999;
-    color: #f89900;
-    font-weight: bold;
-    border: 2px solid #f89900;
+.fc .fc-monthButton-button:hover,
+.fc .fc-monthButton-button:active,
+.fc .fc-monthButton-button:focus,
+.fc .fc-monthButton-button:visited,
+.fc .fc-weekButton-button:hover,
+.fc .fc-weekButton-button:active,
+.fc .fc-weekButton-button:focus,
+.fc .fc-weekButton-button:visited {
+    background-color: #fff999 !important;
+    color: #f89900 !important;
+    font-weight: bold !important;
+    border: 2px solid #f89900 !important;
     border-radius: 10px !important;
-    margin: 2px;
+    margin: 2px !important;
+    box-shadow: none !important;
 }
-.fc .fc-weekButton-button:hover {
-    background-color: #fff999;
-    color: #f89900;
-    font-weight: bold;
-    border: 2px solid #f89900;
-    border-radius: 10px !important;
-    margin: 2px;
-}
-.fc .fc-button-primary:not(:disabled).fc-button-active {
+.fc-monthButton-button.active,
+.fc-weekButton-button.active {
     background-color: #f89900;
-    color: #fff;
+    color: #ffffff;
     font-weight: bold;
     border: 2px solid #f89900;
     border-radius: 10px !important;
     margin: 2px;
 }
-.fc .fc-button-primary:not(:disabled).fc-button-active {
-    background-color: #f89900;
-    color: #fff;
-    font-weight: bold;
-    border: 2px solid #f89900;
-    border-radius: 10px !important;
-    margin: 2px;
-}
+
 .fc-direction-ltr .fc-button-group > .fc-button:not(:first-child) {
     margin-left: 0;
 }
 
-.fc .fc-dayGridMonth-view .fc-daygrid-day-top {
+.fc .fc-daygrid-day-top {
     flex-direction: row;
     justify-content: space-between;
 }
 .fc .fc-dayGridMonth-view .fc-daygrid-day-number {
     padding: 3px 0 0 10px;
 }
-.fc .fc-dayGridWeek-view .fc-daygrid-day-number {
-    display: none !important;
-}
-.fc .fc-h-event{
+.fc .fc-h-event {
     background-color: #ffb540;
     border: none;
     font-size: 0.8rem;
@@ -105,9 +92,65 @@
     padding: 2px;
     margin: 2px 0;
 }
-.fc .fc-event-main{
+.fc .fc-event-main {
     color: #3d3d3d;
 }
 
 /* modal */
-[x-cloak] { display: none !important; }
+[x-cloak] {
+    display: none !important;
+}
+
+/* dayGridWeek を縦並びに変形 */
+.fc-dayGridWeek-view .fc-daygrid-body {
+    display: flex;
+    flex-direction: column; /* ← 縦並び */
+}
+
+.fc-dayGridWeek-view .fc-daygrid-body .fc-daygrid-day {
+    display: flex;
+    flex-direction: row; /* 日付とイベントを横に並べる */
+    align-items: flex-start;
+    border-bottom: 1px solid #ddd;
+    padding: 8px;
+}
+
+/* 日付部分を左側に固定（見出し風） */
+.fc-dayGridWeek-view .fc-daygrid-day-top {
+    width: 120px; /* 日付欄の幅を調整 */
+    font-weight: bold;
+    flex-shrink: 0;
+}
+.fc-dayGridWeek-view .fc-col-header {
+    display: none;
+}
+.fc-dayGridWeek-view .fc-scrollgrid {
+    border: none !important;
+}
+.fc-dayGridWeek-view .fc-scrollgrid-section {
+    height: 0 !important;
+}
+.fc-dayGridWeek-view .fc-scrollgrid-section > td {
+    border: none !important;
+}
+.fc-dayGridWeek-view .fc-scrollgrid-sync-table {
+    height: auto !important;
+}
+/* イベントを右側に配置 */
+.fc-dayGridWeek-view .fc-daygrid-day-events {
+    flex: 1;
+    padding-left: 12px;
+}
+.fc-dayGridWeek-view .fc-day {
+    border: none;
+}
+.fc-dayGridWeek-view .fc-day-sun {
+    border-top: 1px solid #ddd;
+}
+
+.fc-dayGridWeek-view .fc-theme-standard td {
+    border: none;
+}
+.fc-dayGridWeek-view .fc-daygrid-day-frame{
+    display: flex;
+}

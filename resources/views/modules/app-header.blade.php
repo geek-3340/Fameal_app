@@ -59,8 +59,8 @@
         <nav class="flex flex-col px-5 mt-8 space-y-8">
             <a href="{{ route('menus.month.index') }}" class="text-main text-2xl font-bold">献立表</a>
             <a href="{{ route('dishes.index') }}" class="text-main text-2xl font-bold">料理登録</a>
-            <a href="#" class="text-main text-2xl font-bold">離乳食登録</a>
-            <a href="#" class="text-main text-2xl font-bold">買い物リスト</a>
+            {{-- <a href="#" class="text-main text-2xl font-bold">離乳食登録</a>
+            <a href="#" class="text-main text-2xl font-bold">買い物リスト</a> --}}
         </nav>
     </div>
     <div x-show="openLeft" x-transition:enter="transition ease-out duration-300"
@@ -70,10 +70,10 @@
         class="fixed top-0 left-0 w-64 h-screen pt-20 bg-main shadow-lg z-40 flex flex-col rounded-r-xl md:hidden"
         @click.away="openLeft = false" style="display: none;">
         <nav class="flex flex-col px-5 mt-8 space-y-8">
-            <a href="#" class="text-subtext text-2xl font-bold">献立表</a>
-            <a href="#" class="text-subtext text-2xl font-bold">料理登録</a>
-            <a href="#" class="text-subtext text-2xl font-bold">離乳食登録</a>
-            <a href="#" class="text-subtext text-2xl font-bold">買い物リスト</a>
+            <a href="{{ route('menus.month.index') }}" class="text-subtext text-2xl font-bold">献立表</a>
+            <a href="{{ route('dishes.index') }}" class="text-subtext text-2xl font-bold">料理登録</a>
+            {{-- <a href="#" class="text-subtext text-2xl font-bold">離乳食登録</a>
+            <a href="#" class="text-subtext text-2xl font-bold">買い物リスト</a> --}}
         </nav>
     </div>
 
