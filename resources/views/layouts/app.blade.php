@@ -27,7 +27,7 @@
 
 </head>
 
-<body class="font-sans text-text">
+<body class="font-sans text-text overflow-x-hidden">
     @if (request()->routeIs('top.page'))
         @include('modules.top-header')
         <main>

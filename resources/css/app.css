@@ -2,13 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
-/* FullCalendar*/
+/*
+FullCalendar
+*/
+
+/* base */
 .fc {
     font-family: "Noto Sans JP";
     color: #3d3d3d;
 }
+
+/* toolbar */
 .fc .fc-toolbar-chunk div {
-    display: flex;
+    display: flex; /* 年月とprev nextを横並び */
 }
 .fc .fc-toolbar-title {
     font-weight: bold;
@@ -34,9 +40,9 @@
 .fc .fc-next-button:focus {
     box-shadow: none !important;
 }
-.fc .fc-button-group {
+.fc-button-group {
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* 月 週ボタンを縦並び */
 }
 .fc .fc-monthButton-button,
 .fc .fc-weekButton-button {
@@ -72,85 +78,85 @@
     border-radius: 10px !important;
     margin: 2px;
 }
-
 .fc-direction-ltr .fc-button-group > .fc-button:not(:first-child) {
-    margin-left: 0;
+    margin-left: 0; /* 月 週ボタン　デフォルトの縦軸ずれを修正 */
 }
 
+/* calendar */
 .fc .fc-daygrid-day-top {
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: row; /* 日付をデフォルト右から左配置へ */
+    justify-content: space-between; /* 日付とカスタムリンクを両端に */
 }
+
+/* dayGridMonth */
 .fc .fc-dayGridMonth-view .fc-daygrid-day-number {
     padding: 3px 0 0 10px;
 }
+
+/* dayGridWeek */
+.fc .fc-dayGridWeek-view .fc-daygrid-day-top {
+    width: max-content; /* 日付部分の曜日改行を防ぐ */
+}
+.fc-dayGridWeek-view .fc-col-header {
+    display: none; /* 日付のテーブルヘッダーを非表示 */
+}
+.fc-dayGridWeek-view .fc-daygrid-body .fc-daygrid-day {
+    display: flex;
+    border-bottom: 1px solid #ddd;
+    padding: 8px;
+    min-height: 80px;
+}
+.fc-dayGridWeek-view .fc-daygrid-day-frame {
+    display: flex; /* 日付＆カスタムリンクとイベントを横並び */
+    align-items: center;
+}
+.fc-dayGridWeek-view .fc-day-sun {
+    border-top: 1px solid #ddd;
+}
+.fc-dayGridWeek-view .fc-scrollgrid {
+    border: none !important;
+}
+.fc-dayGridWeek-view .fc-day {
+    border: none;
+}
+.fc-dayGridWeek-view .fc-theme-standard td {
+    border: none;
+}
+.fc-dayGridWeek-view .fc-scrollgrid-section > td {
+    border: none !important;
+}
+.fc-dayGridWeek-view .fc-scrollgrid-section {
+    height: 0 !important;
+}
+.fc-dayGridWeek-view .fc-scrollgrid-sync-table {
+    height: auto !important;
+}
+.fc-dayGridWeek-view .fc-scroller,
+.fc-dayGridWeek-view .fc-scroller-harness {
+    overflow: visible !important;
+}
+.fc .fc-view-harness {
+    height: 800px !important;
+}
+.fc-dayGridWeek-view .fc-daygrid-day-top {
+    font-weight: bold;
+}
+
+/* events */
 .fc .fc-h-event {
     background-color: #ffb540;
     border: none;
     font-size: 0.8rem;
     width: max-content;
     padding: 2px;
-    margin: 2px 0;
+    margin: 3px 0 3px 5px !important;
 }
 .fc .fc-event-main {
     color: #3d3d3d;
 }
 
 /* modal */
+/* modalの属性にx-cloakを設定することにより、ページを表示する際にmodalが一瞬描画されるのを防ぐ */
 [x-cloak] {
     display: none !important;
-}
-
-/* dayGridWeek を縦並びに変形 */
-.fc-dayGridWeek-view .fc-daygrid-body {
-    display: flex;
-    flex-direction: column; /* ← 縦並び */
-}
-
-.fc-dayGridWeek-view .fc-daygrid-body .fc-daygrid-day {
-    display: flex;
-    flex-direction: row; /* 日付とイベントを横に並べる */
-    align-items: flex-start;
-    border-bottom: 1px solid #ddd;
-    padding: 8px;
-}
-
-/* 日付部分を左側に固定（見出し風） */
-.fc-dayGridWeek-view .fc-daygrid-day-top {
-    width: 120px; /* 日付欄の幅を調整 */
-    font-weight: bold;
-    flex-shrink: 0;
-}
-.fc-dayGridWeek-view .fc-col-header {
-    display: none;
-}
-.fc-dayGridWeek-view .fc-scrollgrid {
-    border: none !important;
-}
-.fc-dayGridWeek-view .fc-scrollgrid-section {
-    height: 0 !important;
-}
-.fc-dayGridWeek-view .fc-scrollgrid-section > td {
-    border: none !important;
-}
-.fc-dayGridWeek-view .fc-scrollgrid-sync-table {
-    height: auto !important;
-}
-/* イベントを右側に配置 */
-.fc-dayGridWeek-view .fc-daygrid-day-events {
-    flex: 1;
-    padding-left: 12px;
-}
-.fc-dayGridWeek-view .fc-day {
-    border: none;
-}
-.fc-dayGridWeek-view .fc-day-sun {
-    border-top: 1px solid #ddd;
-}
-
-.fc-dayGridWeek-view .fc-theme-standard td {
-    border: none;
-}
-.fc-dayGridWeek-view .fc-daygrid-day-frame{
-    display: flex;
 }
