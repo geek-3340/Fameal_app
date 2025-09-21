@@ -111,7 +111,7 @@ FullCalendar
     align-items: center;
 }
 .fc-dayGridWeek-view .fc-day-sun {
-    border-top: 1px solid #ddd;
+    border-top: 1px solid #ddd !important;
 }
 .fc-dayGridWeek-view .fc-scrollgrid {
     border: none !important;
