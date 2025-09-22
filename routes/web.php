@@ -28,6 +28,7 @@ Route::middleware('auth', 'two_factor')->group(function () {
     Route::get('/baby-menus/week', [MenusController::class, 'index'])->name('baby.menus.week.index');
 
     Route::post('/menus-dishes', [MenusDishesController::class, 'store'])->name('menus.dishes.store');
+    Route::post('/menus-dishes/{id}', [MenusDishesController::class, 'destroy'])->name('menus.dishes.destroy');
 
     Route::get('/dishes', [DishesController::class, 'index'])->name('dishes.index');
     Route::post('/dishes', [DishesController::class, 'store'])->name('dishes.store');

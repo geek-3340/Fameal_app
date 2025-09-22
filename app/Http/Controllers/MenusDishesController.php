@@ -29,4 +29,14 @@ class MenusDishesController extends Controller
 
         return redirect()->back()->with('success', '献立を登録しました');
     }
+    
+    public function destroy($id)
+    {
+        $menusDish = MenusDishes::findOrFail($id);
+        if ($menusDish->menu->user_id !== auth()->id()) {
+            abort(403);
+        }
+        $menusDish->delete();
+        return redirect()->back()->with('success', '料理を削除しました');
+    }
 }

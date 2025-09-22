@@ -2,7 +2,7 @@ import modalLinkSvg from "./modalLinkSvg";
 export default function fullCalendar() {
     document.addEventListener("DOMContentLoaded", function () {
         const calendarEl = document.getElementById("calendar");
-
+        window.dishesByDate = JSON.parse(calendarEl.dataset.menusByDate || "{}");
         // URLを切り替えるためにbladeからrouteをdata属性で受け取る
         const initialView = calendarEl.dataset.initialView || "dayGridMonth";
         const monthUrl = calendarEl.dataset.monthUrl;

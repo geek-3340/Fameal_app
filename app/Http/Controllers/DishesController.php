@@ -26,9 +26,10 @@ class DishesController extends Controller
     public function destroy($id)
     {
         $dish = Dishes::find($id);
-        if ($dish && $dish->user_id === auth()->id()) {
-            $dish->delete();
+        if ($dish->user_id !== auth()->id()) {
+            abort(403);
         }
+        $dish->delete();
         return back();
     }
 }

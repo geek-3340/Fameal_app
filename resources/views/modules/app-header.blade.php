@@ -36,7 +36,7 @@
                     </path>
                 </g>
             </svg>
-            
+
         </button>
         <button x-show="openRight" type="button" @click="openRight = false"
             class="absolute top-0 right-0 mr-5 flex flex-col justify-center items-center w-20 h-20  z-50"
@@ -54,14 +54,18 @@
     </div>
 
     <!-- 左メニュー(レスポンシブハンバーガーメニュー) -->
-    <div class="fixed top-0 left-0 w-48 h-screen pt-20 bg-transparent z-40 flex flex-col max-md:hidden">
-        <div class="absolute top-20 left-full h-[calc(100%-80px)] border border-r-filter"></div>
-        <nav class="flex flex-col px-5 mt-8 space-y-8">
-            <a href="{{ route('menus.month.index') }}" class="text-main text-2xl font-bold">献立表</a>
-            <a href="{{ route('dishes.index') }}" class="text-main text-2xl font-bold">料理登録</a>
-            {{-- <a href="#" class="text-main text-2xl font-bold">離乳食登録</a>
-            <a href="#" class="text-main text-2xl font-bold">買い物リスト</a> --}}
-        </nav>
+    <div id="js-left-menu">
+        <div class="fixed top-0 left-0 w-48 h-screen pt-20 bg-transparent z-40 flex flex-col max-md:hidden">
+            <div class="absolute top-20 left-full h-[calc(100%-80px)] border border-r-filter"></div>
+            <nav class="flex flex-col px-5 mt-8 space-y-8">
+                <a href="{{ route('menus.month.index') }}"
+                    class="text-main text-2xl font-bold block w-max px-2 py-1">献立表</a>
+                <a href="{{ route('dishes.index') }}"
+                    class="text-main text-2xl font-bold block w-max px-2 py-1">料理登録</a>
+                {{-- <a href="#" class="text-main text-2xl font-bold block w-max px-2 py-1">離乳食登録</a>
+            <a href="#" class="text-main text-2xl font-bold block w-max px-2 py-1">買い物リスト</a> --}}
+            </nav>
+        </div>
     </div>
     <div x-show="openLeft" x-transition:enter="transition ease-out duration-300"
         x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0"
@@ -76,6 +80,7 @@
             <a href="#" class="text-subtext text-2xl font-bold">買い物リスト</a> --}}
         </nav>
     </div>
+
 
     <!-- 右スライドインメニュー -->
     <div x-show="openRight" x-transition:enter="transition ease-out duration-300"
