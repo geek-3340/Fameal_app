@@ -10,11 +10,14 @@ class MenusController extends Controller
 {
     public function index()
     {
+        // ログイン中のユーザーの料理を取得
         $dishes = Dishes::where('user_id', auth()->id())->get();
+        // リレーションしたテーブルの情報を事前に取得し、中間テーブルの情報を取得
+        // リレーション先に参照は、リレーションメソッド名でアクセスする
         $menus = MenusDishes::with('dish', 'menu')
             ->whereHas('menu', function ($query) {
                 $query->where('user_id', auth()->id());
-            })->get();
+            })->get(); // リレーション先の情報を検索する場合はwhereHasを使い、検索には無名関数を使う
         $events = [];
         $menusByDate = [];
         foreach ($menus as $menu) {

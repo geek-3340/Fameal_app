@@ -16,6 +16,7 @@ class MenusDishesController extends Controller
         ]);
 
         // 献立（menus）を日付＆ユーザーで取得 or 作成
+        // 同じ日付のmenusがあれば取得、なければ新規作成
         $menu = Menus::firstOrCreate([
             'date' => $request->date,
             'user_id' => auth()->id(),
