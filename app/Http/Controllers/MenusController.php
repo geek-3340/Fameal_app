@@ -25,11 +25,13 @@ class MenusController extends Controller
                 'title' => $menu->dish->name,
                 'start' => $menu->menu->date,
             ];
+            // $events=[['title'=>'料理名','start'=>'日付'],...];
             $date = $menu->menu->date;
             $menusByDate[$date][] = [
                 'id' => $menu->id,
                 'dish_name' => $menu->dish->name,
             ];
+            // $menusByDate=['日付'=>[['id'=>'menus_dishesのid','dish_name'=>'料理名'],...],...];
         }
         return view('contents', compact('dishes', 'events', 'menusByDate'));
     }
