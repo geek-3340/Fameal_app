@@ -1,4 +1,4 @@
-# blade の Tips
+# view の Tips
 
 ## リクエストに応じて描画するコンテンツを変える方法
 
@@ -155,7 +155,27 @@ Laravelプロジェクトにおけるlangフォルダを指します。
 // 参照してるenvファイルの内容も同様に切り替える
 ```
 
-## カスタムデータを用いたJSとの連携
+## カスタムデータを用いたJSとの連携(HTMLの機能)
+### カスタムデータとは？
+JSからbladeのDOMを取得する際に、一緒にデータを受け取るための機能
+
+### 構文
+```html
+<!-- HTML（ blade ） -->
+<div id="js" data-custom-data="Hello!"></div>
+```
+```js
+// JS
+const $dom = document.getElementById('js');
+
+console.log($dom.dataset.customData); //出力：Hello!
+```
+HTML側では`data-データ名="値"`でJSに渡すデータを指定しJS側では`DOM.dataset.データ名`で取得できます。
+
+この`DOM`はデータを指定した要素である必要があり、`データ名`はHTMLで書いたデータ名をキャメルケースで書きます。
+
+### Laravelでのサーバーサイドからのデータ連携
+
 
 
 ## $attributesを用いたコンポーネント属性とのmerge
