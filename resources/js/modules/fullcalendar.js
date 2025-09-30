@@ -1,4 +1,3 @@
-```js
 import modalLinkSvg from "./modalLinkSvg";
 export default function fullCalendar() {
     document.addEventListener("DOMContentLoaded", function () {
@@ -24,17 +23,12 @@ export default function fullCalendar() {
         }
 
         const calendar = new FullCalendar.Calendar(calendarEl, {
-            // plugins: [dayGridPlugin], ←CDNで読み込む場合は不要
             initialView: initialView,
             locale: "ja",
             headerToolbar: {
                 left: "title,prev,next",
                 right: "monthButton,weekButton",
             },
-            // buttonText: {
-            //     month: "月表示",
-            //     week: "週表示",
-            // },
             customButtons: {
                 monthButton: {
                     text: "月表示",
@@ -67,8 +61,6 @@ export default function fullCalendar() {
                 if (link) {
                     link.addEventListener("click", (e) => {
                         e.preventDefault();
-                        // UTCの日付をJSTに変換してYYYY-MM-DD形式にする
-                        // タイムゾーンの影響で前日や翌日になるのを防ぐために9時間足す
                         const jstDate = jst(arg.date);
                         const formattedDate = dateFormat(arg.date);
                         window.dispatchEvent(
@@ -80,8 +72,6 @@ export default function fullCalendar() {
                 }
             },
         });
-
         calendar.render();
     });
 }
-```

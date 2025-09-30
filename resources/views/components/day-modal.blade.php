@@ -3,15 +3,14 @@
         open = true;
         selectedDate = $event.detail.date;
         formattedDate = $event.detail.formattedDate;
-        // dishesByDateはwindowにセットしておく
-        dishes = (window.dishesByDate && window.dishesByDate[selectedDate]) ? window.dishesByDate[selectedDate] : [];
+        dishes = (window.dishesByDate[selectedDate]) ? window.dishesByDate[selectedDate] : [];
     ">
     <div x-show="open" x-cloak class="fixed inset-0 flex items-center justify-center bg-main bg-opacity-50 z-50">
         <div class="bg-white p-6 rounded shadow w-96">
             <div class="flex justify-between">
                 <div></div>
                 <h2 class="text-xl font-bold mt-3 mb-5">料理を登録</h2>
-                <button @click="open = false" class="">
+                <button @click="open = false">
                     <svg fill="#3d3d3d" version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg"
                         xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 64 64" enable-background="new 0 0 64 64"
                         xml:space="preserve" stroke="#3d3d3d" class="w-6 h-6">
@@ -47,7 +46,6 @@
                     </button>
                 </div>
             </form>
-            <!-- ここから追加 -->
             <div class="mt-6">
                 <template x-if="dishes.length > 0">
                     <div>
@@ -69,7 +67,6 @@
                     <div class="text-gray-400 text-sm">献立登録はありません。</div>
                 </template>
             </div>
-            <!-- ここまで追加 -->
         </div>
     </div>
 </div>

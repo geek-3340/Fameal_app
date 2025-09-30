@@ -172,13 +172,177 @@ console.log($dom.dataset.customData); //出力：Hello!
 ```
 HTML側では`data-データ名="値"`でJSに渡すデータを指定しJS側では`DOM.dataset.データ名`で取得できます。
 
-この`DOM`はデータを指定した要素である必要があり、`データ名`はHTMLで書いたデータ名をキャメルケースで書きます。
+この`DOM`はデータを指定した要素である必要があります。
 
-### Laravelでのサーバーサイドからのデータ連携
+`データ名`はHTMLで書いたデータ名から`-`を省きキャメルケースで書きます。
+
+### 応用
+- **route（URL）を渡す場合**
+    ```html
+    <!-- HTML（ blade ） -->
+    <div id="js" data-custom-data="{{route(`post.index`)}}"></div>
+    ```
+    ```js
+    // JS
+    const $dom = document.getElementById('js');
+
+    console.log($dom.dataset.customData); //出力例：https://app.post.index
+    ```
+    上記のように`{{route('ルート名')}}`と書くことで、URLに変換されJSに渡されます。
+
+<br>
+
+- **コントローラーから受け取ったデータを渡す場合**
+    コントローラーからビュー、ビューからJSへデータを渡す処理を行いたい場合は
+
+    以下のようになります。
+    ```php
+    // コントローラー
+    $name = '名前'
+    $array = [
+        title => '題名',
+        description => '説明',
+    ];
+    return view('index', compact('name','array'))
+    ```
+    ```html
+    <!-- index.blade.php -->
+    <div id="js"
+        data-custom-data-name="$name"
+        data-custom-data-array='@json($array)'></div>
+    ```
+    ```js
+    // JS
+    const $dom = document.getElementById('js');
+
+    console.log($dom.dataset.customDataName); //出力例：名前
+    console.log(Json.parse($dom.dataset.customDataArray[title])); //出力例：題名
+    ```
+    上記のように文字列や数値等のデータは変数でそのまま渡せますが
+
+    配列やオブジェクトをJSに渡す時は`@json`を用いて渡し、JS側で
+
+    `Json.parse()`を用いて受け取ることで配列やオブジェクトとして
+
+    扱うことが出来ます。
+
+## bladeコンポーネントについて
+
+## `$attributes` を用いたコンポーネント属性との merge
+
+### 基本的な考え方
+- Blade コンポーネントに渡される **HTML 属性（class, id, style など）** をまとめて受け取るのが `$attributes`。
+- `$attributes->merge([...])` を使うことで「デフォルトの属性」と「呼び出し側で渡した属性」をマージできる。
+
+### 使用例
+
+#### コンポーネント定義 (`resources/views/components/button.blade.php`)
+```html
+<button {{ $attributes->merge(['class' => 'px-4 py-2 rounded bg-blue-500 text-white']) }}>
+    {{ $slot }}
+</button>
+```
+
+#### 呼び出し側
+```html
+<x-button class="bg-red-500">削除</x-button>
+```
+
+#### 実際の出力
+```html
+<button class="px-4 py-2 rounded bg-blue-500 text-white bg-red-500">
+    削除
+</button>
+```
+
+### ポイント
+- 呼び出し側のクラスが後ろに追加される。
+- 必要に応じて **`$attributes->class([...])`** を使うと、条件付きクラスをより便利に扱える。
 
 
+## `$props` での引数受け取り
 
-## $attributesを用いたコンポーネント属性とのmerge
+### 基本的な考え方
+- コンポーネントに渡す **明示的な引数**（title, type など）を受け取る仕組み。
+- コンポーネントの先頭で `@props([...])` を使って宣言する。
+
+### 使用例
+
+#### コンポーネント定義 (`resources/views/components/alert.blade.php`)
+```html
+@props(['type' => 'info', 'message'])
+
+<div {{ $attributes->merge(['class' => 'p-4 rounded']) }}>
+    <strong>{{ ucfirst($type) }}:</strong> {{ $message }}
+</div>
+```
+
+#### 呼び出し側
+```html
+<x-alert type="error" message="エラーが発生しました" class="bg-red-100 text-red-700" />
+```
+
+#### 実際の出力
+```html
+<div class="p-4 rounded bg-red-100 text-red-700">
+    <strong>Error:</strong> エラーが発生しました
+</div>
+```
+
+### ポイント
+- `@props(['name' => 'default'])` でデフォルト値を設定可能。
+- `$attributes` と組み合わせることで「見た目」と「動的データ」をきれいに分離できる。
 
 
-## $propsでの引数受け取り、match()での分岐処理
+## `match()` での分岐処理
+
+### 基本的な考え方
+- PHP 8 から使える式ベースの分岐処理。
+- Blade 内でも利用可能で、コンポーネントのスタイル切り替えに便利。
+
+### 使用例
+
+#### コンポーネント定義 (`resources/views/components/badge.blade.php`)
+```php
+@props(['status' => 'default'])
+
+@php
+    $classes = match($status) {
+        'success' => 'bg-green-100 text-green-800',
+        'error'   => 'bg-red-100 text-red-800',
+        'warning' => 'bg-yellow-100 text-yellow-800',
+        default   => 'bg-gray-100 text-gray-800',
+    };
+@endphp
+
+<span {{ $attributes->merge(['class' => "px-2 py-1 rounded text-sm $classes"]) }}>
+    {{ $slot }}
+</span>
+```
+
+#### 呼び出し側
+```html
+<x-badge status="success">完了</x-badge>
+<x-badge status="error">失敗</x-badge>
+<x-badge>未定義</x-badge>
+```
+
+#### 実際の出力
+```html
+<span class="px-2 py-1 rounded text-sm bg-green-100 text-green-800">完了</span>
+<span class="px-2 py-1 rounded text-sm bg-red-100 text-red-800">失敗</span>
+<span class="px-2 py-1 rounded text-sm bg-gray-100 text-gray-800">未定義</span>
+```
+
+### ポイント
+- `if` や `switch` よりシンプルに書ける。
+- 必ず何かを返すため、変数代入に向いている。
+
+---
+
+## まとめ
+- `$attributes` → HTML属性をまとめて受け取り、merge でマージ可能。  
+- `$props` → 明示的に渡した引数を受け取る仕組み。  
+- `match()` → スタイルや状態ごとの分岐に便利。  
+
+これらを組み合わせることで、 **再利用性が高く、柔軟なコンポーネント** を作れる。

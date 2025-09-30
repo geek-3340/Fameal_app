@@ -85,6 +85,11 @@ FullCalendar
 /* calendar */
 .fc .fc-daygrid-day-top {
     flex-direction: row; /* 日付をデフォルト右から左配置へ */
+}
+.fc .fc-daygrid-day-number{
+    display: flex;
+    width: 100%;
+    align-items: center;
     justify-content: space-between; /* 日付とカスタムリンクを両端に */
 }
 

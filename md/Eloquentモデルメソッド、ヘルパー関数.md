@@ -1,4 +1,4 @@
-# controllerで多用するヘルパー関数
+# Eloquentモデルメソッド、ヘルパー関数
 
 ## 目次
 - [user()](#user)
