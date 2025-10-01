@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.btn {
+    @apply inline-block px-4 py-2 text-subtext font-semibold text-base bg-main rounded-full shadow-custom hover:shadow-none transition-shadow;
+}
+
 /*
 FullCalendar
 */
@@ -86,7 +90,7 @@ FullCalendar
 .fc .fc-daygrid-day-top {
     flex-direction: row; /* 日付をデフォルト右から左配置へ */
 }
-.fc .fc-daygrid-day-number{
+.fc .fc-daygrid-day-number {
     display: flex;
     width: 100%;
     align-items: center;

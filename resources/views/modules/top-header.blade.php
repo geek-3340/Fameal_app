@@ -12,7 +12,7 @@
                 </a>
             @else
                 <a href="{{ route('login') }}"
-                    class="flex items-center justify-center mx-2 w-28 h-10 text-sm bg-main rounded-full shadow-custom hover:shadow-none transition-shadow">
+                    class="btn">
                     ログイン
                 </a>
             @endauth
