@@ -5,7 +5,7 @@
         formattedDate = $event.detail.formattedDate;
         dishes = (window.dishesByDate[selectedDate]) ? window.dishesByDate[selectedDate] : [];
     ">
-    <div x-show="open" x-cloak class="fixed inset-0 flex items-center justify-center bg-main bg-opacity-50 z-50">
+    <div x-show="open" class="fixed inset-0 flex items-center justify-center bg-main bg-opacity-50 z-50">
         <div class="bg-white p-6 rounded shadow w-96">
             <div class="flex justify-between">
                 <div></div>

@@ -16,7 +16,13 @@ export default {
                 monoton: ["Monoton", ...defaultTheme.fontFamily.sans],
             },
             colors: {
-                main: "#f89900",
+                main: "#ffb700",
+                sub: "#ffcf55",
+                hover: "#ffa000",
+                accent: "#00e65c",
+                accenthover: "#00c74a",
+                danger: "#e54c4c",
+                dangerhover: "#d43c3c",
                 bg: "#ffffff",
                 filter: "#ffc870",
                 text: "#3d3d3d",
@@ -25,7 +31,7 @@ export default {
                 link: "#0022ff",
             },
             boxShadow: {
-                custom: "0 0 8px 2px rgba(0,0,0,0.15)",
+                custom: "0 0 4px 2px rgba(0,0,0,0.15)",
             },
         },
     },

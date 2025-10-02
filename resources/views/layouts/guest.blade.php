@@ -34,9 +34,7 @@
                 {{ $slot }}
             </div>
         @else
-            <div class="w-full max-w-xs mt-8 px-6 py-4 bg-white border border-filter rounded-xl">
-                {{ $slot }}
-            </div>
+            {{ $slot }}
         @endif
 
     </main>

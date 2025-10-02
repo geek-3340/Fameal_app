@@ -1,4 +1,4 @@
-<header class="w-11/12 h-20 mx-auto bg-bg border-b border-filter">
+<header class="w-11/12 h-20 mx-auto border-b border-main">
     <div class=" h-full flex justify-between items-center">
         <div class="flex items-end max-md:block">
             <h1 class="ml-28 mr-3 font-monoton text-main text-4xl leading-none max-md:text-3xl">Fameal</h1>
@@ -6,16 +6,17 @@
         </div>
         <nav class=" flex mr-5">
             @auth
-                <a href="{{ route('menus.month.index') }}"
-                    class="flex items-center justify-center mx-2 w-28 h-10 text-sm bg-main rounded-full shadow-custom hover:shadow-none transition-shadow">
+                <x-link-button href="{{ route('menus.month.index') }}" type="primary">
                     マイページ
-                </a>
+                </x-link-button>
             @else
-                <a href="{{ route('login') }}"
-                    class="btn">
+                <x-link-button href="{{ route('login') }}" type="primary">
                     ログイン
-                </a>
+                </x-link-button>
             @endauth
+            <x-link-button href="{{ route('register') }}" type="register" class="ml-2">
+                新規登録
+            </x-link-button>
         </nav>
     </div>
 </header>

@@ -23,7 +23,7 @@
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.19/list.global.min.js"></script>
 
     <!-- Scripts -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/css/fullcalendar.css', 'resources/js/app.js'])
 
 </head>
 
@@ -39,7 +39,7 @@
             <div class="w-full h-20"></div>
             <div class="w-screen h-max flex">
                 <div class="w-48 max-md:hidden"></div>
-                <div class="w-3/4 h-auto my-10 mx-auto p-10 border border-filter rounded-xl shadow-custom">
+                <div class="w-3/4 h-auto mt-10 mx-auto p-10 border border-main rounded-xl shadow-custom">
                     {{ $slot }}
                 </div>
             </div>

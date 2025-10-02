@@ -7,10 +7,6 @@
                 <p class=" w-full h-3/4 pt-10 pl-10">
                     テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
                 </p>
-                <a href="{{ route('register') }}"
-                    class="flex items-center justify-center w-32 h-16 mx-auto text-lg bg-main rounded-full shadow-custom hover:shadow-none transition-shadow">
-                    新規登録
-                </a>
             </div>
         </div>
     </div>

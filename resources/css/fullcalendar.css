@@ -1,0 +1,157 @@
+/*
+FullCalendar styles
+*/
+
+/* base */
+.fc {
+    font-family: "Noto Sans JP";
+    color: #3d3d3d;
+}
+
+/* toolbar */
+.fc .fc-toolbar-chunk div {
+    display: flex; /* 年月とprev nextを横並び */
+}
+.fc .fc-toolbar-title {
+    font-weight: bold;
+    margin-right: 2px;
+}
+.fc .fc-prev-button,
+.fc .fc-next-button {
+    background-color: #f89900;
+    border: none;
+    transform: scale(0.8);
+}
+.fc .fc-prev-button:hover,
+.fc .fc-prev-button:active,
+.fc .fc-prev-button:focus-visible,
+.fc .fc-next-button:hover,
+.fc .fc-next-button:active,
+.fc .fc-next-button:focus-visible {
+    background-color: #f77000 !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+.fc .fc-prev-button:focus,
+.fc .fc-next-button:focus {
+    box-shadow: none !important;
+}
+.fc-button-group {
+    display: flex;
+    flex-direction: column; /* 月 週ボタンを縦並び */
+}
+.fc .fc-monthButton-button,
+.fc .fc-weekButton-button {
+    background-color: #fff;
+    color: #f89900;
+    font-weight: bold;
+    border: 2px solid #f89900;
+    border-radius: 10px !important;
+    margin: 2px;
+}
+.fc .fc-monthButton-button:hover,
+.fc .fc-monthButton-button:active,
+.fc .fc-monthButton-button:focus,
+.fc .fc-monthButton-button:visited,
+.fc .fc-weekButton-button:hover,
+.fc .fc-weekButton-button:active,
+.fc .fc-weekButton-button:focus,
+.fc .fc-weekButton-button:visited {
+    background-color: #fff999 !important;
+    color: #f89900 !important;
+    font-weight: bold !important;
+    border: 2px solid #f89900 !important;
+    border-radius: 10px !important;
+    margin: 2px !important;
+    box-shadow: none !important;
+}
+.fc-monthButton-button.active,
+.fc-weekButton-button.active {
+    background-color: #f89900;
+    color: #ffffff;
+    font-weight: bold;
+    border: 2px solid #f89900;
+    border-radius: 10px !important;
+    margin: 2px;
+}
+.fc-direction-ltr .fc-button-group > .fc-button:not(:first-child) {
+    margin-left: 0; /* 月 週ボタン　デフォルトの縦軸ずれを修正 */
+}
+
+/* calendar */
+.fc .fc-daygrid-day-top {
+    flex-direction: row; /* 日付をデフォルト右から左配置へ */
+}
+.fc .fc-daygrid-day-number {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between; /* 日付とカスタムリンクを両端に */
+}
+
+/* dayGridMonth */
+.fc .fc-dayGridMonth-view .fc-daygrid-day-number {
+    padding: 3px 0 0 10px;
+}
+
+/* dayGridWeek */
+.fc .fc-dayGridWeek-view .fc-daygrid-day-top {
+    width: max-content; /* 日付部分の曜日改行を防ぐ */
+}
+.fc-dayGridWeek-view .fc-col-header {
+    display: none; /* 日付のテーブルヘッダーを非表示 */
+}
+.fc-dayGridWeek-view .fc-daygrid-body .fc-daygrid-day {
+    display: flex;
+    border-bottom: 1px solid #ddd;
+    padding: 8px;
+    min-height: 80px;
+}
+.fc-dayGridWeek-view .fc-daygrid-day-frame {
+    display: flex; /* 日付＆カスタムリンクとイベントを横並び */
+    align-items: center;
+}
+.fc-dayGridWeek-view .fc-day-sun {
+    border-top: 1px solid #ddd !important;
+}
+.fc-dayGridWeek-view .fc-scrollgrid {
+    border: none !important;
+}
+.fc-dayGridWeek-view .fc-day {
+    border: none;
+}
+.fc-dayGridWeek-view .fc-theme-standard td {
+    border: none;
+}
+.fc-dayGridWeek-view .fc-scrollgrid-section > td {
+    border: none !important;
+}
+.fc-dayGridWeek-view .fc-scrollgrid-section {
+    height: 0 !important;
+}
+.fc-dayGridWeek-view .fc-scrollgrid-sync-table {
+    height: auto !important;
+}
+.fc-dayGridWeek-view .fc-scroller,
+.fc-dayGridWeek-view .fc-scroller-harness {
+    overflow: visible !important;
+}
+.fc .fc-view-harness {
+    height: 800px !important;
+}
+.fc-dayGridWeek-view .fc-daygrid-day-top {
+    font-weight: bold;
+}
+
+/* events */
+.fc .fc-h-event {
+    background-color: #ffb540;
+    border: none;
+    font-size: 0.8rem;
+    width: max-content;
+    padding: 2px;
+    margin: 3px 0 3px 5px !important;
+}
+.fc .fc-event-main {
+    color: #3d3d3d;
+}
