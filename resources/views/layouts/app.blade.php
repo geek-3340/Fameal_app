@@ -2,13 +2,14 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
+
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
-    <meta name="description" content="A Laravel application" />
+    <meta name="description" content="Famealは親子献立カレンダーアプリです。離乳食期のお子様を持つご家庭の献立を効率的に管理できます。" />
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,7 +17,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Monoton&family=Noto+Sans+JP:wght@100..900&display=swap"
         rel="stylesheet">
 
-    <!-- fullcalendar -->
+    <!-- fullcalendar CDN -->
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.19/index.global.min.css" rel="stylesheet">
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.19/index.global.min.js'></script>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.19/locales-all.global.min.js"></script>
@@ -27,24 +28,30 @@
 
 </head>
 
-<body class="font-sans text-text overflow-x-hidden">
-    @if (request()->routeIs('top.page'))
-        @include('modules.top-header')
-        <main>
-            {{ $slot }}
-        </main>
-    @else
-        @include('modules.app-header')
-        <main>
-            <div class="w-full h-20"></div>
-            <div class="w-screen h-max flex">
-                <div class="w-48 max-md:hidden"></div>
-                <div class="w-3/4 h-auto mt-10 mx-auto p-10 border border-main rounded-xl shadow-custom">
-                    {{ $slot }}
+<body class="text-base font-sans text-text overflow-x-hidden">
+
+    <main>
+        @if (request()->routeIs('top.page'))
+            @include('layouts.headers.top-header')
+        @else
+            @if (request()->routeIs('menus.month.index') ||
+                    request()->routeIs('menus.week.index') ||
+                    request()->routeIs('baby.menus.month.index') ||
+                    request()->routeIs('baby.menus.month.index') ||
+                    request()->routeIs('dishes.index'))
+                <div class="w-full h-20"></div>
+                <div class="w-screen h-max flex">
+                    <div class="w-48 max-md:hidden"></div>
+                    <div class="w-3/4 h-auto mt-10 mx-auto p-10 border border-main rounded-xl shadow-custom">
+                        @include('layouts.headers.contents-header')
+                    </div>
                 </div>
-            </div>
-        </main>
-    @endif
+            @else
+            @endif
+        @endif
+        {{ $slot }}
+    </main>
+
 </body>
 
 </html>
