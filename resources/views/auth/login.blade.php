@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-app-layout>
     <x-contents-board>
         <h1 class=" text-center font-bold mb-4">ログイン</h1>
 
@@ -52,4 +52,4 @@
             新規登録
         </x-link-button>
     </x-contents-board>
-</x-guest-layout>
+</x-app-layout>

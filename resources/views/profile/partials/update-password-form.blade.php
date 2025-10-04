@@ -36,10 +36,9 @@
         </div>
 
         <div class="flex items-center gap-4">
-            <button
-                class="flex items-center justify-center my-6 w-full h-10 text-sm text-text bg-main rounded-full shadow-custom hover:shadow-none transition-shadow">
+            <x-button width="full">
                 {{ __('Save') }}
-            </button>
+            </x-button>
 
             @if (session('status') === 'password-updated')
                 <p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 2000)"

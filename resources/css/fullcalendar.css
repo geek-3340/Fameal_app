@@ -11,6 +11,7 @@ FullCalendar styles
 /* toolbar */
 .fc .fc-toolbar-chunk div {
     display: flex; /* 年月とprev nextを横並び */
+    align-items: center;
 }
 .fc .fc-toolbar-title {
     font-weight: bold;
@@ -18,9 +19,10 @@ FullCalendar styles
 }
 .fc .fc-prev-button,
 .fc .fc-next-button {
-    background-color: #f89900;
+    background-color: #ffb700;
     border: none;
     transform: scale(0.8);
+    margin-top: 5px;
 }
 .fc .fc-prev-button:hover,
 .fc .fc-prev-button:active,
@@ -28,7 +30,7 @@ FullCalendar styles
 .fc .fc-next-button:hover,
 .fc .fc-next-button:active,
 .fc .fc-next-button:focus-visible {
-    background-color: #f77000 !important;
+    background-color: #ffa000 !important;
     border: none !important;
     box-shadow: none !important;
 }
@@ -43,9 +45,9 @@ FullCalendar styles
 .fc .fc-monthButton-button,
 .fc .fc-weekButton-button {
     background-color: #fff;
-    color: #f89900;
+    color: #ffb700;
     font-weight: bold;
-    border: 2px solid #f89900;
+    border: 2px solid #ffb700 !important;
     border-radius: 10px !important;
     margin: 2px;
 }
@@ -58,24 +60,27 @@ FullCalendar styles
 .fc .fc-weekButton-button:focus,
 .fc .fc-weekButton-button:visited {
     background-color: #fff999 !important;
-    color: #f89900 !important;
-    font-weight: bold !important;
-    border: 2px solid #f89900 !important;
-    border-radius: 10px !important;
-    margin: 2px !important;
-    box-shadow: none !important;
+    color: #ffb700 !important;
 }
 .fc-monthButton-button.active,
 .fc-weekButton-button.active {
-    background-color: #f89900;
+    background-color: #ffb700;
     color: #ffffff;
-    font-weight: bold;
-    border: 2px solid #f89900;
-    border-radius: 10px !important;
-    margin: 2px;
+}
+.fc .fc-monthButton-button.active:hover,
+.fc .fc-monthButton-button.active:active,
+.fc .fc-monthButton-button.active:focus,
+.fc .fc-monthButton-button.active:visited,
+.fc .fc-weekButton-button.active:hover,
+.fc .fc-weekButton-button.active:active,
+.fc .fc-weekButton-button.active:focus,
+.fc .fc-weekButton-button.active:visited {
+    background-color: #ffa000 !important;
+    border-color: #ffa000 !important;
+    color: #ffffff !important;
 }
 .fc-direction-ltr .fc-button-group > .fc-button:not(:first-child) {
-    margin-left: 0; /* 月 週ボタン　デフォルトの縦軸ずれを修正 */
+    margin-left: 2px; /* 月 週ボタン　デフォルトの縦軸ずれを修正 */
 }
 
 /* calendar */

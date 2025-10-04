@@ -31,25 +31,21 @@
 <body class="text-base font-sans text-text overflow-x-hidden">
 
     <main>
-        @if (request()->routeIs('top.page'))
-            @include('layouts.headers.top-header')
+        @if (request()->routeIs('menus.month.index') ||
+                request()->routeIs('menus.week.index') ||
+                request()->routeIs('baby.menus.month.index') ||
+                request()->routeIs('baby.menus.month.index') ||
+                request()->routeIs('dishes.index'))
+            <div class="h-20"></div>
+            @include('layouts.partials.contents-header')
+            <div class="flex">
+                <div class="w-48 max-md:hidden"></div>
+                {{ $slot }}
+            </div>
         @else
-            @if (request()->routeIs('menus.month.index') ||
-                    request()->routeIs('menus.week.index') ||
-                    request()->routeIs('baby.menus.month.index') ||
-                    request()->routeIs('baby.menus.month.index') ||
-                    request()->routeIs('dishes.index'))
-                <div class="w-full h-20"></div>
-                <div class="w-screen h-max flex">
-                    <div class="w-48 max-md:hidden"></div>
-                    <div class="w-3/4 h-auto mt-10 mx-auto p-10 border border-main rounded-xl shadow-custom">
-                        @include('layouts.headers.contents-header')
-                    </div>
-                </div>
-            @else
-            @endif
+            @include('layouts.partials.top-header')
+            {{ $slot }}
         @endif
-        {{ $slot }}
     </main>
 
 </body>

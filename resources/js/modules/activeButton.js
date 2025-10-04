@@ -7,13 +7,13 @@ export default function activeButton() {
         const dishBtn = menuLinks[1];
         if (currentUrl === "/menus/month" || currentUrl === "/menus/week") {
             menuBtn.classList.remove("text-main");
-            menuBtn.classList.add("text-subtext", "bg-main", "rounded-lg");
-            dishBtn.classList.remove("text-subtext", "bg-main", "rounded-lg");
+            menuBtn.classList.add("text-white", "bg-main", "rounded-lg");
+            dishBtn.classList.remove("text-white", "bg-main", "rounded-lg");
             dishBtn.classList.add("text-main");
         } else if (currentUrl === "/dishes") {
             dishBtn.classList.remove("text-main");
-            dishBtn.classList.add("text-subtext", "bg-main", "rounded-lg");
-            menuBtn.classList.remove("text-subtext", "bg-main", "rounded-lg");
+            dishBtn.classList.add("text-white", "bg-main", "rounded-lg");
+            menuBtn.classList.remove("text-white", "bg-main", "rounded-lg");
             menuBtn.classList.add("text-main");
         }
 

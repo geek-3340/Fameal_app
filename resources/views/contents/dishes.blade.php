@@ -1,27 +1,27 @@
-<div class="flex mx-auto">
-    <div class="w-1/2 h-max mx-5 p-10 border border-filter rounded-xl">
+<div class="flex mx-auto w-9/12">
+    <x-contents-board shadow="visible" width="two-contents" class="mx-0 mr-8">
         <h1 class=" text-2xl text-center font-bold mb-4">料理登録</h1>
         <form action="{{ route('dishes.store') }}" method="POST">
             @csrf
-            <div>
-                <div class="flex">
-                    <x-input-label for="dish_name" :value="__('Dish name')" class="flex items-center mr-3 text-xl font-normal" />
-                    <x-text-input id="dish_name" type="text" name="name" :value="old('dish_name')" required />
+            <div class="flex justify-between w-full">
+                <div class="flex w-5/6">
+                    <x-input-label for="dish_name" :value="__('Dish name')"
+                        class="flex items-center text-xl font-normal w-20 mr-2" />
+                    <x-text-input id="dish_name" type="text" name="name" :value="old('dish_name')" class="w-full mr-2" required />
                 </div>
-                <x-input-error :messages="$errors->get('dish_name')" class="mt-2" />
+                <x-button class="w-1/6">
+                    {{ __('Register dish') }}
+                </x-button>
             </div>
-            <button
-                class="flex items-center justify-center mt-6 mx-auto w-24 h-10 text-sm text-text bg-main rounded-full shadow-custom hover:shadow-none transition-shadow">
-                {{ __('Register dish') }}
-            </button>
+            <x-input-error :messages="$errors->get('dish_name')" class="mt-2" />
         </form>
-    </div>
-    <div class="w-1/2 mx-5 p-10 border border-filter rounded-xl">
+    </x-contents-board>
+    <x-contents-board shadow="visible" width="two-contents" class="mx-0">
         <h1 class="text-2xl text-center font-bold mb-4">登録料理一覧</h1>
         @foreach ($dishes as $dish)
             <div class="mb-2 p-2 border border-gray-200 rounded-lg flex justify-between">
                 <p class=" text-base">{{ $dish->name }}</p>
-                <form action="{{ route('dishes.destroy',$dish->id) }}" method="post">
+                <form action="{{ route('dishes.destroy', $dish->id) }}" method="post">
                     @csrf
                     <button class="mr-3">
                         <svg fill="#3d3d3d" version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg"
@@ -44,5 +44,5 @@
                 </form>
             </div>
         @endforeach
-    </div>
+    </x-contents-board>
 </div>

@@ -1,24 +1,18 @@
-<x-guest-layout>
-
-    <h1 class="text-center font-bold mb-4 text-2xl">
-        {{ __('Profile Menu') }}
-    </h1>
-
-    <div>
-        <div class=" w-11/12 h-max mx-auto my-5 p-5 border border-filter rounded-md">
-            <div class="max-w-xl">
+<x-app-layout>
+    <div class="w-max mt-8 mx-auto">
+        <h1 class="text-center font-bold text-2xl">
+            {{ __('Profile Menu') }}
+        </h1>
+        <div class="flex">
+            <x-contents-board>
                 @include('profile.partials.update-profile-information-form')
-            </div>
-        </div>
-        <div class=" w-11/12 h-max mx-auto my-5 p-5 border border-filter rounded-md">
-            <div class="max-w-xl">
+            </x-contents-board>
+            <x-contents-board class="mx-8">
                 @include('profile.partials.update-password-form')
-            </div>
-        </div>
-        <div class=" w-11/12 h-max mx-auto my-5 p-5 border border-filter rounded-md">
-            <div class="max-w-xl">
+            </x-contents-board>
+            <x-contents-board>
                 @include('profile.partials.delete-user-form')
-            </div>
+            </x-contents-board>
         </div>
     </div>
-</x-guest-layout>
+</x-app-layout>
