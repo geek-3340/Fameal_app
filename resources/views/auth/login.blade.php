@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-contents-board>
-        <h1 class=" text-center font-bold mb-4">ログイン</h1>
+        <h1 class="text-xl font-bold text-center mb-4">ログイン</h1>
 
         <!-- Session Status -->
         <x-auth-session-status class="mb-4" :status="session('status')" />
@@ -19,16 +19,12 @@
             <!-- Password -->
             <div class="mt-4">
                 <x-input-label for="password" :value="__('Password')" />
-
                 <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required
                     autocomplete="current-password" />
-                <p class=" text-sm">半角英数字のみ８文字以上</p>
-
                 <x-input-error :messages="$errors->get('password')" class="mt-2" />
             </div>
-
             @if (Route::has('password.request'))
-                <a class="underline text-sm text-link hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                <a class="underline text-sm text-link hover:text-indigo-900 focus:ring-indigo-500"
                     href="{{ route('password.request') }}">
                     パスワードを忘れた方
                 </a>
@@ -43,12 +39,12 @@
                 </label>
             </div>
 
-            <x-button width="full" class="my-4">
+            <x-button width="full" class="mt-4">
                 ログイン
             </x-button>
         </form>
-        <p class="text-sm text-graytext text-center">アカウント登録がまだの方</p>
-        <x-link-button href="{{ route('register') }}" type="register" width="full" class="mt-4">
+        <p class="text-sm text-graytext text-center my-4">アカウント登録がまだの方</p>
+        <x-link-button href="{{ route('register') }}" type="register" width="full">
             新規登録
         </x-link-button>
     </x-contents-board>
