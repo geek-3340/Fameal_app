@@ -36,12 +36,8 @@
                 request()->routeIs('baby.menus.month.index') ||
                 request()->routeIs('baby.menus.month.index') ||
                 request()->routeIs('dishes.index'))
-            <div class="h-20"></div>
             @include('layouts.partials.contents-header')
-            <div class="flex">
-                <div class="w-48 max-md:hidden"></div>
-                {{ $slot }}
-            </div>
+            {{ $slot }}
         @else
             @include('layouts.partials.top-header')
             {{ $slot }}

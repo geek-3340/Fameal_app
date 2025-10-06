@@ -1,5 +1,5 @@
 <header class="w-full">
-    <div class=" w-11/12 py-4 flex justify-between items-center mx-auto border-b border-main">
+    <div class=" w-11/12 h-20 flex justify-between items-center mx-auto border-b border-main">
         <div class="pl-28 text-main flex items-end max-md:block">
             <h1 class="mr-4 font-monoton text-4xl leading-none max-md:text-3xl">Fameal</h1>
             <p class="max-md:text-sm">親子献立カレンダーアプリ</p>

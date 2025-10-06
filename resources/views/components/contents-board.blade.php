@@ -1,17 +1,13 @@
-@props(['shadow' => 'none','width'=>'primary'])
+@props(['type' => 'primary'])
 
 @php
-    $shadow = match ($shadow) {
-        'none' => 'shadow-none',
-        'visible' => 'shadow-custom',
+    $type = match ($type) {
+        'primary' => 'shadow-none max-w-80 border',
+        'content' => 'shadow-custom w-11/12 border-none',
+        'two-contents' => 'shadow-custom w-1/2 border-none',
     };
-    $width=match($width){
-        'primary'=>'max-w-80',
-        'contents'=>'w-9/12',
-        'two-contents'=>'w-1/2',
-    }
 @endphp
 
-<div {{ $attributes->merge(['class' => "h-max my-8 mx-auto p-8 border border-main rounded-xl $shadow $width"]) }}>
+<div {{ $attributes->merge(['class' => "h-max my-8 mx-auto p-8 border-main rounded-xl $type"]) }}>
     {{ $slot }}
 </div>
