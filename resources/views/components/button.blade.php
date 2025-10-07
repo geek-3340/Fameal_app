@@ -1,7 +1,7 @@
-@props(['type' => 'primary', 'width' => 'auto'])
+@props(['use' => 'primary', 'width' => 'auto'])
 
 @php
-    $type = match ($type) {
+    $use = match ($use) {
         'primary'
             => 'inline-block px-4 py-2 text-white font-semibold text-base bg-button-primary rounded-full hover:bg-button-primaryhover transition-colors duration-200',
         'register'
@@ -15,6 +15,6 @@
     };
 @endphp
 
-<button {{ $attributes->merge(['class' => "$type $width"]) }}>
+<button {{ $attributes->merge(['class' => "$use $width"]) }}>
     {{ $slot }}
 </button>

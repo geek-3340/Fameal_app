@@ -7,7 +7,7 @@
             <x-contents-board>
                 @include('profile.partials.update-profile-information-form')
             </x-contents-board>
-            <x-contents-board class="mx-6">
+            <x-contents-board class="!mx-4">
                 @include('profile.partials.update-password-form')
             </x-contents-board>
             <x-contents-board>

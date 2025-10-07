@@ -19,7 +19,7 @@
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                <x-button width="full" type="primary">
+                <x-button width="full">
                     メール送信
                 </x-button>
             </div>

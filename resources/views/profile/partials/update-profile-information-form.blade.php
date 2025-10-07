@@ -50,7 +50,7 @@
             @endif
         </div>
 
-        <div class="flex items-center gap-4">
+        <div class="flex flex-col justify-center gap-4">
             <x-button width="full">
                 {{ __('Save') }}
             </x-button>

@@ -19,14 +19,14 @@
                 @enderror
             </div>
 
-            <x-button width="full" type="primary" class="mt-4">
+            <x-button width="full" class="mt-4">
                 認証する
             </x-button>
 
         </form>
         <form method="POST" action="{{ route('verify.pin.regenerate') }}" class=" text-center">
             @csrf
-            
+
             <button type="submit" class="text-blue-600 text-sm underline bg-transparent border-none mt-4">
                 コードを再送信
             </button>

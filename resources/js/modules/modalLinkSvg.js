@@ -1,6 +1,6 @@
 export default function modalLinkSvg() {
     return `
-    <a href="#" class="text-text decoration-none pt-1 px-2 ml-2 open-modal-link">
+    <a href="#" class="text-text decoration-none pt-1 px-2 ml-2 open-modal-link" id="">
             <svg
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
