@@ -21,6 +21,25 @@ export default function fullCalendar() {
                 .toISOString()
                 .split("T")[0];
         }
+        function calendarResponsive() {
+            const base = document.querySelector(".fc-view-harness");
+            const header = document.querySelector(".fc-col-header");
+            const body = document.querySelector(".fc-daygrid-body");
+            if (!base || !header || !body) return;
+            const headerHeight = header.clientHeight;
+            const bodyHeight = body.clientHeight;
+            const calendarHeight = headerHeight + bodyHeight;
+            base.style.setProperty(
+                "min-height",
+                `${calendarHeight}px`,
+                "important"
+            );
+        }
+        window.addEventListener("resize", () => {
+            setTimeout(() => {
+                calendarResponsive();
+            }, 300);
+        });
 
         const calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: initialView,
@@ -44,6 +63,12 @@ export default function fullCalendar() {
                 },
             },
             events: events,
+            height: "auto",
+            datesSet: () => {
+                setTimeout(() => {
+                    calendarResponsive();
+                }, 300);
+            },
             dayCellContent(arg) {
                 if (arg.view.type === "dayGridMonth") {
                     return {

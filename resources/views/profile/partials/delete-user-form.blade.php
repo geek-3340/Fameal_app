@@ -37,7 +37,7 @@
             </div>
 
             <div class="mt-6 flex justify-end">
-                <x-button x-on:click="$dispatch('close')">
+                <x-button type="button" @click="show=false">
                     {{ __('Cancel') }}
                 </x-button>
 

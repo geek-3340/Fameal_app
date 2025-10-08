@@ -14,15 +14,17 @@ FullCalendar styles
     align-items: center;
 }
 .fc .fc-toolbar-title {
-    font-weight: bold;
-    margin-right: 2px;
+    font-weight: 500;
+    margin-right: 4px;
 }
 .fc .fc-prev-button,
 .fc .fc-next-button {
     background-color: #ffb700;
     border: none;
-    transform: scale(0.8);
-    margin-top: 5px;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    margin: 5px 4px 0;
 }
 .fc .fc-prev-button:hover,
 .fc .fc-prev-button:active,
@@ -98,6 +100,9 @@ FullCalendar styles
 .fc .fc-dayGridMonth-view .fc-daygrid-day-number {
     padding: 3px 0 0 10px;
 }
+.fc .fc-dayGridMonth-view .fc-daygrid-day-events{
+    min-height: 5em;
+}
 
 /* dayGridWeek */
 .fc .fc-dayGridWeek-view .fc-daygrid-day-top {
@@ -140,9 +145,6 @@ FullCalendar styles
 .fc-dayGridWeek-view .fc-scroller,
 .fc-dayGridWeek-view .fc-scroller-harness {
     overflow: visible !important;
-}
-.fc .fc-view-harness {
-    height: 800px !important;
 }
 .fc-dayGridWeek-view .fc-daygrid-day-top {
     font-weight: bold;
