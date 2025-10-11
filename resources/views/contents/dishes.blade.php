@@ -23,7 +23,7 @@
                 <form action="{{ route('dishes.destroy', $dish->id) }}" method="post">
                     @csrf
                     <button class="mr-2">
-                        <x-close-delete-svg size="sm"></x-close-delete-svg>
+                        <x-icons.close-delete-svg size="sm"></x-icons.close-delete-svg>
                     </button>
                 </form>
             </div>

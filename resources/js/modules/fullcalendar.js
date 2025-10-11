@@ -1,4 +1,4 @@
-import modalLinkSvg from "./modalLinkSvg";
+import modalLinkSvg from "./svg/modalLinkSvg";
 export default function fullCalendar() {
     document.addEventListener("DOMContentLoaded", function () {
         const calendarEl = document.getElementById("calendar");
@@ -50,13 +50,11 @@ export default function fullCalendar() {
             },
             customButtons: {
                 monthButton: {
-                    text: "月表示",
                     click: function () {
                         window.location.href = monthUrl;
                     },
                 },
                 weekButton: {
-                    text: "週表示",
                     click: function () {
                         window.location.href = weekUrl;
                     },

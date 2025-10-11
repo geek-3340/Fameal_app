@@ -52,6 +52,8 @@ FullCalendar styles
     border: 2px solid #ffb700 !important;
     border-radius: 10px !important;
     margin: 2px;
+    display: flex;
+    gap: 4px;
 }
 .fc .fc-monthButton-button:hover,
 .fc .fc-monthButton-button:active,
@@ -63,6 +65,8 @@ FullCalendar styles
 .fc .fc-weekButton-button:visited {
     background-color: #fff999 !important;
     color: #ffb700 !important;
+    outline: none !important;
+    box-shadow: none !important;
 }
 .fc-monthButton-button.active,
 .fc-weekButton-button.active {
@@ -100,7 +104,7 @@ FullCalendar styles
 .fc .fc-dayGridMonth-view .fc-daygrid-day-number {
     padding: 3px 0 0 10px;
 }
-.fc .fc-dayGridMonth-view .fc-daygrid-day-events{
+.fc .fc-dayGridMonth-view .fc-daygrid-day-events {
     min-height: 5em;
 }
 
