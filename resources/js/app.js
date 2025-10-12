@@ -2,7 +2,7 @@ import "./bootstrap";
 import Alpine from "alpinejs";
 import fullCalendar from "./modules/fullcalendar";
 import activeButton from "./modules/activeButton";
-import monthOrWeek from "./modules/monthOrWeek";
+import monthOrWeek from "./modules/calendarActiveButton";
 
 // Alpine.js
 window.Alpine = Alpine;
@@ -13,8 +13,5 @@ fullCalendar();
 
 // ナビメニューのアクティブスタイル設定
 activeButton();
-
-// 月表示・週表示ボタンのアクティブスタイル設定
-monthOrWeek();
 
 

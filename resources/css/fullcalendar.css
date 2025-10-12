@@ -14,7 +14,8 @@ FullCalendar styles
     align-items: center;
 }
 .fc .fc-toolbar-title {
-    font-weight: 500;
+    font-weight: 600;
+    font-size: 32px;
     margin-right: 4px;
 }
 .fc .fc-prev-button,
@@ -98,6 +99,7 @@ FullCalendar styles
     width: 100%;
     align-items: center;
     justify-content: space-between; /* 日付とカスタムリンクを両端に */
+    font-size: 16px;
 }
 
 /* dayGridMonth */
@@ -105,7 +107,7 @@ FullCalendar styles
     padding: 3px 0 0 10px;
 }
 .fc .fc-dayGridMonth-view .fc-daygrid-day-events {
-    min-height: 5em;
+    margin-bottom: 0;
 }
 
 /* dayGridWeek */
@@ -119,7 +121,7 @@ FullCalendar styles
     display: flex;
     border-bottom: 1px solid #ddd;
     padding: 8px;
-    min-height: 80px;
+    min-height: 80px !important;
 }
 .fc-dayGridWeek-view .fc-daygrid-day-frame {
     display: flex; /* 日付＆カスタムリンクとイベントを横並び */
