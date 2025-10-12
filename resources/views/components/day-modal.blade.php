@@ -13,7 +13,7 @@
                 <div></div>
                 <h2 class="text-xl font-bold mb-8">料理を登録</h2>
                 <button @click="open = false" class="pt-1">
-                    <x-close-delete-svg size="base" class="" />
+                    <x-icons.close-delete-svg size="base" class="" />
                 </button>
             </div>
             <form action="{{ route('menus.dishes.store') }}" method="post">
