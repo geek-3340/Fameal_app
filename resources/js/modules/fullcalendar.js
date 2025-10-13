@@ -1,4 +1,6 @@
-import modalLinkSvg from "./modalLinkSvg";
+import calendarResponsive from "./calendarResponsive";
+import calendarActiveButton from "./calendarActiveButton";
+import modalLinkSvg from "./svg/modalLinkSvg";
 export default function fullCalendar() {
     document.addEventListener("DOMContentLoaded", function () {
         const calendarEl = document.getElementById("calendar");
@@ -21,25 +23,6 @@ export default function fullCalendar() {
                 .toISOString()
                 .split("T")[0];
         }
-        function calendarResponsive() {
-            const base = document.querySelector(".fc-view-harness");
-            const header = document.querySelector(".fc-col-header");
-            const body = document.querySelector(".fc-daygrid-body");
-            if (!base || !header || !body) return;
-            const headerHeight = header.clientHeight;
-            const bodyHeight = body.clientHeight;
-            const calendarHeight = headerHeight + bodyHeight;
-            base.style.setProperty(
-                "min-height",
-                `${calendarHeight}px`,
-                "important"
-            );
-        }
-        window.addEventListener("resize", () => {
-            setTimeout(() => {
-                calendarResponsive();
-            }, 300);
-        });
 
         const calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: initialView,
@@ -50,13 +33,11 @@ export default function fullCalendar() {
             },
             customButtons: {
                 monthButton: {
-                    text: "月表示",
                     click: function () {
                         window.location.href = monthUrl;
                     },
                 },
                 weekButton: {
-                    text: "週表示",
                     click: function () {
                         window.location.href = weekUrl;
                     },
@@ -64,11 +45,6 @@ export default function fullCalendar() {
             },
             events: events,
             height: "auto",
-            datesSet: () => {
-                setTimeout(() => {
-                    calendarResponsive();
-                }, 300);
-            },
             dayCellContent(arg) {
                 if (arg.view.type === "dayGridMonth") {
                     return {
@@ -97,6 +73,10 @@ export default function fullCalendar() {
                 }
             },
         });
+
         calendar.render();
+
+        calendarActiveButton(monthUrl, weekUrl);
+        calendarResponsive();
     });
 }

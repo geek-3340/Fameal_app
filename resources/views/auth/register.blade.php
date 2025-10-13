@@ -7,7 +7,10 @@
 
             <!-- Name -->
             <div>
-                <x-input-label for="name" :value="" />{{}}</x-input-label>
+                <x-input-label for="name" class="flex gap-1">
+                    <x-icons.user-name-svg />
+                    {{ __('Name') }}
+                </x-input-label>
                 <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')"
                     required autofocus autocomplete="name" />
                 <x-input-error :messages="$errors->get('name')" class="mt-2" />
@@ -15,7 +18,10 @@
 
             <!-- Email Address -->
             <div class="mt-4">
-                <x-input-label for="email" :value="__('Email')" />
+                <x-input-label for="email" class="flex gap-1">
+                    <x-icons.email-svg />
+                    {{ __('Email') }}
+                </x-input-label>
                 <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')"
                     required autocomplete="username" />
                 <x-input-error :messages="$errors->get('email')" class="mt-2" />
@@ -23,7 +29,10 @@
 
             <!-- Password -->
             <div class="mt-4">
-                <x-input-label for="password" :value="__('Password')" />
+                <x-input-label for="password" class="flex gap-1">
+                    <x-icons.password-svg />
+                    {{ __('Password') }}
+                </x-input-label>
 
                 <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required
                     autocomplete="new-password" />

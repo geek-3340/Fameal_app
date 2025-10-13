@@ -17,16 +17,20 @@
 
     <x-contents-board type="two-contents" class="mx-0">
         <h1 class="text-xl text-center font-bold mb-4">登録料理一覧</h1>
-        @foreach ($dishes as $dish)
-            <div class="mb-2 p-2 border border-gray-200 rounded-lg flex justify-between">
-                <p>{{ $dish->name }}</p>
-                <form action="{{ route('dishes.destroy', $dish->id) }}" method="post">
-                    @csrf
-                    <button class="mr-2">
-                        <x-icons.close-delete-svg size="sm"></x-icons.close-delete-svg>
-                    </button>
-                </form>
-            </div>
-        @endforeach
+        @if ($dishes->count() === 0)
+            <div class="text-gray-400">献立登録はありません。</div>
+        @else
+            @foreach ($dishes as $dish)
+                <div class="mb-2 p-2 border border-gray-200 rounded-lg flex justify-between">
+                    <p>{{ $dish->name }}</p>
+                    <form action="{{ route('dishes.destroy', $dish->id) }}" method="post">
+                        @csrf
+                        <button class="mr-2">
+                            <x-icons.close-delete-svg size="sm"></x-icons.close-delete-svg>
+                        </button>
+                    </form>
+                </div>
+            @endforeach
+        @endif
     </x-contents-board>
 </div>
