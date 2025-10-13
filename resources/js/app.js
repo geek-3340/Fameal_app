@@ -1,8 +1,7 @@
 import "./bootstrap";
 import Alpine from "alpinejs";
-import fullCalendar from "./modules/fullcalendar";
+import fullCalendar from "./fullcalendar/fullcalendar";
 import activeButton from "./modules/activeButton";
-import monthOrWeek from "./modules/calendarActiveButton";
 
 // Alpine.js
 window.Alpine = Alpine;

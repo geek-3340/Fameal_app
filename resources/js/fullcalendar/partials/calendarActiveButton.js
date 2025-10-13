@@ -1,5 +1,5 @@
-import monthMenuSvg from "./svg/monthMenuSvg";
-import weekMenuSvg from "./svg/weekMenuSvg";
+import monthMenuSvg from "../../svg/monthMenuSvg";
+import weekMenuSvg from "../../svg/weekMenuSvg";
 export default function calendarActiveButton(monthUrl, weekUrl) {
     const currentUrl = window.location.pathname + window.location.search;
     const monthBtn = document.querySelector(".fc-monthButton-button");

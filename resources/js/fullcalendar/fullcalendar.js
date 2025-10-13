@@ -1,6 +1,6 @@
-import calendarResponsive from "./calendarResponsive";
-import calendarActiveButton from "./calendarActiveButton";
-import modalLinkSvg from "./svg/modalLinkSvg";
+import calendarResponsive from "./partials/calendarResponsive";
+import calendarActiveButton from "./partials/calendarActiveButton";
+import modalLinkSvg from "../svg/modalLinkSvg";
 export default function fullCalendar() {
     document.addEventListener("DOMContentLoaded", function () {
         const calendarEl = document.getElementById("calendar");
