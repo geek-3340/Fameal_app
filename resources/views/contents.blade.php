@@ -1,9 +1,10 @@
 <x-app-layout>
     <div class="pt-20 pl-48 max-md:pl-0">
-        @if (request()->routeIs('menus.month.index') ||
-                request()->routeIs('menus.week.index') ||
-                request()->routeIs('baby.menus.month.index') ||
-                request()->routeIs('baby.menus.week.index'))
+        @if(request()->routeIs('dishes.index'))
+            @include('contents.dishes')
+        <!-- @elseif(request()=>routeIs('')) -->
+        <!-- @elseif(request()=>routeIs('')) -->
+        @else
             <x-contents-board type="content">
                 <div id="calendar"
                     data-initial-view="{{ request()->routeIs('menus.week.index') ? 'dayGridWeek' : 'dayGridMonth' }}"
@@ -12,10 +13,6 @@
                 </div>
             </x-contents-board>
             <x-day-modal :dishes="$dishes" />
-        @endif
-
-        @if (request()->routeIs('dishes.index'))
-            @include('contents.dishes')
         @endif
     </div>
 </x-app-layout>

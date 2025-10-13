@@ -1,7 +1,7 @@
-<div class="flex mx-auto w-11/12">
+<!-- <div class="flex mx-auto w-11/12">
     <x-contents-board type="two-contents" class="mx-0 mr-8">
-        <h1 class=" text-xl text-center font-bold mb-4">料理登録</h1>
-        <form action="{{ route('dishes.store') }}" method="POST">
+        <h1 class=" text-xl text-center font-bold mb-4">離乳食登録</h1>
+        <form action="{{ route('babyfoods.store') }}" method="POST">
             @csrf
             <x-input-label for="dish_name" :value="__('Dish name')" />
             <div class="flex justify-between">
@@ -16,14 +16,14 @@
     </x-contents-board>
 
     <x-contents-board type="two-contents" class="mx-0">
-        <h1 class="text-xl text-center font-bold mb-4">登録料理一覧</h1>
-        @if ($dishes->count() === 0)
-            <div class="text-gray-400">料理登録はありません。</div>
+        <h1 class="text-xl text-center font-bold mb-4">登録食材一覧</h1>
+        @if ($babyfoods->count() === 0)
+            <div class="text-gray-400">離乳食登録はありません。</div>
         @else
-            @foreach ($dishes as $dish)
+            @foreach ($babyfoods as $babyfood)
                 <div class="mb-2 p-2 border border-gray-200 rounded-lg flex justify-between">
-                    <p>{{ $dish->name }}</p>
-                    <form action="{{ route('dishes.destroy', $dish->id) }}" method="post">
+                    <p>{{ $babyfood->name }}</p>
+                    <form action="{{ route('babyfoods.destroy', $babufood->id) }}" method="post">
                         @csrf
                         <button class="mr-2">
                             <x-icons.close-delete-svg size="sm"></x-icons.close-delete-svg>
@@ -33,4 +33,4 @@
             @endforeach
         @endif
     </x-contents-board>
-</div>
+</div> -->
