@@ -2,10 +2,10 @@
     <div class="pt-20 pl-48 max-md:pl-0">
         @if(request()->routeIs('dishes.index'))
             @include('contents.dishes')
-        <!-- @elseif(request()=>routeIs('babyfoods.index')) -->
-            <!-- @include('contents.babyfoods') -->
-        <!-- @elseif(request()=>routeIs('shopping.list.index')) -->
-            <!-- @include('contsnts.shopping-list') -->
+        @elseif(request()->routeIs('babyfoods.index'))
+            @include('contents.babyfoods')
+        @elseif(request()->routeIs('shopping.list.index'))
+            @include('contents.shopping-list')
         @else
             <x-contents-board type="content">
                 <div id="calendar"

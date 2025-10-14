@@ -35,7 +35,9 @@
                 request()->routeIs('menus.week.index') ||
                 request()->routeIs('baby.menus.month.index') ||
                 request()->routeIs('baby.menus.month.index') ||
-                request()->routeIs('dishes.index'))
+                request()->routeIs('dishes.index') ||
+                request()->routeIs('babyfoods.index') ||
+                request()->routeIs('shopping.list.index'))
             @include('layouts.partials.contents-header')
             {{ $slot }}
         @else

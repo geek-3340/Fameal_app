@@ -11,6 +11,7 @@ class Dishes extends Model
     protected $fillable = [
         'name',
         'user_id',
+        'type',
     ];
     public function user()
     {

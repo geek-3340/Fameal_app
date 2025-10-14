@@ -5,11 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Dishes;
 
-class DishesController extends Controller
+class BabyfoodsController extends Controller
 {
     public function index()
     {
-        $dishes = Dishes::where('user_id', auth()->id())->where('type', 'dish')->get();
+        $dishes = Dishes::where('user_id', auth()->id())->where('type', 'babyfood')->get();
         return view('contents', compact('dishes'));
     }
 
@@ -21,7 +21,7 @@ class DishesController extends Controller
         ]);
         // ログイン中のユーザーIDを追加して保存
         $validated['user_id'] = auth()->id();
-        $validated['type'] = 'dish';
+        $validated['type'] = 'babyfood';
         // 保存したデータをDBに登録
         Dishes::create($validated);
         return back();
