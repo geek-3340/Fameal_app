@@ -16,7 +16,7 @@ Bladeでカレンダー領域とモーダルを定義します。
 ``` blade
 <div id="calendar"
     data-initial-view="{{ request()->routeIs('menus.week.index') ? 'dayGridWeek' : 'dayGridMonth' }}"
-    data-month-url="{{ route('menus.month.index') }}"
+    data-month-url="{{ route('menus.index','dishes-month') }}"
     data-week-url="{{ route('menus.week.index') }}"
     data-menus-event='@json($events)'
     data-menus-by-date='@json($menusByDate)'>

@@ -5,8 +5,8 @@ export default function fullCalendar() {
     document.addEventListener("DOMContentLoaded", function () {
         const calendarEl = document.getElementById("calendar");
         const initialView = calendarEl.dataset.initialView || "dayGridMonth";
-        const monthUrl = calendarEl.dataset.monthUrl;
-        const weekUrl = calendarEl.dataset.weekUrl;
+        const dishesMonthUrl = calendarEl.dataset.dishesMonthUrl;
+        const dishesWeekUrl = calendarEl.dataset.dishesWeekUrl;
         const events = JSON.parse(calendarEl.dataset.menusEvent || "[]");
         window.dishesByDate = JSON.parse(
             calendarEl.dataset.menusByDate || "{}"
@@ -29,17 +29,17 @@ export default function fullCalendar() {
             locale: "ja",
             headerToolbar: {
                 left: "title,prev,next",
-                right: "monthButton,weekButton",
+                right: "dishesMonthButton,dishesWeekButton",
             },
             customButtons: {
-                monthButton: {
+                dishesMonthButton: {
                     click: function () {
-                        window.location.href = monthUrl;
+                        window.location.href = dishesMonthUrl;
                     },
                 },
-                weekButton: {
+                dishesWeekButton: {
                     click: function () {
-                        window.location.href = weekUrl;
+                        window.location.href = dishesWeekUrl;
                     },
                 },
             },
@@ -76,7 +76,7 @@ export default function fullCalendar() {
 
         calendar.render();
 
-        calendarActiveButton(monthUrl, weekUrl);
+        calendarActiveButton(dishesMonthUrl, dishesWeekUrl);
         calendarResponsive();
     });
 }

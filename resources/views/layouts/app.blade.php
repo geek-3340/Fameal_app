@@ -31,10 +31,7 @@
 <body class="text-base font-sans text-text overflow-x-hidden">
 
     <main>
-        @if (request()->routeIs('menus.month.index') ||
-                request()->routeIs('menus.week.index') ||
-                request()->routeIs('baby.menus.month.index') ||
-                request()->routeIs('baby.menus.month.index') ||
+        @if (request()->routeIs('menus.index') ||
                 request()->routeIs('dishes.index') ||
                 request()->routeIs('babyfoods.index') ||
                 request()->routeIs('shopping.list.index'))

@@ -1,30 +1,30 @@
 import monthMenuSvg from "../../svg/monthMenuSvg";
 import weekMenuSvg from "../../svg/weekMenuSvg";
-export default function calendarActiveButton(monthUrl, weekUrl) {
+export default function calendarActiveButton(dishesMonthUrl, dishesWeekUrl) {
     const currentUrl = window.location.pathname + window.location.search;
-    const monthBtn = document.querySelector(".fc-monthButton-button");
-    const weekBtn = document.querySelector(".fc-weekButton-button");
+    const dishesMonthBtn = document.querySelector(".fc-dishesMonthButton-button");
+    const dishesWeekBtn = document.querySelector(".fc-dishesWeekButton-button");
 
     if (
         currentUrl ===
-        new URL(monthUrl, window.location.origin).pathname +
-            new URL(monthUrl, window.location.origin).search
+        new URL(dishesMonthUrl, window.location.origin).pathname +
+            new URL(dishesMonthUrl, window.location.origin).search
     ) {
-        monthBtn.innerHTML = monthMenuSvg(true);
-        monthBtn.classList.add("active");
+        dishesMonthBtn.innerHTML = monthMenuSvg(true);
+        dishesMonthBtn.classList.add("active");
     } else {
-        monthBtn.innerHTML = monthMenuSvg(false);
-        monthBtn.classList.remove("active");
+        dishesMonthBtn.innerHTML = monthMenuSvg(false);
+        dishesMonthBtn.classList.remove("active");
     }
     if (
         currentUrl ===
-        new URL(weekUrl, window.location.origin).pathname +
-            new URL(weekUrl, window.location.origin).search
+        new URL(dishesWeekUrl, window.location.origin).pathname +
+            new URL(dishesWeekUrl, window.location.origin).search
     ) {
-        weekBtn.innerHTML = weekMenuSvg(true);
-        weekBtn.classList.add("active");
+        dishesWeekBtn.innerHTML = weekMenuSvg(true);
+        dishesWeekBtn.classList.add("active");
     } else {
-        weekBtn.innerHTML = weekMenuSvg(false);
-        weekBtn.classList.remove("active");
+        dishesWeekBtn.innerHTML = weekMenuSvg(false);
+        dishesWeekBtn.classList.remove("active");
     }
 }

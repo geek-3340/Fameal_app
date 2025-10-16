@@ -24,10 +24,7 @@ Route::middleware('auth', 'two_factor')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::get('/menus/month', [MenusController::class, 'index'])->name('menus.month.index');
-    Route::get('/menus/week', [MenusController::class, 'index'])->name('menus.week.index');
-    Route::get('/baby-menus/month', [MenusController::class, 'index'])->name('baby.menus.month.index');
-    Route::get('/baby-menus/week', [MenusController::class, 'index'])->name('baby.menus.week.index');
+    Route::get('/menus/{viewType}',[MenusController::class,'index'])->name('menus.index');
 
     Route::post('/menus-dishes', [MenusDishesController::class, 'store'])->name('menus.dishes.store');
     Route::post('/menus-dishes/{id}', [MenusDishesController::class, 'destroy'])->name('menus.dishes.destroy');

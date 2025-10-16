@@ -26,7 +26,10 @@ export default function calendarResponsive() {
         });
     }
 
-    if (window.location.pathname === "/menus/month") {
+    if (
+        window.location.pathname ===
+        ("/menus/dishes-month" || "/menus/babyfoods-month")
+    ) {
         responsiveLayout();
         window.addEventListener("resize", () => {
             setTimeout(() => {
