@@ -31,14 +31,25 @@ export default function calendarResponsive(dishesMonthUrl, babyfoodsMonthUrl) {
         window.location.pathname +
         window.location.search;
     if (currentUrl === dishesMonthUrl || currentUrl === babyfoodsMonthUrl) {
-        window.addEventListener("DOMContentLoaded", () => {
-            responsiveLayout();
-        });
-        window.addEventListener("");
+        responsiveLayout();
+        
         window.addEventListener("resize", () => {
             setTimeout(() => {
                 responsiveLayout();
             }, 200);
         });
+                
+        // MutationObserverを設定
+        const observer = new MutationObserver(() => {
+            responsiveLayout();
+        });
+        // 監視対象のノードとオプションを指定
+        const calendarRoot = document.querySelector(".fc-daygrid");
+        if (calendarRoot) {
+            observer.observe(calendarRoot, {
+                childList: true, // 子ノードの追加や削除を監視
+                subtree: true, // 子孫ノードも監視
+            });
+        }
     }
 }
