@@ -8,13 +8,13 @@ use App\Models\MenusDishes;
 
 class MenusController extends Controller
 {
-    public function index($viewType)
+    public function index($category, $viewType)
     {
         // ルート名に応じて、料理の種類を振り分け
         $type = '';
-        if ($viewType === 'dishes-month' || $viewType === 'dishes-week') {
+        if ($category === 'dishes') {
             $type = 'dish';
-        } elseif ($viewType === 'babyfoods-month' || $viewType === 'babyfoods-week') {
+        } elseif ($category === 'babyfoods') {
             $type = 'babyfood';
         }
         // ログイン中のユーザーの料理を取得
@@ -42,6 +42,6 @@ class MenusController extends Controller
             ];
             // $menusByDate=['日付'=>[['id'=>'menus_dishesのid','dish_name'=>'料理名'],...],...];
         }
-        return view('contents', compact('viewType','dishes', 'events', 'menusByDate'));
+        return view('contents', compact('category','viewType', 'dishes', 'events', 'menusByDate'));
     }
 }

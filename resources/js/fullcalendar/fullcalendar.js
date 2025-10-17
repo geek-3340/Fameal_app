@@ -5,8 +5,14 @@ export default function fullCalendar() {
     document.addEventListener("DOMContentLoaded", function () {
         const calendarEl = document.getElementById("calendar");
         const initialView = calendarEl.dataset.initialView || "dayGridMonth";
+        const currentUrl =
+            window.location.origin +
+            window.location.pathname +
+            window.location.search;
         const dishesMonthUrl = calendarEl.dataset.dishesMonthUrl;
         const dishesWeekUrl = calendarEl.dataset.dishesWeekUrl;
+        const babyfoodsMonthUrl = calendarEl.dataset.babyfoodsMonthUrl;
+        const babyfoodsWeekUrl = calendarEl.dataset.babyfoodsWeekUrl;
         const events = JSON.parse(calendarEl.dataset.menusEvent || "[]");
         window.dishesByDate = JSON.parse(
             calendarEl.dataset.menusByDate || "{}"
@@ -29,17 +35,43 @@ export default function fullCalendar() {
             locale: "ja",
             headerToolbar: {
                 left: "title,prev,next",
-                right: "dishesMonthButton,dishesWeekButton",
+                right: "dishesButton,monthButton,babyfoodsButton,weekButton",
             },
             customButtons: {
-                dishesMonthButton: {
+                dishesButton: {
                     click: function () {
-                        window.location.href = dishesMonthUrl;
+                        if (currentUrl === babyfoodsMonthUrl) {
+                            window.location.href = dishesMonthUrl;
+                        } else if (currentUrl === babyfoodsWeekUrl) {
+                            window.location.href = dishesWeekUrl;
+                        }
                     },
                 },
-                dishesWeekButton: {
+                babyfoodsButton: {
                     click: function () {
-                        window.location.href = dishesWeekUrl;
+                        if (currentUrl === dishesMonthUrl) {
+                            window.location.href = babyfoodsMonthUrl;
+                        } else if (currentUrl === dishesWeekUrl) {
+                            window.location.href = babyfoodsWeekUrl;
+                        }
+                    },
+                },
+                monthButton: {
+                    click: function () {
+                        if (currentUrl === dishesWeekUrl) {
+                            window.location.href = dishesMonthUrl;
+                        } else if (currentUrl === babyfoodsWeekUrl) {
+                            window.location.href = babyfoodsMonthUrl;
+                        }
+                    },
+                },
+                weekButton: {
+                    click: function () {
+                        if (currentUrl === dishesMonthUrl) {
+                            window.location.href = dishesWeekUrl;
+                        } else if (currentUrl === babyfoodsMonthUrl) {
+                            window.location.href = babyfoodsWeekUrl;
+                        }
                     },
                 },
             },
@@ -76,7 +108,12 @@ export default function fullCalendar() {
 
         calendar.render();
 
-        calendarActiveButton(dishesMonthUrl, dishesWeekUrl);
-        calendarResponsive();
+        calendarActiveButton(
+            dishesMonthUrl,
+            dishesWeekUrl,
+            babyfoodsMonthUrl,
+            babyfoodsWeekUrl
+        );
+        calendarResponsive(dishesMonthUrl, babyfoodsMonthUrl);
     });
 }

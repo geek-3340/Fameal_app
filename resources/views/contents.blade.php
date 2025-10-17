@@ -8,10 +8,11 @@
             @include('contents.shopping-list')
         @else
             <x-contents-board type="content">
-                <div id="calendar"
-                    data-initial-view="{{ ($viewType === 'dishes-week' || $viewType === 'babyfoods-week') ? 'dayGridWeek' : 'dayGridMonth' }}"
-                    data-dishes-month-url="{{ route('menus.index', 'dishes-month') }}"
-                    data-dishes-week-url="{{ route('menus.index', 'dishes-week') }}"
+                <div id="calendar" data-initial-view="{{ $viewType === 'week' ? 'dayGridWeek' : 'dayGridMonth' }}"
+                    data-dishes-month-url="{{ route('menus.index', ['category' => 'dishes', 'viewType' => 'month']) }}"
+                    data-dishes-week-url="{{ route('menus.index', ['category' => 'dishes', 'viewType' => 'week']) }}"
+                    data-babyfoods-month-url="{{ route('menus.index', ['category' => 'babyfoods', 'viewType' => 'month']) }}"
+                    data-babyfoods-week-url="{{ route('menus.index', ['category' => 'babyfoods', 'viewType' => 'week']) }}"
                     data-menus-event='@json($events)' data-menus-by-date='@json($menusByDate)'>
                 </div>
             </x-contents-board>

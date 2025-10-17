@@ -1,4 +1,4 @@
-export default function calendarResponsive() {
+export default function calendarResponsive(dishesMonthUrl, babyfoodsMonthUrl) {
     function responsiveLayout() {
         const base = document.querySelector(".fc-view-harness");
         const headerHeight =
@@ -26,11 +26,15 @@ export default function calendarResponsive() {
         });
     }
 
-    if (
-        window.location.pathname ===
-        ("/menus/dishes-month" || "/menus/babyfoods-month")
-    ) {
-        responsiveLayout();
+    const currentUrl =
+        window.location.origin +
+        window.location.pathname +
+        window.location.search;
+    if (currentUrl === dishesMonthUrl || currentUrl === babyfoodsMonthUrl) {
+        window.addEventListener("DOMContentLoaded", () => {
+            responsiveLayout();
+        });
+        window.addEventListener("");
         window.addEventListener("resize", () => {
             setTimeout(() => {
                 responsiveLayout();

@@ -42,11 +42,15 @@ FullCalendar styles
     box-shadow: none !important;
 }
 .fc-button-group {
-    display: flex;
-    flex-direction: column; /* 月 週ボタンを縦並び */
+    display: grid !important;
+    grid-template-columns: repeat(2, auto); /* 横2列 */
+    gap: 4px; /* ボタン間の隙間 */
+    column-gap: 16px; /* 縦の隙間 */
 }
-.fc .fc-dishesMonthButton-button,
-.fc .fc-dishesWeekButton-button {
+.fc .fc-monthButton-button,
+.fc .fc-weekButton-button,
+.fc .fc-dishesButton-button,
+.fc .fc-babyfoodsButton-button {
     background-color: #fff;
     color: #ffb700;
     font-weight: bold;
@@ -56,38 +60,56 @@ FullCalendar styles
     display: flex;
     gap: 4px;
 }
-.fc .fc-dishesMonthButton-button:hover,
-.fc .fc-dishesMonthButton-button:active,
-.fc .fc-dishesMonthButton-button:focus,
-.fc .fc-dishesMonthButton-button:visited,
-.fc .fc-dishesWeekButton-button:hover,
-.fc .fc-dishesWeekButton-button:active,
-.fc .fc-dishesWeekButton-button:focus,
-.fc .fc-dishesWeekButton-button:visited {
+.fc .fc-monthButton-button:hover,
+.fc .fc-monthButton-button:active,
+.fc .fc-monthButton-button:focus,
+.fc .fc-monthButton-button:visited,
+.fc .fc-weekButton-button:hover,
+.fc .fc-weekButton-button:active,
+.fc .fc-weekButton-button:focus,
+.fc .fc-weekButton-button:visited,
+.fc .fc-dishesButton-button:hover,
+.fc .fc-dishesButton-button:active,
+.fc .fc-dishesButton-button:focus,
+.fc .fc-dishesButton-button:visited,
+.fc .fc-babyfoodsButton-button:hover,
+.fc .fc-babyfoodsButton-button:active,
+.fc .fc-babyfoodsButton-button:focus,
+.fc .fc-babyfoodsButton-button:visited {
     background-color: #fff999 !important;
     color: #ffb700 !important;
     outline: none !important;
     box-shadow: none !important;
 }
-.fc-dishesMonthButton-button.active,
-.fc-dishesWeekButton-button.active {
+.fc-monthButton-button.active,
+.fc-weekButton-button.active,
+.fc-dishesButton-button.active,
+.fc-babyfoodsButton-button.active {
     background-color: #ffb700;
     color: #ffffff;
 }
-.fc .fc-dishesMonthButton-button.active:hover,
-.fc .fc-dishesMonthButton-button.active:active,
-.fc .fc-dishesMonthButton-button.active:focus,
-.fc .fc-dishesMonthButton-button.active:visited,
-.fc .fc-dishesWeekButton-button.active:hover,
-.fc .fc-dishesWeekButton-button.active:active,
-.fc .fc-dishesWeekButton-button.active:focus,
-.fc .fc-dishesWeekButton-button.active:visited {
+.fc .fc-monthButton-button.active:hover,
+.fc .fc-monthButton-button.active:active,
+.fc .fc-monthButton-button.active:focus,
+.fc .fc-monthButton-button.active:visited,
+.fc .fc-weekButton-button.active:hover,
+.fc .fc-weekButton-button.active:active,
+.fc .fc-weekButton-button.active:focus,
+.fc .fc-weekButton-button.active:visited,
+.fc .fc-dishesButton-button.active:hover,
+.fc .fc-dishesButton-button.active:active,
+.fc .fc-dishesButton-button.active:focus,
+.fc .fc-dishesButton-button.active:visited,
+.fc .fc-babyfoodsButton-button.active:hover,
+.fc .fc-babyfoodsButton-button.active:active,
+.fc .fc-babyfoodsButton-button.active:focus,
+.fc .fc-babyfoodsButton-button.active:visited {
     background-color: #ffa000 !important;
     border-color: #ffa000 !important;
     color: #ffffff !important;
 }
 .fc-direction-ltr .fc-button-group > .fc-button:not(:first-child) {
-    margin-left: 2px; /* 月 週ボタン　デフォルトの縦軸ずれを修正 */
+    margin-left: 2px; /*デフォルトの縦軸ずれを修正 */
 }
 
 /* calendar */

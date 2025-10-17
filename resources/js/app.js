@@ -12,5 +12,3 @@ fullCalendar();
 
 // ナビメニューのアクティブスタイル設定
 activeButton();
-
-

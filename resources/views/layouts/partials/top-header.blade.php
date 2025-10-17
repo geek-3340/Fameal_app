@@ -7,7 +7,7 @@
         <nav class="flex pr-4">
             @if (request()->routeIs('top.page'))
                 @auth
-                    <x-link-button href="{{ route('menus.index', 'dishes-month') }}" type="primary">
+                    <x-link-button href="{{ route('menus.index',['category' => 'dishes','viewType' => 'month']) }}" type="primary">
                         マイページ
                     </x-link-button>
                 @else
