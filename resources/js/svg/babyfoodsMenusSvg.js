@@ -19,7 +19,7 @@ export default function babyfoodsMenuSvg(active) {
                         fill="#ffffff"></path>
                 </g>
             </svg>
-            <p>月表示</p>
+            <p>離乳食</p>
         `;
     } else {
         return `
@@ -41,7 +41,7 @@ export default function babyfoodsMenuSvg(active) {
                     fill="#ffb700"></path>
             </g>
         </svg>
-            <p>月表示</p>
+            <p>離乳食</p>
         `;
     }
 }

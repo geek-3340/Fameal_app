@@ -9,13 +9,13 @@ export default function activeButton() {
         if (currentPage === "menus") {
             menuBtn.classList.remove("text-main");
             menuBtn.classList.add("text-white", "bg-main", "rounded-lg");
-        } else if (currentUrl === "/dishes") {
+        } else if (currentPage === "dishes") {
             dishesBtn.classList.remove("text-main");
             dishesBtn.classList.add("text-white", "bg-main", "rounded-lg");
-        } else if (currentUrl === "/babyfoods") {
+        } else if (currentPage === "babyfoods") {
             babyfoodsBtn.classList.remove("text-main");
             babyfoodsBtn.classList.add("text-white", "bg-main", "rounded-lg");
-        } else if (currentUrl === "/shopping-list") {
+        } else if (currentPage === "shopping-list") {
             shoppingListBtn.classList.remove("text-main");
             shoppingListBtn.classList.add(
                 "text-white",

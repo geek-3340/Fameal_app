@@ -44,7 +44,7 @@ export default function calendarResponsive(dishesMonthUrl, babyfoodsMonthUrl) {
             responsiveLayout();
         });
         // 監視対象のノードとオプションを指定
-        const calendarRoot = document.querySelector(".fc-daygrid");
+        const calendarRoot = document.querySelector(".fc-view-harness");
         if (calendarRoot) {
             observer.observe(calendarRoot, {
                 childList: true, // 子ノードの追加や削除を監視
