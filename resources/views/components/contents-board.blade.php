@@ -5,6 +5,7 @@
         'primary' => 'shadow-none max-w-80 border',
         'content' => 'shadow-custom w-11/12 border-none',
         'two-contents' => 'shadow-custom w-1/2 border-none',
+        'shopping-list' => 'shadow-custom w-3/5 border-none',
     };
 @endphp
 
