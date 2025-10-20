@@ -40,7 +40,7 @@ Route::middleware('auth', 'two_factor')->group(function () {
     Route::post('/babyfoods/{id}', [BabyfoodsController::class, 'destroy'])->name('babyfoods.destroy');
 
     Route::get('/shopping-list', [ShoppingListController::class, 'index'])->name('shopping.list.index');
-    // Route::post('/shopping-list', [ShoppingListController::class, 'store'])->name('shopping.list.store');
+    Route::post('/shopping-list', [ShoppingListController::class, 'store'])->name('shopping.list.store');
     // Route::post('/shopping-list/{id}', [ShoppingListController::class, 'destroy'])->name('shopping.list.destroy');
 });
 
