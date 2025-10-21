@@ -41,7 +41,8 @@ Route::middleware('auth', 'two_factor')->group(function () {
 
     Route::get('/shopping-list', [ShoppingListController::class, 'index'])->name('shopping.list.index');
     Route::post('/shopping-list', [ShoppingListController::class, 'store'])->name('shopping.list.store');
-    // Route::post('/shopping-list/{id}', [ShoppingListController::class, 'destroy'])->name('shopping.list.destroy');
+    Route::post('/shopping-list/{id}/check-toggle',[ShoppingListController::class,'checkBoxToggle']);
+    Route::post('/shopping-list/delete', [ShoppingListController::class, 'destroy'])->name('shopping.list.destroy');
 });
 
 require __DIR__ . '/auth.php';

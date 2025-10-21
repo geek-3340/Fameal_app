@@ -9,8 +9,8 @@ class ShoppingListController extends Controller
 {
     public function index()
     {
-        $listItems=ShoppingList::where('user_id',auth()->id())->get();
-        return view('contents',compact('listItems'));
+        $listItems = ShoppingList::where('user_id', auth()->id())->get();
+        return view('contents', compact('listItems'));
     }
 
     public function store(Request $request)
@@ -24,6 +24,19 @@ class ShoppingListController extends Controller
         $validated['is_checked'] = false;
         // 保存したデータをDBに登録
         ShoppingList::create($validated);
+        return back();
+    }
+
+    public function checkBoxToggle(Request $request, $id)
+    {
+        $listItem = ShoppingList::where('id', $id)->where('user_id', auth()->id())->first();
+        $listItem->is_checked = $request->is_checked;
+        $listItem->save();
+    }
+
+    public function destroy()
+    {
+        ShoppingList::where('user_id', auth()->id())->where('is_checked', true)->delete();
         return back();
     }
 }
