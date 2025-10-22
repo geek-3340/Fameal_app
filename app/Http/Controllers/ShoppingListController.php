@@ -10,6 +10,7 @@ class ShoppingListController extends Controller
     public function index()
     {
         $listItems = ShoppingList::where('user_id', auth()->id())->get();
+        $listItems = $listItems->sortByDesc('name')->sortBy('is_checked');
         return view('contents', compact('listItems'));
     }
 

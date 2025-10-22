@@ -20,7 +20,7 @@
                 @csrf
                 <input type="hidden" name="date" :value="selectedDate">
                 <label for="dish_id" class="hidden"></label>
-                <select name="dish_id" id="dish_id" class="w-full border rounded mb-4" required>
+                <select name="dish_id" id="dish_id" class="w-full border rounded mb-4 focus:border-main focus:ring-main" required>
                     <option value="">料理を選択</option>
                     @foreach ($dishes as $dish)
                         <option value="{{ $dish->id }}">{{ $dish->name }}</option>

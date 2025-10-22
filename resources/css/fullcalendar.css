@@ -180,11 +180,14 @@ FullCalendar styles
 
 /* events */
 .fc .fc-h-event {
-    background-color: #ffb540;
+    background-color: #ffcf55;
     border: none;
     font-size: 0.8rem;
     width: max-content;
-    padding: 2px;
+    padding: 2px 4px;
+    text-align: center;
+    border-radius: 100px;
+    min-width: 50%;
     margin: 3px 0 3px 5px !important;
 }
 .fc .fc-event-main {

@@ -6,6 +6,7 @@ export default function activeButton() {
         const dishesBtn = menuLinks[1];
         const babyfoodsBtn = menuLinks[2];
         const shoppingListBtn = menuLinks[3];
+
         if (currentPage === "menus") {
             menuBtn.classList.remove("text-main");
             menuBtn.classList.add("text-white", "bg-main", "rounded-lg");

@@ -23,12 +23,15 @@
     @if ($listItems->count() === 0)
         <div class="text-gray-400">買い物リストはありません。</div>
     @else
+        <ul>
         @foreach ($listItems as $listItem)
-            <div class="mx-auto mb-2 p-2 border border-gray-200 rounded-lg flex w-4/5">
+            <li class="mx-auto mb-2 p-2 border border-gray-200 rounded-lg flex w-4/5">
                 <input type="checkbox" data-id="{{ $listItem->id }}" {{ $listItem->is_checked ? 'checked' : '' }}
                     class="rounded-xl w-6 h-6 mr-4 border-gray-300 text-main focus:outline-none focus:ring-0 focus:ring-offset-0">
-                <p>{{ $listItem->name }}</p>
-            </div>
+                <p class="{{ $listItem->is_checked ? 'line-through text-gray-400' : '' }}">{{ $listItem->name }}
+                </p>
+            </li>
         @endforeach
+        </ul>
     @endif
 </x-contents-board>
