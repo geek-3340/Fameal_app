@@ -9,8 +9,12 @@ class BabyfoodsController extends Controller
 {
     public function index()
     {
-        $dishes = Dishes::where('user_id', auth()->id())->where('type', 'babyfood')->get();
-        return view('contents', compact('dishes'));
+        $babyfoods = Dishes::where('user_id', auth()->id())->where('type', 'babyfood')->get();
+        $energyFoods = $babyfoods->where('category', 'エネルギー');
+        $proteinFoods = $babyfoods->where('category', 'タンパク質');
+        $vitaminFoods = $babyfoods->where('category', 'ビタミン');
+        $others = $babyfoods->where('category', 'その他');
+        return view('contents', compact('babyfoods', 'energyFoods', 'proteinFoods', 'vitaminFoods', 'others'));
     }
 
     public function store(Request $request)
@@ -18,6 +22,7 @@ class BabyfoodsController extends Controller
         // バリデーションした上で料理名を格納
         $validated = $request->validate([
             'name' => 'required',
+            'category' => 'required',
         ]);
         // ログイン中のユーザーIDを追加して保存
         $validated['user_id'] = auth()->id();

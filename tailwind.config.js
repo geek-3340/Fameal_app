@@ -27,6 +27,8 @@ export default {
                     danger: "#e54c4c",
                     dangerhover: "#d43c3c",
                 },
+                customRed:"#ff7d55",
+                customGreen:"#91ff00",
                 text: "#3d3d3d",
                 graytext: "#9f9f9f",
                 link: "#0022ff",

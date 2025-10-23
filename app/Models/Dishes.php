@@ -12,6 +12,8 @@ class Dishes extends Model
         'name',
         'user_id',
         'type',
+        'category',
+        'recipe_url',
     ];
     public function user()
     {
