@@ -45,7 +45,8 @@
                                     <div class="flex flex-col">
                                         <span x-text="dish.dish_name"></span>
                                         <template x-if="dish.dish_recipe_url">
-                                            <a :href="dish.dish_recipe_url" target="_blank" class="text-xs text-link">
+                                            <a :href="dish.dish_recipe_url" target="_blank"
+                                                class="pb-[1px] text-xs text-link hover:pb-0 hover:border-b border-link transition">
                                                 レシピサイト
                                             </a>
                                         </template>
