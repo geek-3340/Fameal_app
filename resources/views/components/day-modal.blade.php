@@ -20,7 +20,8 @@
                 @csrf
                 <input type="hidden" name="date" :value="selectedDate">
                 <label for="dish_id" class="hidden"></label>
-                <select name="dish_id" id="dish_id" class="w-full border rounded mb-4 focus:border-main focus:ring-main" required>
+                <select name="dish_id" id="dish_id"
+                    class="w-full border rounded mb-4 focus:border-main focus:ring-main" required>
                     <option value="">料理を選択</option>
                     @foreach ($dishes as $dish)
                         <option value="{{ $dish->id }}">{{ $dish->name }}</option>
@@ -37,10 +38,18 @@
                 <template x-if="dishes.length > 0">
                     <div>
                         <p class="mb-4 font-semibold"><span x-text="formattedDate"></span>の献立</p>
-                        <ul>
+                        <ul class="border-t border-dashed border-gray-300">
                             <template x-for="dish in dishes" :key="dish.id">
-                                <li class="flex items-center justify-between mb-2">
-                                    <span x-text="dish.dish_name"></span>
+                                <li
+                                    class="flex items-center justify-between py-2 border-b border-dashed border-gray-300">
+                                    <div class="flex flex-col">
+                                        <span x-text="dish.dish_name"></span>
+                                        <template x-if="dish.dish_recipe_url">
+                                            <a :href="dish.dish_recipe_url" target="_blank" class="text-xs text-link">
+                                                レシピサイト
+                                            </a>
+                                        </template>
+                                    </div>
                                     <form :action="`/menus-dishes/${dish.id}`" method="post" @submit>
                                         @csrf
                                         <button type="submit" class="text-red-500 hover:underline text-sm">削除</button>

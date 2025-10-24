@@ -129,7 +129,7 @@ FullCalendar styles
     padding: 3px 0 0 10px;
 }
 .fc .fc-dayGridMonth-view .fc-daygrid-day-events {
-    margin-bottom: 0;
+    margin-bottom: 8px;
 }
 
 /* dayGridWeek */
@@ -180,16 +180,16 @@ FullCalendar styles
 
 /* events */
 .fc .fc-h-event {
-    background-color: #ffcf55;
-    border: none;
-    font-size: 0.8rem;
-    width: max-content;
-    padding: 2px 4px;
     text-align: center;
-    border-radius: 100px;
-    min-width: 80px;
     margin: 3px 0 3px 5px !important;
+    padding: 2px 4px;
+    font-size: 0.8rem;
+    min-width: 80px;
+    width: max-content;
+    border: none;
+    border-radius: 100px;
 }
 .fc .fc-event-main {
     color: #3d3d3d;
+    font-weight: 600;
 }

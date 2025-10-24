@@ -76,6 +76,7 @@ export default function fullCalendar() {
                 },
             },
             events: events,
+            eventOrder: "order",
             height: "auto",
             dayCellContent(arg) {
                 if (arg.view.type === "dayGridMonth") {
