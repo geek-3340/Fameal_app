@@ -19,6 +19,29 @@
             <form action="{{ route('menus.dishes.store') }}" method="post">
                 @csrf
                 <input type="hidden" name="date" :value="selectedDate">
+                <div class="mb-4 flex justify-between">
+                    <label>
+                        <input type="radio" name="category" value="朝食" class="hidden peer" checked>
+                        <span
+                            class="cursor-pointer px-4 py-1 rounded-xl border-2 border-main peer-checked:bg-main peer-checked:bg-opacity-50">
+                            朝食
+                        </span>
+                    </label>
+                    <label>
+                        <input type="radio" name="category" value="昼食" class="hidden peer">
+                        <span
+                            class="cursor-pointer px-4 py-1 rounded-xl border-2 border-main peer-checked:bg-main peer-checked:bg-opacity-50">
+                            昼食
+                        </span>
+                    </label>
+                    <label>
+                        <input type="radio" name="category" value="夕食" class="hidden peer">
+                        <span
+                            class="cursor-pointer px-4 py-1 rounded-xl border-2 border-main peer-checked:bg-main peer-checked:bg-opacity-50">
+                            夕食
+                        </span>
+                    </label>
+                </div>
                 <label for="dish_id" class="hidden"></label>
                 <select name="dish_id" id="dish_id"
                     class="w-full border rounded mb-4 focus:border-main focus:ring-main" required>

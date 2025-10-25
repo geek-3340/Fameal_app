@@ -7,28 +7,28 @@
                 <label>
                     <input type="radio" name="category" value="エネルギー" class="hidden peer" checked>
                     <span
-                        class="cursor-pointer px-5 py-1 rounded-xl border border-main peer-checked:bg-main peer-checked:bg-opacity-50">
+                        class="cursor-pointer px-5 py-1 rounded-xl border-2 border-main peer-checked:bg-main peer-checked:bg-opacity-50">
                         エネルギー
                     </span>
                 </label>
                 <label>
                     <input type="radio" name="category" value="タンパク質" class="hidden peer">
                     <span
-                        class="cursor-pointer px-5 py-1 rounded-xl border border-customRed peer-checked:bg-customRed peer-checked:bg-opacity-50">
+                        class="cursor-pointer px-5 py-1 rounded-xl border-2 border-customRed peer-checked:bg-customRed peer-checked:bg-opacity-50">
                         タンパク質
                     </span>
                 </label>
                 <label>
                     <input type="radio" name="category" value="ビタミン" class="hidden peer">
                     <span
-                        class="cursor-pointer px-5 py-1 rounded-xl border border-customGreen peer-checked:bg-customGreen peer-checked:bg-opacity-50">
+                        class="cursor-pointer px-5 py-1 rounded-xl border-2 border-customGreen peer-checked:bg-customGreen peer-checked:bg-opacity-50">
                         ビタミン
                     </span>
                 </label>
                 <label>
                     <input type="radio" name="category" value="その他" class="hidden peer">
                     <span
-                        class="cursor-pointer px-5 py-1 rounded-xl border border-gray-400 peer-checked:bg-gray-400 peer-checked:bg-opacity-50">
+                        class="cursor-pointer px-5 py-1 rounded-xl border-2 border-gray-400 peer-checked:bg-gray-400 peer-checked:bg-opacity-50">
                         その他
                     </span>
                 </label>

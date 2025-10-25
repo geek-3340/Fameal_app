@@ -13,6 +13,7 @@ class MenusDishesController extends Controller
         $request->validate([
             'date' => 'required|date',
             'dish_id' => 'required|exists:dishes,id',
+            'category' => 'required',
         ]);
 
         // 献立（menus）を日付＆ユーザーで取得 or 作成
@@ -26,11 +27,12 @@ class MenusDishesController extends Controller
         MenusDishes::create([
             'menu_id' => $menu->id,
             'dish_id' => $request->dish_id,
+            'category' => $request->category,
         ]);
 
         return redirect()->back()->with('success', '献立を登録しました');
     }
-    
+
     public function destroy($id)
     {
         $menusDish = MenusDishes::findOrFail($id);

@@ -181,7 +181,7 @@ FullCalendar styles
 /* events */
 .fc .fc-h-event {
     text-align: center;
-    margin: 3px 0 3px 5px !important;
+    margin: 3px 5px 3px 5px !important;
     padding: 2px 4px;
     font-size: 0.8rem;
     min-width: 80px;
@@ -192,4 +192,6 @@ FullCalendar styles
 .fc .fc-event-main {
     color: #3d3d3d;
     font-weight: 600;
+    font-size: 12px;
+    text-wrap: initial;
 }

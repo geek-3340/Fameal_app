@@ -9,6 +9,7 @@ class MenusDishes extends Model
     protected $fillable = [
         'menu_id',
         'dish_id',
+        'category',
     ];
     public function menu()
     {

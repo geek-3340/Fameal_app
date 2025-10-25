@@ -7,28 +7,28 @@
                 <label>
                     <input type="radio" name="category" value="主食" class="hidden peer" checked>
                     <span
-                        class="cursor-pointer px-8 py-1 rounded-xl border border-main peer-checked:bg-main peer-checked:bg-opacity-50">
+                        class="cursor-pointer px-8 py-1 rounded-xl border-2 border-main peer-checked:bg-main peer-checked:bg-opacity-50">
                         主食
                     </span>
                 </label>
                 <label>
                     <input type="radio" name="category" value="主菜" class="hidden peer">
                     <span
-                        class="cursor-pointer px-8 py-1 rounded-xl border border-customRed peer-checked:bg-customRed peer-checked:bg-opacity-50">
+                        class="cursor-pointer px-8 py-1 rounded-xl border-2 border-customRed peer-checked:bg-customRed peer-checked:bg-opacity-50">
                         主菜
                     </span>
                 </label>
                 <label>
                     <input type="radio" name="category" value="副菜" class="hidden peer">
                     <span
-                        class="cursor-pointer px-8 py-1 rounded-xl border border-customGreen peer-checked:bg-customGreen peer-checked:bg-opacity-50">
+                        class="cursor-pointer px-8 py-1 rounded-xl border-2 border-customGreen peer-checked:bg-customGreen peer-checked:bg-opacity-50">
                         副菜
                     </span>
                 </label>
                 <label>
                     <input type="radio" name="category" value="その他" class="hidden peer">
                     <span
-                        class="cursor-pointer px-8 py-1 rounded-xl border border-gray-400 peer-checked:bg-gray-400 peer-checked:bg-opacity-50">
+                        class="cursor-pointer px-8 py-1 rounded-xl border-2 border-gray-400 peer-checked:bg-gray-400 peer-checked:bg-opacity-50">
                         その他
                     </span>
                 </label>

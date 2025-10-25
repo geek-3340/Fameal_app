@@ -58,6 +58,7 @@ class MenusController extends Controller
                 'title' => $menu->dish->name,
                 'start' => $menu->menu->date,
                 'order' => $order,
+                'category' => $menu->category,
             ];
             // $events=[['title'=>'料理名','start'=>'日付'],...];
             $date = $menu->menu->date;
