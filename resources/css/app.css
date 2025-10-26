@@ -5,3 +5,8 @@
 [x-cloak] {
     display: none !important;
 }
+
+.scrollbar{
+    scrollbar-width: thin;
+    scrollbar-color: #ccc white;
+}

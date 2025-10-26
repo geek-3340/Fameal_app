@@ -66,9 +66,10 @@ class MenusController extends Controller
                 'id' => $menu->id,
                 'dish_name' => $menu->dish->name,
                 'dish_recipe_url' => $menu->dish->recipe_url,
+                'menu_category' => $menu->category,
             ];
             // $menusByDate=['日付'=>[['id'=>'menus_dishesのid','dish_name'=>'料理名'],...],...];
         }
-        return view('contents', compact('category', 'viewType', 'dishes', 'events', 'menusByDate'));
+        return view('contents', compact('viewType', 'dishes', 'events', 'menusByDate'));
     }
 }

@@ -162,15 +162,15 @@ export default function fullCalendar() {
                         <div class="flex gap-2">
                             <div>
                                 <h2 class="font-semibold text-sm mt-2 mx-2 hidden">朝食</h2>
-                                <div class="break-first border border-gray-300 rounded-md hidden"></div>
+                                <div class="break-first p-1 border border-gray-300 rounded-md hidden"></div>
                             </div>
                             <div>
                                 <h2 class="font-semibold text-sm mt-2 mx-2 hidden">昼食</h2>
-                                <div class="lunch border border-gray-300 rounded-md hidden"></div>
+                                <div class="lunch p-1 border border-gray-300 rounded-md hidden"></div>
                             </div>
                             <div>
                                 <h2 class="font-semibold text-sm mt-2 mx-2 hidden">夕食</h2>
-                                <div class="dinner border border-gray-300 rounded-md hidden"></div>
+                                <div class="dinner p-1 border border-gray-300 rounded-md hidden"></div>
                             </div>
                         </div>
                         `;

@@ -8,7 +8,6 @@
     <div x-show="open" x-cloak @keydown.escape.window="open = false"
         class="fixed inset-0 flex items-center justify-center bg-main bg-opacity-50 z-50">
         <x-contents-board class="bg-white" @click.away="open = false">
-
             <div class="flex justify-between items-start">
                 <div></div>
                 <h2 class="text-xl font-bold mb-8">料理を登録</h2>
@@ -54,21 +53,72 @@
                     登録
                 </x-button>
             </form>
-
             <div class="w-full border-b border-gray-300 mt-4"></div>
-
-            <div class="mt-4">
-                <template x-if="dishes.length > 0">
-                    <div>
-                        <p class="mb-4 font-semibold"><span x-text="formattedDate"></span>の献立</p>
+            <div class="mt-4 pr-1 max-h-[50vh] overflow-y-auto scrollbar">
+                <template x-if="dishes.filter(d => d.menu_category === '朝食').length > 0">
+                    <div class="mb-2">
+                        <h3 class="text-main">朝食</h3>
                         <ul class="border-t border-dashed border-gray-300">
-                            <template x-for="dish in dishes" :key="dish.id">
+                            <template x-for="dish in dishes.filter(d => d.menu_category === '朝食')"
+                                :key="dish.id">
                                 <li
-                                    class="flex items-center justify-between py-2 border-b border-dashed border-gray-300">
+                                    class="flex items-center justify-between py-1 border-b border-dashed border-gray-300">
                                     <div class="flex flex-col">
-                                        <span x-text="dish.dish_name"></span>
+                                        <span x-text="dish.dish_name" class="text-sm"></span>
                                         <template x-if="dish.dish_recipe_url">
-                                            <a :href="dish.dish_recipe_url" target="_blank"
+                                            <a :href="dish.dish_recipe_url" target="_blank" +
+                                                class="pb-[1px] text-xs text-link hover:pb-0 hover:border-b border-link transition">
+                                                レシピサイト
+                                            </a>
+                                        </template>
+                                    </div>
+                                    <form :action="`/menus-dishes/${dish.id}`" method="post" @submit>
+                                        @csrf
+                                        <button type="submit" class="text-red-500 hover:underline text-sm">削除</button>
+                                    </form>
+                                </li>
+                            </template>
+                        </ul>
+                    </div>
+                </template>
+                <template x-if="dishes.filter(d => d.menu_category === '昼食').length > 0">
+                    <div class="mb-2">
+                        <h3 class="text-main mb-1">昼食</h3>
+                        <ul class="border-t border-dashed border-gray-300">
+                            <template x-for="dish in dishes.filter(d => d.menu_category === '昼食')"
+                                :key="dish.id">
+                                <li
+                                    class="flex items-center justify-between py-1 border-b border-dashed border-gray-300">
+                                    <div class="flex flex-col">
+                                        <span x-text="dish.dish_name" class="text-sm"></span>
+                                        <template x-if="dish.dish_recipe_url">
+                                            <a :href="dish.dish_recipe_url" target="_blank" +
+                                                class="pb-[1px] text-xs text-link hover:pb-0 hover:border-b border-link transition">
+                                                レシピサイト
+                                            </a>
+                                        </template>
+                                    </div>
+                                    <form :action="`/menus-dishes/${dish.id}`" method="post" @submit>
+                                        @csrf
+                                        <button type="submit" class="text-red-500 hover:underline text-sm">削除</button>
+                                    </form>
+                                </li>
+                            </template>
+                        </ul>
+                    </div>
+                </template>
+                <template x-if="dishes.filter(d => d.menu_category === '夕食').length > 0">
+                    <div class="mb-2">
+                        <h3 class="text-main mb-1">夕食</h3>
+                        <ul class="border-t border-dashed border-gray-300">
+                            <template x-for="dish in dishes.filter(d => d.menu_category === '夕食')"
+                                :key="dish.id">
+                                <li
+                                    class="flex items-center justify-between py-1 border-b border-dashed border-gray-300">
+                                    <div class="flex flex-col">
+                                        <span x-text="dish.dish_name" class="text-sm"></span>
+                                        <template x-if="dish.dish_recipe_url">
+                                            <a :href="dish.dish_recipe_url" target="_blank" +
                                                 class="pb-[1px] text-xs text-link hover:pb-0 hover:border-b border-link transition">
                                                 レシピサイト
                                             </a>
@@ -90,7 +140,6 @@
                     </div>
                 </template>
             </div>
-
         </x-contents-board>
     </div>
 </div>
