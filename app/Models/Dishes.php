@@ -23,4 +23,8 @@ class Dishes extends Model
     {
         return $this->hasMany(MenusDishes::class);
     }
+    public function ingredients()
+    {
+        return $this->hasMany(Ingredients::class);
+    }
 }

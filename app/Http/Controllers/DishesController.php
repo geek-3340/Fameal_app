@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Dishes;
+use App\Models\Ingredients;
 
 class DishesController extends Controller
 {
@@ -33,10 +34,34 @@ class DishesController extends Controller
         return back();
     }
 
-    public function destroy($id)
+    public function edit($id)
     {
-        // リクエストされたIDの料理を取得
         $dish = Dishes::find($id);
+        $ingredients = Ingredients::with('dish')->whereHas('dish', function ($query) use ($id) {
+            $query->where('id', $id);
+        })->get();
+        return response()->json([
+            'dish' => $dish,
+            'ingredients' => $ingredients,
+        ]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'name' => 'required',
+            'category' => 'required',
+            'recipe_url' => 'nullable|url',
+        ]);
+        $validated['user_id'] = auth()->id();
+        $validated['type'] = 'dish';
+        $dish = Dishes::find($id);
+        $dish->update($validated);
+        return back();
+    }
+
+    public function destroy(Dishes $dish)
+    {
         // 認可処理
         if ($dish->user_id !== auth()->id()) {
             abort(403);

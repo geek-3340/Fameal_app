@@ -1,5 +1,5 @@
 <div x-data="{ open: false, selectedDate: '', formattedDate: '', dishes: [] }"
-    @open-modal.window="
+    @open-day-modal.window="
         open = true;
         selectedDate = $event.detail.date;
         formattedDate = $event.detail.formattedDate;

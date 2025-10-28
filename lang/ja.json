@@ -180,7 +180,8 @@
     "Ensure your account is using a long, random password to stay secure": "十分に長くランダムなパスワードを使用して、アカウントのセキュリティを高めましょう",
     "Delete your account and all of its resources": "アカウントを削除して全てのデータを消去",
     "Dish name": "料理名",
-    "Ingredients": "材料",
+    "Ingredient name": "材料名",
     "Recipe URL": "レシピURL",
-    "Register dish": "登録"
+    "Register dish": "登録",
+    "Register Ingredients":"材料登録"
 }

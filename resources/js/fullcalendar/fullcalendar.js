@@ -132,7 +132,7 @@ export default function fullCalendar() {
                         const jstDate = jst(arg.date);
                         const formattedDate = dateFormat(arg.date);
                         window.dispatchEvent(
-                            new CustomEvent("open-modal", {
+                            new CustomEvent("open-day-modal", {
                                 detail: { date: jstDate, formattedDate },
                             })
                         );
