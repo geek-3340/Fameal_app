@@ -1,6 +1,7 @@
 <x-contents-board type="shopping-list">
     <h2 class="text-xl text-center font-bold mb-8">買い物リスト</h2>
 
+    {{-- 買い物リスト追加フォーム --}}
     <form action="{{ route('shopping.list.store') }}" method="POST" class="mb-8">
         @csrf
         <div class="flex justify-between w-4/5 mx-auto">
@@ -16,10 +17,12 @@
         <form action=""><x-button use="register">買い物リスト自動作成</x-button></form>
         <form action="{{ route('shopping.list.destroy') }}" method="post">
             @csrf
+            @method('DELETE')
             <x-button use="danger">チェック項目削除</x-button>
         </form>
     </div>
 
+    {{-- 買い物リスト一覧表示 --}}
     @if ($listItems->count() === 0)
         <div class="text-gray-400">買い物リストはありません。</div>
     @else

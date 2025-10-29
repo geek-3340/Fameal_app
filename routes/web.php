@@ -9,7 +9,6 @@ use App\Http\Controllers\MenusDishesController;
 use App\Http\Controllers\BabyfoodsController;
 use App\Http\Controllers\IngredientsController;
 use App\Http\Controllers\ShoppingListController;
-use App\Models\Ingredients;
 
 Route::get('/', function () {
     return view('top-page');
@@ -31,25 +30,25 @@ Route::middleware('auth', 'two_factor')->group(function () {
         ->name('menus.index');
 
     Route::post('/menus-dishes', [MenusDishesController::class, 'store'])->name('menus.dishes.store');
-    Route::post('/menus-dishes/{id}', [MenusDishesController::class, 'destroy'])->name('menus.dishes.destroy');
+    Route::delete('/menus-dishes/{id}', [MenusDishesController::class, 'destroy'])->name('menus.dishes.destroy');
 
     Route::get('/dishes', [DishesController::class, 'index'])->name('dishes.index');
     Route::post('/dishes', [DishesController::class, 'store'])->name('dishes.store');
     Route::get('/dishes/{id}', [DishesController::class, 'edit'])->name('dish.edit');
-    Route::put('/dishes/{id}',[DishesController::class,'update'])->name('dishes.update');
+    Route::put('/dishes/{id}', [DishesController::class, 'update'])->name('dishes.update');
     Route::delete('/dishes/{id}', [DishesController::class, 'destroy'])->name('dishes.destroy');
 
     Route::post('/ingredients', [IngredientsController::class, 'store'])->name('ingredients.store');
-    Route::delete('/ingredients/{id}',[IngredientsController::class,'destroy'])->name('ingredients.destroy');
+    Route::delete('/ingredients/{id}', [IngredientsController::class, 'destroy'])->name('ingredients.destroy');
 
     Route::get('/babyfoods', [BabyfoodsController::class, 'index'])->name('babyfoods.index');
     Route::post('/babyfoods', [BabyfoodsController::class, 'store'])->name('babyfoods.store');
-    Route::post('/babyfoods/{id}', [BabyfoodsController::class, 'destroy'])->name('babyfoods.destroy');
+    Route::delete('/babyfoods/{id}', [BabyfoodsController::class, 'destroy'])->name('babyfoods.destroy');
 
     Route::get('/shopping-list', [ShoppingListController::class, 'index'])->name('shopping.list.index');
     Route::post('/shopping-list', [ShoppingListController::class, 'store'])->name('shopping.list.store');
     Route::post('/shopping-list/{id}/check-toggle', [ShoppingListController::class, 'checkBoxToggle']);
-    Route::post('/shopping-list/delete', [ShoppingListController::class, 'destroy'])->name('shopping.list.destroy');
+    Route::delete('/shopping-list/destroy', [ShoppingListController::class, 'destroy'])->name('shopping.list.destroy');
 });
 
 require __DIR__ . '/auth.php';

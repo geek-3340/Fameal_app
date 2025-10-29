@@ -16,7 +16,7 @@
                     data-menus-event='@json($events)' data-menus-by-date='@json($menusByDate)'>
                 </div>
             </x-contents-board>
-            <x-day-modal :dishes="$dishes" />
+            @include('contents.partials.day-modal')
         @endif
     </div>
 </x-app-layout>

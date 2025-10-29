@@ -177,6 +177,9 @@ FullCalendar styles
 .fc-dayGridWeek-view .fc-daygrid-day-top {
     font-weight: bold;
 }
+.fc-dayGridWeek-view .fc-daygrid-day-events {
+    margin-bottom: 0 !important;
+}
 
 /* events */
 .fc .fc-h-event {

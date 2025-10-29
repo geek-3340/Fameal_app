@@ -103,13 +103,17 @@ export default function fullCalendar() {
                 const targetSelector = categoryMap[category];
                 if (!targetSelector) return; // 対応しないcategoryならスキップ
 
-                const target = menuCategoryBlocks.querySelector(targetSelector);
-                target.classList.remove("hidden");
-                const categoryHeadline = target.previousElementSibling;
-                if (categoryHeadline) {
-                    categoryHeadline.classList.remove("hidden");
-                }
-                if (target) target.appendChild(arg.el);
+                const target =
+                    menuCategoryBlocks.querySelectorAll(targetSelector);
+                target.forEach((t) => {
+                    const menusBlock = t.querySelector("div");
+                    t.classList.remove("hidden");
+                    // const categoryHeadline = t.previousElementSibling;
+                    // if (categoryHeadline) {
+                    //     categoryHeadline.classList.remove("hidden");
+                    // }
+                    if (menusBlock) menusBlock.appendChild(arg.el);
+                });
             },
 
             dayCellContent(arg) {
@@ -150,28 +154,36 @@ export default function fullCalendar() {
                     menuCategoryBlocks.classList.add("menu-category-blocks");
                     if (initialView === "dayGridMonth") {
                         menuCategoryBlocks.innerHTML = `
-                        <h2 class="font-semibold text-sm mt-2 mx-2 border-t border-dashed border-gray-300 hidden">朝食</h2>
-                        <div class="break-first hidden"></div>
-                        <h2 class="font-semibold text-sm mt-2 mx-2 border-t border-dashed border-gray-300 hidden">昼食</h2>
-                        <div class="lunch hidden"></div>
-                        <h2 class="font-semibold text-sm mt-2 mx-2 border-t border-dashed border-gray-300 hidden">夕食</h2>
-                        <div class="dinner hidden"></div>
+                        
+                        <div class="break-first hidden">
+                            <h2 class="font-semibold text-sm mt-2 mx-2 border-t border-dashed border-gray-300">朝食</h2>
+                            <div></div>
+                        </div>
+                        <div class="lunch hidden">
+                            <h2 class="font-semibold text-sm mt-2 mx-2 border-t border-dashed border-gray-300">昼食</h2>
+                            <div></div>
+                        </div>
+                        <div class="dinner hidden">
+                            <h2 class="font-semibold text-sm mt-2 mx-2 border-t border-dashed border-gray-300">夕食</h2>
+                            <div></div>
+                        </div>
                         `;
                     } else {
                         menuCategoryBlocks.innerHTML = `
-                        <div class="flex gap-2">
-                            <div>
-                                <h2 class="font-semibold text-sm mt-2 mx-2 hidden">朝食</h2>
-                                <div class="break-first p-1 border border-gray-300 rounded-md hidden"></div>
+                        <div class="flex">
+                            <div class="break-first pl-4 pr-4 border-l border-dashed border-gray-300 hidden">
+                                <h2 class="text-center font-semibold text-sm mt-2 mx-2">朝食</h2>
+                                <div class="p-1"></div>
                             </div>
-                            <div>
-                                <h2 class="font-semibold text-sm mt-2 mx-2 hidden">昼食</h2>
-                                <div class="lunch p-1 border border-gray-300 rounded-md hidden"></div>
+                            <div class="lunch pl-4 pr-4 border-l border-dashed border-gray-300 hidden">
+                                <h2 class="text-center font-semibold text-sm mt-2 mx-2">昼食</h2>
+                                <div class="p-1"></div>
                             </div>
-                            <div>
-                                <h2 class="font-semibold text-sm mt-2 mx-2 hidden">夕食</h2>
-                                <div class="dinner p-1 border border-gray-300 rounded-md hidden"></div>
+                            <div class="dinner pl-4 pr-4 border-l border-dashed border-gray-300 hidden">
+                                <h2 class="text-center font-semibold text-sm mt-2 mx-2">夕食</h2>
+                                <div class="p-1"></div>
                             </div>
+                            <div class="break-first lunch dinner border-r border-dashed border-gray-300 hidden"></div>
                         </div>
                         `;
                     }
