@@ -1,6 +1,6 @@
 import modalLinkSvg from "../../svg/modalLinkSvg";
 
-export function customButtonsData(
+export function createCustomButtons(
     currentUrl,
     dishesMonthUrl,
     dishesWeekUrl,
