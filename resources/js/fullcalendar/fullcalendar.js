@@ -1,7 +1,7 @@
 import initResponsiveMonthCalendar from "./partials/initResponsiveMonthCalendar";
 import updateActiveCustomButton from "./partials/updateActiveCustomButton";
 import {
-    customButtonsData,
+    createCustomButtons,
     createDayCellHeaderContent,
     createDishNodes,
     createCategoryBlocksInMenu,
@@ -38,7 +38,7 @@ export default function fullCalendar() {
             height: "auto",
             events: menus,
             eventOrder: "order",
-            customButtons: customButtonsData(
+            customButtons: createCustomButtons(
                 currentUrl,
                 DISHES_MONTH_URL,
                 DISHES_WEEK_URL,
