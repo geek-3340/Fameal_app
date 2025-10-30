@@ -1,6 +1,7 @@
 import calendarResponsive from "./partials/calendarResponsive";
 import calendarActiveButton from "./partials/calendarActiveButton";
 import modalLinkSvg from "../svg/modalLinkSvg";
+import { customButtons } from "./partials/clInitConfigFunc";
 export default function fullCalendar() {
     document.addEventListener("DOMContentLoaded", function () {
         const calendarEl = document.getElementById("calendar");
@@ -41,81 +42,14 @@ export default function fullCalendar() {
             events: events,
             eventOrder: "order",
             customButtons: {
-                dishesButton: {
-                    click: function () {
-                        if (currentUrl === babyfoodsMonthUrl) {
-                            window.location.href = dishesMonthUrl;
-                        } else if (currentUrl === babyfoodsWeekUrl) {
-                            window.location.href = dishesWeekUrl;
-                        }
-                    },
-                },
-                babyfoodsButton: {
-                    click: function () {
-                        if (currentUrl === dishesMonthUrl) {
-                            window.location.href = babyfoodsMonthUrl;
-                        } else if (currentUrl === dishesWeekUrl) {
-                            window.location.href = babyfoodsWeekUrl;
-                        }
-                    },
-                },
-                monthButton: {
-                    click: function () {
-                        if (currentUrl === dishesWeekUrl) {
-                            window.location.href = dishesMonthUrl;
-                        } else if (currentUrl === babyfoodsWeekUrl) {
-                            window.location.href = babyfoodsMonthUrl;
-                        }
-                    },
-                },
-                weekButton: {
-                    click: function () {
-                        if (currentUrl === dishesMonthUrl) {
-                            window.location.href = dishesWeekUrl;
-                        } else if (currentUrl === babyfoodsMonthUrl) {
-                            window.location.href = babyfoodsWeekUrl;
-                        }
-                    },
-                },
+                customButtons({
+                    currentUrl,
+                    babyfoodsMonthUrl,
+                    babyfoodsWeekUrl,
+                    dishesMonthUrl,
+                    dishesWeekUrl,
+                })
             },
-            eventContent(arg) {
-                const event = document.createElement("div");
-                event.textContent = arg.event.title;
-                event.classList.add("menu-event");
-                return { domNodes: [event] };
-            },
-            eventDidMount(arg) {
-                const category = arg.event.extendedProps.category;
-                const dayEl = arg.el.closest(".fc-daygrid-day");
-                const menuCategoryBlocks = dayEl.querySelector(
-                    ".menu-category-blocks"
-                );
-                if (!menuCategoryBlocks) return;
-
-                // category名とクラス名を対応付けるマップ
-                const categoryMap = {
-                    朝食: ".break-first",
-                    昼食: ".lunch",
-                    夕食: ".dinner",
-                };
-
-                // 対応するクラスを取得
-                const targetSelector = categoryMap[category];
-                if (!targetSelector) return; // 対応しないcategoryならスキップ
-
-                const target =
-                    menuCategoryBlocks.querySelectorAll(targetSelector);
-                target.forEach((t) => {
-                    const menusBlock = t.querySelector("div");
-                    t.classList.remove("hidden");
-                    // const categoryHeadline = t.previousElementSibling;
-                    // if (categoryHeadline) {
-                    //     categoryHeadline.classList.remove("hidden");
-                    // }
-                    if (menusBlock) menusBlock.appendChild(arg.el);
-                });
-            },
-
             dayCellContent(arg) {
                 if (arg.view.type === "dayGridMonth") {
                     return {
@@ -189,6 +123,43 @@ export default function fullCalendar() {
                     }
                     eventsContainer.appendChild(menuCategoryBlocks);
                 }
+            },
+            eventContent(arg) {
+                const event = document.createElement("div");
+                event.textContent = arg.event.title;
+                event.classList.add("menu-event");
+                return { domNodes: [event] };
+            },
+            eventDidMount(arg) {
+                const category = arg.event.extendedProps.category;
+                const dayEl = arg.el.closest(".fc-daygrid-day");
+                const menuCategoryBlocks = dayEl.querySelector(
+                    ".menu-category-blocks"
+                );
+                if (!menuCategoryBlocks) return;
+
+                // category名とクラス名を対応付けるマップ
+                const categoryMap = {
+                    朝食: ".break-first",
+                    昼食: ".lunch",
+                    夕食: ".dinner",
+                };
+
+                // 対応するクラスを取得
+                const targetSelector = categoryMap[category];
+                if (!targetSelector) return; // 対応しないcategoryならスキップ
+
+                const target =
+                    menuCategoryBlocks.querySelectorAll(targetSelector);
+                target.forEach((t) => {
+                    const menusBlock = t.querySelector("div");
+                    t.classList.remove("hidden");
+                    // const categoryHeadline = t.previousElementSibling;
+                    // if (categoryHeadline) {
+                    //     categoryHeadline.classList.remove("hidden");
+                    // }
+                    if (menusBlock) menusBlock.appendChild(arg.el);
+                });
             },
         });
 
