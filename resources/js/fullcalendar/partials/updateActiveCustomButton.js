@@ -2,7 +2,7 @@ import monthMenuSvg from "../../svg/monthMenuSvg";
 import weekMenuSvg from "../../svg/weekMenuSvg";
 import dishesMenusSvg from "../../svg/dishesMenusSvg";
 import babyfoodsMenusSvg from "../../svg/babyfoodsMenusSvg";
-export default function calendarActiveButton(
+export default function updateActiveCustomButton(
     dishesMonthUrl,
     dishesWeekUrl,
     babyfoodsMonthUrl,

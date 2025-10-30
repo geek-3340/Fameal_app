@@ -1,5 +1,5 @@
-export default function calendarResponsive(dishesMonthUrl, babyfoodsMonthUrl) {
-    function responsiveLayout() {
+export default function initResponsiveMonthCalendar(currentUrl,dishesMonthUrl, babyfoodsMonthUrl) {
+    function updateResponsiveMonthCalendar() {
         const base = document.querySelector(".fc-view-harness");
         const headerHeight =
             document.querySelector(".fc-col-header").clientHeight;
@@ -26,22 +26,18 @@ export default function calendarResponsive(dishesMonthUrl, babyfoodsMonthUrl) {
         });
     }
 
-    const currentUrl =
-        window.location.origin +
-        window.location.pathname +
-        window.location.search;
     if (currentUrl === dishesMonthUrl || currentUrl === babyfoodsMonthUrl) {
-        responsiveLayout();
+        updateResponsiveMonthCalendar();
         
         window.addEventListener("resize", () => {
             setTimeout(() => {
-                responsiveLayout();
+                updateResponsiveMonthCalendar();
             }, 200);
         });
                 
         // MutationObserverを設定
         const observer = new MutationObserver(() => {
-            responsiveLayout();
+            updateResponsiveMonthCalendar();
         });
         // 監視対象のノードとオプションを指定
         const calendarRoot = document.querySelector(".fc-view-harness");

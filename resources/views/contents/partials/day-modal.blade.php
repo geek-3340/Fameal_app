@@ -1,6 +1,6 @@
 {{-- 献立登録モーダル --}}
 <div x-data="{ open: false, selectedDate: '', formattedDate: '', dishes: [] }"
-    @open-day-modal.window="
+    @open-menu-edit-modal.window="
         open = true;
         selectedDate = $event.detail.date;
         formattedDate = $event.detail.formattedDate;
