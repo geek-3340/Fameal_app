@@ -50,7 +50,7 @@ FullCalendar styles
 .fc .fc-monthButton-button,
 .fc .fc-weekButton-button,
 .fc .fc-dishesButton-button,
-.fc .fc-babyfoodsButton-button {
+.fc .fc-babyFoodsButton-button {
     background-color: #fff;
     color: #ffb700;
     font-weight: bold;
@@ -72,10 +72,10 @@ FullCalendar styles
 .fc .fc-dishesButton-button:active,
 .fc .fc-dishesButton-button:focus,
 .fc .fc-dishesButton-button:visited,
-.fc .fc-babyfoodsButton-button:hover,
-.fc .fc-babyfoodsButton-button:active,
-.fc .fc-babyfoodsButton-button:focus,
-.fc .fc-babyfoodsButton-button:visited {
+.fc .fc-babyFoodsButton-button:hover,
+.fc .fc-babyFoodsButton-button:active,
+.fc .fc-babyFoodsButton-button:focus,
+.fc .fc-babyFoodsButton-button:visited {
     background-color: #fff999 !important;
     color: #ffb700 !important;
     outline: none !important;
@@ -84,7 +84,7 @@ FullCalendar styles
 .fc-monthButton-button.active,
 .fc-weekButton-button.active,
 .fc-dishesButton-button.active,
-.fc-babyfoodsButton-button.active {
+.fc-babyFoodsButton-button.active {
     background-color: #ffb700;
     color: #ffffff;
 }
@@ -100,10 +100,10 @@ FullCalendar styles
 .fc .fc-dishesButton-button.active:active,
 .fc .fc-dishesButton-button.active:focus,
 .fc .fc-dishesButton-button.active:visited,
-.fc .fc-babyfoodsButton-button.active:hover,
-.fc .fc-babyfoodsButton-button.active:active,
-.fc .fc-babyfoodsButton-button.active:focus,
-.fc .fc-babyfoodsButton-button.active:visited {
+.fc .fc-babyFoodsButton-button.active:hover,
+.fc .fc-babyFoodsButton-button.active:active,
+.fc .fc-babyFoodsButton-button.active:focus,
+.fc .fc-babyFoodsButton-button.active:visited {
     background-color: #ffa000 !important;
     border-color: #ffa000 !important;
     color: #ffffff !important;

@@ -30,7 +30,7 @@ export default function fullCalendar() {
             locale: "ja",
             headerToolbar: {
                 left: "title,prev,next",
-                right: "dishesButton,monthButton,babyfoodsButton,weekButton",
+                right: "dishesButton,monthButton,babyFoodsButton,weekButton",
             },
             height: "auto",
             events: menus,

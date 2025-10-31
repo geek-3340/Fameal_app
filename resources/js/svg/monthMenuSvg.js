@@ -1,4 +1,4 @@
-export default function monthMenuSvg(active) {
+export default function (active) {
     if (active) {
         return `
             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff" class="w-6 h-6">

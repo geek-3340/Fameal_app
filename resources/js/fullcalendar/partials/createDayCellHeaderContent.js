@@ -1,6 +1,6 @@
 import modalLinkSvg from "../../svg/modalLinkSvg";
 
-export default function createDayCellHeaderContent(arg) {
+export default function (arg) {
     if (arg.view.type === "dayGridMonth") {
         return {
             html: arg.date.getDate() + `${modalLinkSvg()}`,

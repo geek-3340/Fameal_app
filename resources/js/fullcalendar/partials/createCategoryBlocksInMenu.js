@@ -1,4 +1,4 @@
-export default function createCategoryBlocksInMenu(arg, initialView) {
+export default function (arg, initialView) {
     const $eventsContainer = arg.el.querySelector(".fc-daygrid-day-events");
     if (
         $eventsContainer &&

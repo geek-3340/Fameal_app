@@ -1,4 +1,4 @@
-export default function initResponsiveMonthCalendar(currentUrl,dishesMonthUrl, babyfoodsMonthUrl) {
+export default function (currentUrl,dishesMonthUrl, babyfoodsMonthUrl) {
     function updateResponsiveMonthCalendar() {
         const base = document.querySelector(".fc-view-harness");
         const headerHeight =

@@ -1,4 +1,4 @@
-export default function createCustomButtons(
+export default function (
     currentUrl,
     dishesMonthUrl,
     dishesWeekUrl,

@@ -1,4 +1,4 @@
-export default function dishesMenuSvg(active) {
+export default function (active) {
     if (active) {
         return `
             <svg version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"

@@ -1,4 +1,4 @@
-export default function modalLinkSvg() {
+export default function () {
     return `
     <a href="#" class="text-text decoration-none pt-1 px-2 ml-2 menu-edit-link">
             <svg

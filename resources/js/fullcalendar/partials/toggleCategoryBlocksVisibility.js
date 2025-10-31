@@ -1,4 +1,4 @@
-export default function toggleCategoryBlocksVisibility(arg) {
+export default function (arg) {
     const menuCategory = arg.event.extendedProps.category;
     const $dayEl = arg.el.closest(".fc-daygrid-day");
     const $menuCategoryBlock = $dayEl.querySelector(".menu-category-block");

@@ -44,7 +44,7 @@
 
     {{-- 料理一覧表示 --}}
     <x-contents-board type="two-contents" class="mx-0">
-        <h2 class="text-xl text-center font-bold mb-4">登録料理一覧</h1>
+        <h2 class="text-xl text-center font-bold mb-4">登録料理一覧</h2>
             @if ($dishes->count() === 0)
                 <div class="text-gray-400">料理登録はありません。</div>
             @else

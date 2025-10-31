@@ -1,4 +1,4 @@
-export default function weekMenuSvg(active) {
+export default function (active) {
     if (active) {
         return `
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#ffffff" class="w-6 h-6">
