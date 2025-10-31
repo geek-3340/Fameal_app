@@ -1,13 +1,10 @@
 import initResponsiveMonthCalendar from "./partials/initResponsiveMonthCalendar";
 import updateActiveCustomButton from "./partials/updateActiveCustomButton";
-import {
-    createCustomButtons,
-    createDayCellHeaderContent,
-    createDishNodes,
-    createCategoryBlocksInMenu,
-    setCategoryBlocksInMenu,
-    onClickMenuEditLink,
-} from "./partials/calendarInitConfigModules";
+import createCustomButtons from "./partials/createCustomButtons";
+import createDayCellHeaderContent from "./partials/createDayCellHeaderContent";
+import createCategoryBlocksInMenu from "./partials/createCategoryBlocksInMenu";
+import onClickMenuEditLink from "./partials/onClickMenuEditLink";
+import toggleCategoryBlocksVisibility from "./partials/toggleCategoryBlocksVisibility";
 
 export default function fullCalendar() {
 
@@ -46,13 +43,17 @@ export default function fullCalendar() {
                 BABY_FOODS_WEEK_URL
             ),
             dayCellContent: createDayCellHeaderContent,
-            eventContent: createDishNodes,
+            eventContent(arg) {
+                const $dish = document.createElement("div");
+                $dish.textContent = arg.event.title;
+                return { domNodes: [$dish] };
+            },
             dayCellDidMount(arg) {
                 createCategoryBlocksInMenu(arg, initialCalendar);
                 onClickMenuEditLink(arg);
             },
             eventDidMount(arg) {
-                setCategoryBlocksInMenu(arg);
+                toggleCategoryBlocksVisibility(arg);
             },
         });
 
@@ -64,6 +65,6 @@ export default function fullCalendar() {
             BABY_FOODS_MONTH_URL,
             BABY_FOODS_WEEK_URL
         );
-        initResponsiveMonthCalendar(currentUrl,DISHES_MONTH_URL, BABY_FOODS_MONTH_URL);
+        initResponsiveMonthCalendar(currentUrl, DISHES_MONTH_URL, BABY_FOODS_MONTH_URL);
     });
 }
