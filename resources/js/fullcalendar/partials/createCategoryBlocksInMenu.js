@@ -21,6 +21,7 @@ export default function (arg, initialView) {
                                 <h2 class="font-semibold text-sm mt-2 mx-2 border-t border-dashed border-gray-300">夕食</h2>
                                 <div></div>
                             </div>
+                            <div class="mt-2 break-first lunch dinner hidden"></div>
                             `;
         } else {
             $menuCategoryBlock.innerHTML = `

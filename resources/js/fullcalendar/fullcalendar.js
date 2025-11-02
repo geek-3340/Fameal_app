@@ -1,4 +1,4 @@
-import initResponsiveMonthCalendar from "./partials/initResponsiveMonthCalendar";
+import updateResponsiveMonthCalendar from "./partials/updateResponsiveMonthCalendar";
 import updateActiveCustomButton from "./partials/updateActiveCustomButton";
 import createCustomButtons from "./partials/createCustomButtons";
 import createDayCellHeaderContent from "./partials/createDayCellHeaderContent";
@@ -65,6 +65,6 @@ export default function fullCalendar() {
             BABY_FOODS_MONTH_URL,
             BABY_FOODS_WEEK_URL
         );
-        initResponsiveMonthCalendar(currentUrl, DISHES_MONTH_URL, BABY_FOODS_MONTH_URL);
+        updateResponsiveMonthCalendar(currentUrl, DISHES_MONTH_URL, BABY_FOODS_MONTH_URL);
     });
 }

@@ -45,40 +45,41 @@
     {{-- 料理一覧表示 --}}
     <x-contents-board type="two-contents" class="mx-0">
         <h2 class="text-xl text-center font-bold mb-4">登録料理一覧</h2>
-            @if ($dishes->count() === 0)
-                <div class="text-gray-400">料理登録はありません。</div>
-            @else
-                <p class="text-graytext text-center">料理名をクリックして料理編集・材料登録</p>
+        @if ($dishes->count() === 0)
+            <div class="text-gray-400">料理登録はありません。</div>
+        @else
+            <p class="text-graytext text-center">料理名をクリックして料理編集・材料登録</p>
 
-                @php
-                    $dishGroups = [
-                        ['dishes' => $staples, 'label' => '主食', 'color' => 'main'],
-                        ['dishes' => $mains, 'label' => '主菜', 'color' => 'customRed'],
-                        ['dishes' => $sides, 'label' => '副菜', 'color' => 'customGreen'],
-                        ['dishes' => $others, 'label' => 'その他', 'color' => 'gray-400'],
-                    ];
-                @endphp
+            @php
+                $dishGroups = [
+                    ['dishes' => $staples, 'label' => '主食', 'color' => 'main'],
+                    ['dishes' => $mains, 'label' => '主菜', 'color' => 'customRed'],
+                    ['dishes' => $sides, 'label' => '副菜', 'color' => 'customGreen'],
+                    ['dishes' => $others, 'label' => 'その他', 'color' => 'gray-400'],
+                ];
+            @endphp
 
-                @foreach ($dishGroups as $group)
-                    @if ($group['dishes']->count() > 0)
-                        <h3 class="font-semibold text-{{ $group['color'] }} text-lg mb-2">{{ $group['label'] }}</h3>
-                        @foreach ($group['dishes'] as $dish)
-                            <div class="mb-2 p-2 border border-{{ $group['color'] }} rounded-lg flex justify-between">
-                                <a href="#" class="open-dish-modal" data-dish-id="{{ $dish->id }}">
-                                    {{ $dish->name }}
-                                </a>
-                                <form action="{{ route('dishes.destroy', $dish) }}" method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="mr-2">
-                                        <x-icons.close-delete-svg size="sm" class="translate-y-[3px]" />
-                                    </button>
-                                </form>
-                            </div>
-                        @endforeach
-                    @endif
-                @endforeach
-            @endif
+            @foreach ($dishGroups as $group)
+                @if ($group['dishes']->count() > 0)
+                    <h3 class="font-semibold text-{{ $group['color'] }} text-lg mb-2">{{ $group['label'] }}</h3>
+                    @foreach ($group['dishes'] as $dish)
+                        <div class="mb-2 p-2 border border-{{ $group['color'] }} rounded-lg flex justify-between">
+                            <a href="#" class="open-dish-modal hover:text-{{ $group['color'] }}"
+                                data-dish-id="{{ $dish->id }}">
+                                {{ $dish->name }}
+                            </a>
+                            <form action="{{ route('dishes.destroy', $dish) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button class="mr-2">
+                                    <x-icons.close-delete-svg size="sm" class="translate-y-[3px]" />
+                                </button>
+                            </form>
+                        </div>
+                    @endforeach
+                @endif
+            @endforeach
+        @endif
     </x-contents-board>
 </div>
 

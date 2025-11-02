@@ -129,7 +129,7 @@ FullCalendar styles
     padding: 3px 0 0 10px;
 }
 .fc .fc-dayGridMonth-view .fc-daygrid-day-events {
-    margin-bottom: 8px;
+    margin-bottom: 0;
 }
 
 /* dayGridWeek */
