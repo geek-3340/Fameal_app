@@ -55,7 +55,7 @@ class MenusController extends Controller
             }
             $events[] = [
                 'backgroundColor' => $bg,
-                'title' => $menu->dish->name,
+                'title' => $menu->dish->name . ($menu->gram ? ' ' . $menu->gram . 'g' : ''),
                 'start' => $menu->menu->date,
                 'order' => $order,
                 'category' => $menu->category,
@@ -67,9 +67,10 @@ class MenusController extends Controller
                 'dish_name' => $menu->dish->name,
                 'dish_recipe_url' => $menu->dish->recipe_url,
                 'menu_category' => $menu->category,
+                'dish_gram' => $menu->gram,
             ];
             // $menusByDate=['日付'=>[['id'=>'menus_dishesのid','dish_name'=>'料理名'],...],...];
         }
-        return view('contents', compact('viewType', 'dishes', 'events', 'menusByDate'));
+        return view('contents', compact('viewType', 'dishes', 'type', 'events', 'menusByDate'));
     }
 }

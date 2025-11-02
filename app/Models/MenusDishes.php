@@ -10,6 +10,7 @@ class MenusDishes extends Model
         'menu_id',
         'dish_id',
         'category',
+        'gram',
     ];
     public function menu()
     {

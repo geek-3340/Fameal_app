@@ -14,6 +14,7 @@ class MenusDishesController extends Controller
             'date' => 'required|date',
             'dish_id' => 'required|exists:dishes,id',
             'category' => 'required',
+            'gram' => 'nullable',
         ]);
 
         // 献立（menus）を日付＆ユーザーで取得 or 作成
@@ -28,6 +29,7 @@ class MenusDishesController extends Controller
             'menu_id' => $menu->id,
             'dish_id' => $request->dish_id,
             'category' => $request->category,
+            'gram' => $request->gram,
         ]);
 
         return redirect()->back()->with('success', '献立を登録しました');

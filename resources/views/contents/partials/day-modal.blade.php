@@ -11,7 +11,11 @@
         <x-contents-board type="modal" class="bg-white" @click.away="open = false">
             <div class="flex justify-between items-start">
                 <div></div>
-                <h2 class="text-xl font-bold mb-8">料理を登録</h2>
+                @if ($type === 'dish')
+                    <h2 class="text-xl font-bold mb-8">料理を登録</h2>
+                @else
+                    <h2 class="text-xl font-bold mb-8">離乳食を登録</h2>
+                @endif
                 <button @click="open = false" class="pt-1">
                     <x-icons.close-delete-svg size="base" class="" />
                 </button>
@@ -36,13 +40,20 @@
                     </div>
                     <label for="dish_id" class="hidden"></label>
                     <select name="dish_id" id="dish_id"
-                        class="w-full border rounded mb-4 hover:border-main hover:ring-main focus:border-main focus:ring-main"
+                        class="w-3/5 border-gray-300 rounded-md mb-4 shadow-sm focus:border-main focus:ring-main"
                         required>
-                        <option value="">料理を選択</option>
+                        @if ($type === 'dish')
+                            <option value="">料理を選択</option>
+                        @else
+                            <option value="">離乳食を選択</option>
+                        @endif
                         @foreach ($dishes as $dish)
                             <option value="{{ $dish->id }}">{{ $dish->name }}</option>
                         @endforeach
                     </select>
+                    <x-text-input id="gram" type="number" :min="0" :step="5" name="gram" :value="old('gram')"
+                        class="ml-2 w-1/5" />
+                    <p class="inline text-lg ml-1">g</p>
                     <x-button type="submit" class="!block mx-auto">
                         登録
                     </x-button>
@@ -66,7 +77,7 @@
                                         <li
                                             class="flex items-center justify-between py-1 border-b border-dashed border-gray-300">
                                             <div class="flex flex-col">
-                                                <span x-text="dish.dish_name" class="text-sm"></span>
+                                                <span x-text="`${dish.dish_name} ${dish.dish_gram ? dish.dish_gram + 'g' : ''}`" class="text-sm"></span>
                                                 <template x-if="dish.dish_recipe_url">
                                                     <a :href="dish.dish_recipe_url" target="_blank" +
                                                         class="pb-[1px] text-xs text-link hover:pb-0 hover:border-b border-link transition">
