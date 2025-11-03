@@ -25,8 +25,8 @@
             <form action="{{ route('menus.dishes.store') }}" method="post">
                 @csrf
                 <input type="hidden" name="date" :value="selectedDate">
-                <div class="w-4/5 mx-auto">
-                    <div class="mb-4 flex justify-between">
+                <div class="w-4/5 mx-auto text-center">
+                    <div class="mb-6 flex justify-between">
                         @foreach (['朝食' => 'checked', '昼食' => '', '夕食' => ''] as $category => $checked)
                             <label>
                                 <input type="radio" name="category" value="{{ $category }}" class="hidden peer"
@@ -38,22 +38,30 @@
                             </label>
                         @endforeach
                     </div>
-                    <label for="dish_id" class="hidden"></label>
-                    <select name="dish_id" id="dish_id"
-                        class="w-3/5 border-gray-300 rounded-md mb-4 shadow-sm focus:border-main focus:ring-main"
-                        required>
-                        @if ($type === 'dish')
+                    @if ($type === 'dish')
+                        <label for="dish_id" class="hidden"></label>
+                        <select name="dish_id" id="dish_id"
+                            class="w-4/5 border-gray-300 rounded-md mb-4 shadow-sm focus:border-main focus:ring-main"
+                            required>
                             <option value="">料理を選択</option>
-                        @else
+                            @foreach ($dishes as $dish)
+                                <option value="{{ $dish->id }}">{{ $dish->name }}</option>
+                            @endforeach
+                        </select>
+                    @else
+                        <label for="dish_id" class="hidden"></label>
+                        <select name="dish_id" id="dish_id"
+                            class="w-3/5 border-gray-300 rounded-md mb-4 shadow-sm focus:border-main focus:ring-main"
+                            required>
                             <option value="">離乳食を選択</option>
-                        @endif
-                        @foreach ($dishes as $dish)
-                            <option value="{{ $dish->id }}">{{ $dish->name }}</option>
-                        @endforeach
-                    </select>
-                    <x-text-input id="gram" type="number" :min="0" :step="5" name="gram" :value="old('gram')"
-                        class="ml-2 w-1/5" />
-                    <p class="inline text-lg ml-1">g</p>
+                            @foreach ($dishes as $dish)
+                                <option value="{{ $dish->id }}">{{ $dish->name }}</option>
+                            @endforeach
+                        </select>
+                        <x-text-input id="gram" type="number" :min="0" :step="5" name="gram"
+                            :value="old('gram')" class="ml-2 w-1/5" />
+                        <p class="inline text-lg ml-1">g</p>
+                    @endif
                     <x-button type="submit" class="!block mx-auto">
                         登録
                     </x-button>
@@ -77,7 +85,9 @@
                                         <li
                                             class="flex items-center justify-between py-1 border-b border-dashed border-gray-300">
                                             <div class="flex flex-col">
-                                                <span x-text="`${dish.dish_name} ${dish.dish_gram ? dish.dish_gram + 'g' : ''}`" class="text-sm"></span>
+                                                <span
+                                                    x-text="`${dish.dish_name} ${dish.dish_gram ? dish.dish_gram + 'g' : ''}`"
+                                                    class="text-sm"></span>
                                                 <template x-if="dish.dish_recipe_url">
                                                     <a :href="dish.dish_recipe_url" target="_blank" +
                                                         class="pb-[1px] text-xs text-link hover:pb-0 hover:border-b border-link transition">
