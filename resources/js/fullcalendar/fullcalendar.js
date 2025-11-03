@@ -7,11 +7,10 @@ import onClickMenuEditLink from "./partials/onClickMenuEditLink";
 import toggleCategoryBlocksVisibility from "./partials/toggleCategoryBlocksVisibility";
 
 export default function fullCalendar() {
-
     document.addEventListener("DOMContentLoaded", function () {
-
         const $calendarEl = document.getElementById("calendar");
-        const initialCalendar = $calendarEl.dataset.initialView || "dayGridMonth";
+        const initialCalendar =
+            $calendarEl.dataset.initialView || "dayGridMonth";
         const menus = JSON.parse($calendarEl.dataset.menusEvent || "[]");
         const currentUrl =
             window.location.origin +
@@ -59,12 +58,40 @@ export default function fullCalendar() {
 
         calendar.render();
 
+        window.calendar = calendar;
+
+        window.addEventListener("menu-updated", (e) => {
+            if (!window.calendar) return;
+
+            const date = e.detail.newCalendarDish.start;
+
+            // 該当日のイベントを削除
+            window.calendar.removeAllEvents();
+
+            // その日付の新しいイベントを追加
+            const newEvents = menus.push(e.detail.newCalendarDish); 
+            newEvents.forEach((dish) => {
+                window.calendar.addEvent({
+                    id: dish.id,
+                    title: dish.title,
+                    start: dish.start,
+                    backgroundColor: dish.backgroundColor,
+                    order: dish.order,
+                    extendedProps: { category: dish.category },
+                });
+            });
+        });
+
         updateActiveCustomButton(
             DISHES_MONTH_URL,
             DISHES_WEEK_URL,
             BABY_FOODS_MONTH_URL,
             BABY_FOODS_WEEK_URL
         );
-        updateResponsiveMonthCalendar(currentUrl, DISHES_MONTH_URL, BABY_FOODS_MONTH_URL);
+        updateResponsiveMonthCalendar(
+            currentUrl,
+            DISHES_MONTH_URL,
+            BABY_FOODS_MONTH_URL
+        );
     });
 }

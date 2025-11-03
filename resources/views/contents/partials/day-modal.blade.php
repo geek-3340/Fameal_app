@@ -5,6 +5,9 @@
         selectedDate = $event.detail.date;
         formattedDate = $event.detail.formattedDate;
         dishes = (window.dishesByDate[selectedDate]) ? window.dishesByDate[selectedDate] : [];
+    "
+    @menu-updated.window="
+        dishes = [...(window.dishesByDate[selectedDate] || []),$event.detail.newModalDish];
     ">
     <div x-show="open" x-cloak @keydown.escape.window="open = false"
         class="fixed inset-0 flex items-center justify-center bg-main bg-opacity-50 z-50">
@@ -22,7 +25,7 @@
             </div>
 
             {{-- 献立登録フォーム --}}
-            <form action="{{ route('menus.dishes.store') }}" method="post">
+            <form id="dish-and-baby-food-form" action="{{ route('menus.dishes.store') }}" method="post">
                 @csrf
                 <input type="hidden" name="date" :value="selectedDate">
                 <div class="w-4/5 mx-auto text-center">

@@ -2,8 +2,9 @@ import "./bootstrap";
 import Alpine from "alpinejs";
 import fullCalendar from "./fullcalendar/fullcalendar";
 import updateActiveNavButton from "./modules/updateActiveNavButton";
-import axiosToggleCheckedShoppingListItems from "./modules/axiosToggleCheckedShoppingListItems";
-import axiosOnClickDishEditLinks from "./modules/axiosOnClickDishEditLinks";
+import toggleCheckedShoppingListItems from "./modules/toggleCheckedShoppingListItems";
+import onClickDishEditLinks from "./modules/onClickDishEditLinks";
+import submitDishAndBabyFoodForm from "./modules/submitDishAndBabyFoodForm";
 
 // Alpine.js
 window.Alpine = Alpine;
@@ -14,6 +15,8 @@ fullCalendar();
 
 updateActiveNavButton();
 
-axiosToggleCheckedShoppingListItems();
+submitDishAndBabyFoodForm();
 
-axiosOnClickDishEditLinks();
+onClickDishEditLinks();
+
+toggleCheckedShoppingListItems();
