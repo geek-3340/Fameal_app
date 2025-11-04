@@ -4,10 +4,10 @@
         open = true;
         selectedDate = $event.detail.date;
         formattedDate = $event.detail.formattedDate;
-        dishes = (window.dishesByDate[selectedDate]) ? window.dishesByDate[selectedDate] : [];
+        dishes = window.dishesByDate[selectedDate] ? window.dishesByDate[selectedDate] : [];
     "
     @menu-updated.window="
-        dishes = [...(window.dishesByDate[selectedDate] || []),$event.detail.newModalDish];
+        dishes = [...(dishes || []),$event.detail.newModalDish];
     ">
     <div x-show="open" x-cloak @keydown.escape.window="open = false"
         class="fixed inset-0 flex items-center justify-center bg-main bg-opacity-50 z-50">
