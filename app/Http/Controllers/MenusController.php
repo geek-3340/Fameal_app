@@ -73,4 +73,8 @@ class MenusController extends Controller
         }
         return view('contents', compact('viewType', 'dishes', 'type', 'events', 'menusByDate'));
     }
+
+    public function edit($date){
+        return response()->json($date);
+    }
 }

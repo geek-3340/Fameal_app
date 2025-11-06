@@ -1,22 +1,27 @@
-export default function (arg) {
+import axios from "axios";
 
+export default function (arg) {
     const $menuEditLink = arg.el.querySelector(".menu-edit-link");
 
     if ($menuEditLink) {
-
-        $menuEditLink.addEventListener("click", (e) => {
-
+        $menuEditLink.addEventListener("click", async (e) => {
             e.preventDefault();
 
             const jstDate = jst(arg.date);
             const formattedDate = dateFormat(arg.date);
 
-            window.dispatchEvent(
+            const date = jstDate;
+            try {
+                const response = await axios.get(`/menus/${date}`);
+
+                window.dispatchEvent(
                 new CustomEvent("open-menu-edit-modal", {
                     detail: { date: jstDate, formattedDate },
                 })
             );
-
+            } catch (error) {
+                console.error("データ取得エラー：", error);
+            }
         });
     }
 }
