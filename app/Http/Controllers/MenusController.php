@@ -64,17 +64,97 @@ class MenusController extends Controller
             $date = $menu->menu->date;
             $menusByDate[$date][] = [
                 'id' => $menu->id,
-                'dish_name' => $menu->dish->name,
-                'dish_recipe_url' => $menu->dish->recipe_url,
                 'menu_category' => $menu->category,
+                'dish_name' => $menu->dish->name,
                 'dish_gram' => $menu->gram,
+                'dish_recipe_url' => $menu->dish->recipe_url,
             ];
             // $menusByDate=['日付'=>[['id'=>'menus_dishesのid','dish_name'=>'料理名'],...],...];
         }
         return view('contents', compact('viewType', 'dishes', 'type', 'events', 'menusByDate'));
     }
 
-    public function edit($date){
-        return response()->json($date);
+    public function edit($date)
+    {
+        $dishesMenu = MenusDishes::with('dish', 'menu')->whereHas('menu', function ($query) use ($date) {
+            $query->where('user_id', auth()->id());
+            $query->where('date', $date);
+        })->whereHas('dish', function ($query) {
+            $query->where('type', 'dish');
+        })->get();
+
+        $babyFoodsMenu = MenusDishes::with('dish', 'menu')->whereHas('menu', function ($query) use ($date) {
+            $query->where('user_id', auth()->id());
+            $query->where('date', $date);
+        })->whereHas('dish', function ($query) {
+            $query->where('type', 'babyfood');
+        })->get();
+
+        $dishesMenuData = [];
+        $babyFoodsMenuData = [];
+        $order = null;
+
+        foreach ($dishesMenu as $menu) {
+            switch ($menu->dish->category) {
+                case '主食':
+                case 'エネルギー':
+                    $order = 0;
+                    break;
+                case '主菜':
+                case 'タンパク質':
+                    $order = 1;
+                    break;
+                case '副菜':
+                case 'ビタミン':
+                    $order = 2;
+                    break;
+                default:
+                    $order = 3;
+                    break;
+            }
+            $dishesMenuData[] = [
+                'id' => $menu->id,
+                'menu_category' => $menu->category,
+                'dish_name' => $menu->dish->name,
+                'dish_gram' => $menu->gram,
+                'dish_recipe_url' => $menu->dish->recipe_url,
+                'order' => $order,
+            ];
+        }
+
+        foreach ($babyFoodsMenu as $menu) {
+            switch ($menu->dish->category) {
+                case '主食':
+                case 'エネルギー':
+                    $order = 0;
+                    break;
+                case '主菜':
+                case 'タンパク質':
+                    $order = 1;
+                    break;
+                case '副菜':
+                case 'ビタミン':
+                    $order = 2;
+                    break;
+                default:
+                    $order = 3;
+                    break;
+            }
+            $babyFoodsMenuData[] = [
+                'id' => $menu->id,
+                'menu_category' => $menu->category,
+                'dish_name' => $menu->dish->name,
+                'dish_gram' => $menu->gram,
+                'dish_recipe_url' => $menu->dish->recipe_url,
+                'order' => $order,
+            ];
+        }
+        $dishesMenuData = collect($dishesMenuData)->sortBy('order')->values()->all();
+        $babyFoodsMenuData = collect($babyFoodsMenuData)->sortBy('order')->values()->all();
+
+        return response()->json([
+            'dishesByDate' => $dishesMenuData,
+            'babyFoodsByDate' => $babyFoodsMenuData,
+        ]);
     }
 }

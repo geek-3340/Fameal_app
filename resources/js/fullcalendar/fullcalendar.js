@@ -58,26 +58,16 @@ export default function fullCalendar() {
 
         calendar.render();
 
-        window.calendar = calendar;
-        window.menus = menus;
 
+        window.calendar = calendar;
         window.addEventListener("menu-updated", (e) => {
             if (!window.calendar) return;
-
             document
                 .querySelectorAll(".fc-event")
                 .forEach((dish) => dish.remove());
-
             // 該当日のイベントを削除
             window.calendar.removeAllEvents();
-
-            // その日付の新しいイベントを追加
-            window.menus.push(e.detail.newCalendarDish);
-
-            // ✅ order順にソート
-            window.menus.sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
-
-            const newEvents = window.menus;
+            const newEvents = e.detail.newCalendarDish;
             newEvents.forEach((dish) => {
                 window.calendar.addEvent({
                     id: dish.id,

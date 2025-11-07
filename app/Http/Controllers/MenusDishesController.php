@@ -23,7 +23,7 @@ class MenusDishesController extends Controller
             'date' => $request->date,
             'user_id' => auth()->id(),
         ]);
-        
+
         // 献立と料理の紐付け（menus_dishes）
         $menuDish = MenusDishes::create([
             'menu_id' => $menu->id,
@@ -31,51 +31,76 @@ class MenusDishesController extends Controller
             'category' => $request->category,
             'gram' => $request->gram,
         ]);
-        
+
         // dish情報も一緒に取得して返す
         $menuDish->load('dish'); // リレーションをロード（MenusDishesモデルで定義されている前提）
 
-        $bg = "";
-        $order = null;
-        switch ($menuDish->dish->category) {
-            case '主食':
-            case 'エネルギー':
-                $bg = "#ffb700";
-                $order = 0;
-                break;
-            case '主菜':
-            case 'タンパク質':
-                $bg = "#ff7d55";
-                $order = 1;
-                break;
-            case '副菜':
-            case 'ビタミン':
-                $bg = "#91ff00";
-                $order = 2;
-                break;
-            default:
-                $bg = "#bbbbbb";
-                $order = 3;
-                break;
+        $type = '';
+        if ($menuDish->dish->type === 'dish') {
+            $type = 'dish';
+        } else {
+            $type = 'babyfood';
         }
 
-        // 非同期（axios）リクエストだった場合、JSONを返す
-        return response()->json([
-            'message' => '献立を登録しました',
-            'calendar' => [
-                'backgroundColor' => $bg,
-                'title' => $menuDish->dish->name . ($menuDish->gram ? ' ' . $menuDish->gram . 'g' : ''),
-                'start' => $menu->date,
+        $date = $request->date;
+
+        $dishesMenu = MenusDishes::with('dish', 'menu')->whereHas('menu', function ($query) use ($date) {
+            $query->where('user_id', auth()->id());
+            $query->where('date', $date);
+        })->whereHas('dish', function ($query) use ($type) {
+            $query->where('type', $type);
+        })->get();
+
+        $modalMenuUpdateData = [];
+        $calendarMenuUpdateData = [];
+        $order = null;
+        $bg = '';
+
+        foreach ($dishesMenu as $menu) {
+            switch ($menu->dish->category) {
+                case '主食':
+                case 'エネルギー':
+                    $bg = "#ffb700";
+                    $order = 0;
+                    break;
+                case '主菜':
+                case 'タンパク質':
+                    $bg = "#ff7d55";
+                    $order = 1;
+                    break;
+                case '副菜':
+                case 'ビタミン':
+                    $bg = "#91ff00";
+                    $order = 2;
+                    break;
+                default:
+                    $bg = "#bbbbbb";
+                    $order = 3;
+                    break;
+            }
+            $modalMenuUpdateData[] = [
+                'id' => $menu->id,
+                'menu_category' => $menu->category,
+                'dish_name' => $menu->dish->name,
+                'dish_gram' => $menu->gram,
+                'dish_recipe_url' => $menu->dish->recipe_url,
                 'order' => $order,
-                'category' => $menuDish->category,
-            ],
-            'modal' => [
-                'id' => $menuDish->id,
-                'dish_name' => $menuDish->dish->name,
-                'dish_recipe_url' => $menuDish->dish->recipe_url ?? null,
-                'menu_category' => $menuDish->category,
-                'dish_gram' => $menuDish->gram,
-            ],
+            ];
+            $calendarMenuUpdateData[] = [
+                'backgroundColor' => $bg,
+                'title' => $menu->dish->name . ($menu->gram ? ' ' . $menu->gram . 'g' : ''),
+                'start' => $menu->menu->date,
+                'order' => $order,
+                'category' => $menu->category,
+            ];
+        }
+
+        $modalMenuUpdateData = collect($modalMenuUpdateData)->sortBy('order')->values()->all();
+        $calendarMenuUpdateData = collect($calendarMenuUpdateData)->sortBy('order')->values()->all();
+
+        return response()->json([
+            'modal' => $modalMenuUpdateData,
+            'calendar' => $calendarMenuUpdateData,
         ]);
     }
 

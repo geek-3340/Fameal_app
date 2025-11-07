@@ -13,12 +13,16 @@ export default function (arg) {
             const date = jstDate;
             try {
                 const response = await axios.get(`/menus/${date}`);
-
                 window.dispatchEvent(
-                new CustomEvent("open-menu-edit-modal", {
-                    detail: { date: jstDate, formattedDate },
-                })
-            );
+                    new CustomEvent("open-menu-edit-modal", {
+                        detail: {
+                            dishesByDate:response.data.dishesByDate,
+                            babyFoodsByDate:response.data.babyFoodsByDate,
+                            date: jstDate,
+                            formattedDate,
+                        },
+                    })
+                );
             } catch (error) {
                 console.error("データ取得エラー：", error);
             }

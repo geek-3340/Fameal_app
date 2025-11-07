@@ -4,10 +4,10 @@
         open = true;
         selectedDate = $event.detail.date;
         formattedDate = $event.detail.formattedDate;
-        dishes = window.dishesByDate[selectedDate] ? window.dishesByDate[selectedDate] : [];
+        dishes = @json($type === 'dish')  ? $event.detail.dishesByDate : $event.detail.babyFoodsByDate;
     "
     @menu-updated.window="
-        dishes = [...(dishes || []),$event.detail.newModalDish];
+        dishes = $event.detail.newModalDish;
     ">
     <div x-show="open" x-cloak @keydown.escape.window="open = false"
         class="fixed inset-0 flex items-center justify-center bg-main bg-opacity-50 z-50">
@@ -92,7 +92,7 @@
                                                     x-text="`${dish.dish_name} ${dish.dish_gram ? dish.dish_gram + 'g' : ''}`"
                                                     class="text-sm"></span>
                                                 <template x-if="dish.dish_recipe_url">
-                                                    <a :href="dish.dish_recipe_url" target="_blank" +
+                                                    <a :href="dish.dish_recipe_url" target="_blank"
                                                         class="pb-[1px] text-xs text-link hover:pb-0 hover:border-b border-link transition">
                                                         レシピサイト
                                                     </a>
