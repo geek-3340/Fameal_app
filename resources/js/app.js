@@ -4,7 +4,8 @@ import fullCalendar from "./fullcalendar/fullcalendar";
 import updateActiveNavButton from "./modules/updateActiveNavButton";
 import toggleCheckedShoppingListItems from "./modules/toggleCheckedShoppingListItems";
 import onClickDishEditLinks from "./modules/onClickDishEditLinks";
-import submitDishAndBabyFoodForm from "./modules/submitDishAndBabyFoodForm";
+import submitMenusDishesStoreForm from "./modules/submitMenusDishesStoreForm";
+import submitMenusDishesDeleteForm from "./modules/submitMenusDishesDeleteForm";
 
 // Alpine.js
 window.Alpine = Alpine;
@@ -15,7 +16,9 @@ fullCalendar();
 
 updateActiveNavButton();
 
-submitDishAndBabyFoodForm();
+submitMenusDishesStoreForm();
+
+submitMenusDishesDeleteForm();
 
 onClickDishEditLinks();
 

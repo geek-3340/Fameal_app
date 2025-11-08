@@ -30,7 +30,6 @@ class MenusController extends Controller
         $events = [];
         $bg = "";
         $order = null;
-        $menusByDate = [];
         foreach ($menus as $menu) {
             switch ($menu->dish->category) {
                 case '主食':
@@ -60,30 +59,20 @@ class MenusController extends Controller
                 'order' => $order,
                 'category' => $menu->category,
             ];
-            // $events=[['title'=>'料理名','start'=>'日付'],...];
-            $date = $menu->menu->date;
-            $menusByDate[$date][] = [
-                'id' => $menu->id,
-                'menu_category' => $menu->category,
-                'dish_name' => $menu->dish->name,
-                'dish_gram' => $menu->gram,
-                'dish_recipe_url' => $menu->dish->recipe_url,
-            ];
-            // $menusByDate=['日付'=>[['id'=>'menus_dishesのid','dish_name'=>'料理名'],...],...];
         }
-        return view('contents', compact('viewType', 'dishes', 'type', 'events', 'menusByDate'));
+        return view('contents', compact('viewType', 'dishes', 'type', 'events'));
     }
 
     public function edit($date)
     {
-        $dishesMenu = MenusDishes::with('dish', 'menu')->whereHas('menu', function ($query) use ($date) {
+        $dishesMenuByDate = MenusDishes::with('dish', 'menu')->whereHas('menu', function ($query) use ($date) {
             $query->where('user_id', auth()->id());
             $query->where('date', $date);
         })->whereHas('dish', function ($query) {
             $query->where('type', 'dish');
         })->get();
 
-        $babyFoodsMenu = MenusDishes::with('dish', 'menu')->whereHas('menu', function ($query) use ($date) {
+        $babyFoodsMenuByDate = MenusDishes::with('dish', 'menu')->whereHas('menu', function ($query) use ($date) {
             $query->where('user_id', auth()->id());
             $query->where('date', $date);
         })->whereHas('dish', function ($query) {
@@ -94,7 +83,7 @@ class MenusController extends Controller
         $babyFoodsMenuData = [];
         $order = null;
 
-        foreach ($dishesMenu as $menu) {
+        foreach ($dishesMenuByDate as $menu) {
             switch ($menu->dish->category) {
                 case '主食':
                 case 'エネルギー':
@@ -122,7 +111,7 @@ class MenusController extends Controller
             ];
         }
 
-        foreach ($babyFoodsMenu as $menu) {
+        foreach ($babyFoodsMenuByDate as $menu) {
             switch ($menu->dish->category) {
                 case '主食':
                 case 'エネルギー':

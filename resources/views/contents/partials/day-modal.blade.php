@@ -25,7 +25,7 @@
             </div>
 
             {{-- 献立登録フォーム --}}
-            <form id="dish-and-baby-food-form" action="{{ route('menus.dishes.store') }}" method="post">
+            <form id="dish-and-baby-food-store-form" action="{{ route('menus.dishes.store') }}" method="post">
                 @csrf
                 <input type="hidden" name="date" :value="selectedDate">
                 <div class="w-4/5 mx-auto text-center">
@@ -98,7 +98,8 @@
                                                     </a>
                                                 </template>
                                             </div>
-                                            <form :action="`/menus-dishes/${dish.id}`" method="post" @submit>
+                                            <form id="dish-and-baby-food-delete-form"
+                                                :action="`/menus-dishes/${dish.id}`" method="post">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit"

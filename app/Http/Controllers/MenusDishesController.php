@@ -44,19 +44,19 @@ class MenusDishesController extends Controller
 
         $date = $request->date;
 
-        $dishesMenu = MenusDishes::with('dish', 'menu')->whereHas('menu', function ($query) use ($date) {
+        $menuByDate = MenusDishes::with('dish', 'menu')->whereHas('menu', function ($query) use ($date) {
             $query->where('user_id', auth()->id());
             $query->where('date', $date);
         })->whereHas('dish', function ($query) use ($type) {
             $query->where('type', $type);
         })->get();
 
-        $modalMenuUpdateData = [];
-        $calendarMenuUpdateData = [];
+        $modalLatestMenu = [];
+        $calendarLatestMenu = [];
         $order = null;
         $bg = '';
 
-        foreach ($dishesMenu as $menu) {
+        foreach ($menuByDate as $menu) {
             switch ($menu->dish->category) {
                 case '主食':
                 case 'エネルギー':
@@ -78,7 +78,7 @@ class MenusDishesController extends Controller
                     $order = 3;
                     break;
             }
-            $modalMenuUpdateData[] = [
+            $modalLatestMenu[] = [
                 'id' => $menu->id,
                 'menu_category' => $menu->category,
                 'dish_name' => $menu->dish->name,
@@ -86,7 +86,7 @@ class MenusDishesController extends Controller
                 'dish_recipe_url' => $menu->dish->recipe_url,
                 'order' => $order,
             ];
-            $calendarMenuUpdateData[] = [
+            $calendarLatestMenu[] = [
                 'backgroundColor' => $bg,
                 'title' => $menu->dish->name . ($menu->gram ? ' ' . $menu->gram . 'g' : ''),
                 'start' => $menu->menu->date,
@@ -95,22 +95,92 @@ class MenusDishesController extends Controller
             ];
         }
 
-        $modalMenuUpdateData = collect($modalMenuUpdateData)->sortBy('order')->values()->all();
-        $calendarMenuUpdateData = collect($calendarMenuUpdateData)->sortBy('order')->values()->all();
+        $modalLatestMenu = collect($modalLatestMenu)->sortBy('order')->values()->all();
+        $calendarLatestMenu = collect($calendarLatestMenu)->sortBy('order')->values()->all();
 
         return response()->json([
-            'modal' => $modalMenuUpdateData,
-            'calendar' => $calendarMenuUpdateData,
+            'modal' => $modalLatestMenu,
+            'calendar' => $calendarLatestMenu,
         ]);
     }
 
     public function destroy($id)
     {
-        $menusDish = MenusDishes::findOrFail($id);
-        if ($menusDish->menu->user_id !== auth()->id()) {
+        $menuDish = MenusDishes::findOrFail($id);
+        if ($menuDish->menu->user_id !== auth()->id()) {
             abort(403);
         }
-        $menusDish->delete();
-        return redirect()->back()->with('success', '料理を削除しました');
+
+        $menuDish->load('dish'); // リレーションをロード（MenusDishesモデルで定義されている前提）
+
+        $type = '';
+        if ($menuDish->dish->type === 'dish') {
+            $type = 'dish';
+        } else {
+            $type = 'babyfood';
+        }
+
+        $date = $menuDish->date;
+
+        $menuDish->delete();
+
+        $menuByDate = MenusDishes::with('dish', 'menu')->whereHas('menu', function ($query) use ($date) {
+            $query->where('user_id', auth()->id());
+            $query->where('date', $date);
+        })->whereHas('dish', function ($query) use ($type) {
+            $query->where('type', $type);
+        })->get();
+
+        $modalLatestMenu = [];
+        $calendarLatestMenu = [];
+        $order = null;
+        $bg = '';
+
+        foreach ($menuByDate as $menu) {
+            switch ($menu->dish->category) {
+                case '主食':
+                case 'エネルギー':
+                    $bg = "#ffb700";
+                    $order = 0;
+                    break;
+                case '主菜':
+                case 'タンパク質':
+                    $bg = "#ff7d55";
+                    $order = 1;
+                    break;
+                case '副菜':
+                case 'ビタミン':
+                    $bg = "#91ff00";
+                    $order = 2;
+                    break;
+                default:
+                    $bg = "#bbbbbb";
+                    $order = 3;
+                    break;
+            }
+            $modalLatestMenu[] = [
+                'id' => $menu->id,
+                'menu_category' => $menu->category,
+                'dish_name' => $menu->dish->name,
+                'dish_gram' => $menu->gram,
+                'dish_recipe_url' => $menu->dish->recipe_url,
+                'order' => $order,
+            ];
+            $calendarLatestMenu[] = [
+                'backgroundColor' => $bg,
+                'title' => $menu->dish->name . ($menu->gram ? ' ' . $menu->gram . 'g' : ''),
+                'start' => $menu->menu->date,
+                'order' => $order,
+                'category' => $menu->category,
+            ];
+        }
+
+        $modalLatestMenu = collect($modalLatestMenu)->sortBy('order')->values()->all();
+        $calendarLatestMenu = collect($calendarLatestMenu)->sortBy('order')->values()->all();
+
+        return response()->json([
+            'modal' => $modalLatestMenu,
+            'calendar' => $calendarLatestMenu,
+        ]);
     }
 }

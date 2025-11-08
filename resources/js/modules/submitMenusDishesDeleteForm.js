@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export default function () {
-    const $form = document.getElementById("dish-and-baby-food-form");
+    const $form = document.getElementById("dish-and-baby-food-delete-form");
 
     if (!$form) return;
 
