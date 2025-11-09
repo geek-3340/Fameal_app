@@ -35,73 +35,16 @@ class MenusDishesController extends Controller
         // dish情報も一緒に取得して返す
         $menuDish->load('dish'); // リレーションをロード（MenusDishesモデルで定義されている前提）
 
-        $type = '';
-        if ($menuDish->dish->type === 'dish') {
-            $type = 'dish';
-        } else {
-            $type = 'babyfood';
-        }
-
         $date = $request->date;
 
         $menuByDate = MenusDishes::with('dish', 'menu')->whereHas('menu', function ($query) use ($date) {
             $query->where('user_id', auth()->id());
             $query->where('date', $date);
-        })->whereHas('dish', function ($query) use ($type) {
-            $query->where('type', $type);
+        })->whereHas('dish', function ($query) use ($menuDish) {
+            $query->where('type', $menuDish->dish->type);
         })->get();
 
-        $modalLatestMenu = [];
-        $calendarLatestMenu = [];
-        $order = null;
-        $bg = '';
-
-        foreach ($menuByDate as $menu) {
-            switch ($menu->dish->category) {
-                case '主食':
-                case 'エネルギー':
-                    $bg = "#ffb700";
-                    $order = 0;
-                    break;
-                case '主菜':
-                case 'タンパク質':
-                    $bg = "#ff7d55";
-                    $order = 1;
-                    break;
-                case '副菜':
-                case 'ビタミン':
-                    $bg = "#91ff00";
-                    $order = 2;
-                    break;
-                default:
-                    $bg = "#bbbbbb";
-                    $order = 3;
-                    break;
-            }
-            $modalLatestMenu[] = [
-                'id' => $menu->id,
-                'menu_category' => $menu->category,
-                'dish_name' => $menu->dish->name,
-                'dish_gram' => $menu->gram,
-                'dish_recipe_url' => $menu->dish->recipe_url,
-                'order' => $order,
-            ];
-            $calendarLatestMenu[] = [
-                'backgroundColor' => $bg,
-                'title' => $menu->dish->name . ($menu->gram ? ' ' . $menu->gram . 'g' : ''),
-                'start' => $menu->menu->date,
-                'order' => $order,
-                'category' => $menu->category,
-            ];
-        }
-
-        $modalLatestMenu = collect($modalLatestMenu)->sortBy('order')->values()->all();
-        $calendarLatestMenu = collect($calendarLatestMenu)->sortBy('order')->values()->all();
-
-        return response()->json([
-            'modal' => $modalLatestMenu,
-            'calendar' => $calendarLatestMenu,
-        ]);
+        return response()->json($this->getLatestMenusForDate($menuByDate));
     }
 
     public function destroy($id)
@@ -131,56 +74,44 @@ class MenusDishesController extends Controller
             $query->where('type', $type);
         })->get();
 
+        return response()->json($this->getLatestMenusForDate($menuByDate));
+    }
+
+    private function getLatestMenusForDate($menuByDate){
         $modalLatestMenu = [];
         $calendarLatestMenu = [];
-        $order = null;
-        $bg = '';
 
         foreach ($menuByDate as $menu) {
-            switch ($menu->dish->category) {
-                case '主食':
-                case 'エネルギー':
-                    $bg = "#ffb700";
-                    $order = 0;
-                    break;
-                case '主菜':
-                case 'タンパク質':
-                    $bg = "#ff7d55";
-                    $order = 1;
-                    break;
-                case '副菜':
-                case 'ビタミン':
-                    $bg = "#91ff00";
-                    $order = 2;
-                    break;
-                default:
-                    $bg = "#bbbbbb";
-                    $order = 3;
-                    break;
-            }
+            [$dishBgColor,$dishDisplayOrder]=$this->setDishBgColorAndDisplayOrder($menu->dish->category);
             $modalLatestMenu[] = [
                 'id' => $menu->id,
                 'menu_category' => $menu->category,
                 'dish_name' => $menu->dish->name,
                 'dish_gram' => $menu->gram,
                 'dish_recipe_url' => $menu->dish->recipe_url,
-                'order' => $order,
+                'dishDisplayOrder' => $dishDisplayOrder,
             ];
             $calendarLatestMenu[] = [
-                'backgroundColor' => $bg,
+                'backgroundColor' => $dishBgColor,
                 'title' => $menu->dish->name . ($menu->gram ? ' ' . $menu->gram . 'g' : ''),
                 'start' => $menu->menu->date,
-                'order' => $order,
+                'dishDisplayOrder' => $dishDisplayOrder,
                 'category' => $menu->category,
             ];
         }
 
-        $modalLatestMenu = collect($modalLatestMenu)->sortBy('order')->values()->all();
-        $calendarLatestMenu = collect($calendarLatestMenu)->sortBy('order')->values()->all();
+        return [
+            'modal' => collect($modalLatestMenu)->sortBy('dishDisplayOrder')->values(),
+            'calendar' => collect($calendarLatestMenu)->sortBy('dishDisplayOrder')->values(),
+        ];
+    }
 
-        return response()->json([
-            'modal' => $modalLatestMenu,
-            'calendar' => $calendarLatestMenu,
-        ]);
+    private function setDishBgColorAndDisplayOrder($dishCategory){
+        return match ($dishCategory) {
+            '主食', 'エネルギー' => ['#ffb700', 0],
+            '主菜', 'タンパク質' => ['#ff7d55', 1],
+            '副菜', 'ビタミン' => ['#91ff00', 2],
+            default => ['#bbbbbb', 3],
+        };
     }
 }
