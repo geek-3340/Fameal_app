@@ -8,60 +8,81 @@ use App\Models\MenusDishes;
 
 class MenusController extends Controller
 {
-    public function index($category, $viewType)
+    public function index($category, $viewType) // 引数$viewTypeはそのままViewへ渡す
     {
-        // ルート名に応じて、料理の種類を振り分け
+        // 取得する料理種別の判別フラグ
         $type = '';
         if ($category === 'dishes') {
             $type = 'dish';
         } elseif ($category === 'babyfoods') {
             $type = 'babyfood';
         }
-        // ログイン中のユーザーの料理を取得
+
+        // 料理データ取得（Viewへ渡す）
         $dishes = Dishes::where('user_id', auth()->id())->where('type', $type)->get();
-        // リレーションしたテーブルの情報を事前に取得し、中間テーブルの情報を取得
-        // リレーション先に参照は、リレーションメソッド名でアクセスする
+
+        // 献立中間テーブルデータ取得
         $menus = MenusDishes::with('dish', 'menu')
             ->whereHas('menu', function ($query) {
                 $query->where('user_id', auth()->id());
             })->whereHas('dish', function ($query) use ($type) {
                 $query->where('type', $type);
-            })->get(); // リレーション先の情報を検索する場合はwhereHasを使い、検索には無名関数を使う
-        $events = [];
-        $bg = "";
-        $order = null;
+            })->get();
+
+        // fullcalendarに渡すデータ整形のための、空変数
+        $menusForCalendarEvents = [];
+        $dishBgColor = "";
+        $dishDisplayOrder = null;
+
+        // fullcalendar用に献立データを整形
         foreach ($menus as $menu) {
             switch ($menu->dish->category) {
                 case '主食':
                 case 'エネルギー':
-                    $bg = "#ffb700";
-                    $order = 0;
+                    $dishBgColor = "#ffb700";
+                    $dishDisplayOrder = 0;
                     break;
                 case '主菜':
                 case 'タンパク質':
-                    $bg = "#ff7d55";
-                    $order = 1;
+                    $dishBgColor = "#ff7d55";
+                    $dishDisplayOrder = 1;
                     break;
                 case '副菜':
                 case 'ビタミン':
-                    $bg = "#91ff00";
-                    $order = 2;
+                    $dishBgColor = "#91ff00";
+                    $dishDisplayOrder = 2;
                     break;
                 default:
-                    $bg = "#bbbbbb";
-                    $order = 3;
+                    $dishBgColor = "#bbbbbb";
+                    $dishDisplayOrder = 3;
                     break;
             }
-            $events[] = [
-                'backgroundColor' => $bg,
+            $menusForCalendarEvents[] = [
+                'backgroundColor' => $dishBgColor,
                 'title' => $menu->dish->name . ($menu->gram ? ' ' . $menu->gram . 'g' : ''),
                 'start' => $menu->menu->date,
-                'order' => $order,
+                'dishDisplayOrder' => $dishDisplayOrder,
                 'category' => $menu->category,
             ];
         }
-        return view('contents', compact('viewType', 'dishes', 'type', 'events'));
+
+        $method='index';
+        $menusForCalendarEvents=$menus->map(function($menu){
+            [$dishBgColor,$dishDisplayOrder]=$this->setDishBgColorAndDisplayOrder($method,$menu->dish->category);
+            return [
+                'backgroundColor' => $dishBgColor,
+                'title' => $menu->dish->name . ($menu->gram ? ' ' . $menu->gram . 'g' : ''),
+                'start' => $menu->menu->date,
+                'dishDisplayOrder' => $dishDisplayOrder,
+                'category' => $menu->category,
+            ];
+        });
+
+        // contents.blade.phpに整形済みデータを渡して描画
+        return view('contents', compact('viewType', 'dishes', 'type', 'menusForCalendarEvents'));
     }
+
+    // --------------------------------------------------------------------------------------------
 
     public function edit($date)
     {
@@ -81,24 +102,24 @@ class MenusController extends Controller
 
         $dishesMenuData = [];
         $babyFoodsMenuData = [];
-        $order = null;
+        $dishDisplayOrder = null;
 
         foreach ($dishesMenuByDate as $menu) {
             switch ($menu->dish->category) {
                 case '主食':
                 case 'エネルギー':
-                    $order = 0;
+                    $dishDisplayOrder = 0;
                     break;
                 case '主菜':
                 case 'タンパク質':
-                    $order = 1;
+                    $dishDisplayOrder = 1;
                     break;
                 case '副菜':
                 case 'ビタミン':
-                    $order = 2;
+                    $dishDisplayOrder = 2;
                     break;
                 default:
-                    $order = 3;
+                    $dishDisplayOrder = 3;
                     break;
             }
             $dishesMenuData[] = [
@@ -107,7 +128,7 @@ class MenusController extends Controller
                 'dish_name' => $menu->dish->name,
                 'dish_gram' => $menu->gram,
                 'dish_recipe_url' => $menu->dish->recipe_url,
-                'order' => $order,
+                'dishDisplayOrder' => $dishDisplayOrder,
             ];
         }
 
@@ -115,18 +136,18 @@ class MenusController extends Controller
             switch ($menu->dish->category) {
                 case '主食':
                 case 'エネルギー':
-                    $order = 0;
+                    $dishDisplayOrder = 0;
                     break;
                 case '主菜':
                 case 'タンパク質':
-                    $order = 1;
+                    $dishDisplayOrder = 1;
                     break;
                 case '副菜':
                 case 'ビタミン':
-                    $order = 2;
+                    $dishDisplayOrder = 2;
                     break;
                 default:
-                    $order = 3;
+                    $dishDisplayOrder = 3;
                     break;
             }
             $babyFoodsMenuData[] = [
@@ -135,15 +156,63 @@ class MenusController extends Controller
                 'dish_name' => $menu->dish->name,
                 'dish_gram' => $menu->gram,
                 'dish_recipe_url' => $menu->dish->recipe_url,
-                'order' => $order,
+                'dishDisplayOrder' => $dishDisplayOrder,
             ];
         }
-        $dishesMenuData = collect($dishesMenuData)->sortBy('order')->values()->all();
-        $babyFoodsMenuData = collect($babyFoodsMenuData)->sortBy('order')->values()->all();
+
+        // $menuByDate = MenusDishes::with('dish', 'menu')->whereHas('menu', function ($query) use ($date) {
+        //     $query->where('user_id', auth()->id());
+        //     $query->where('date', $date);
+        // })->get();
+
+        // $dishesMenuData=[];
+        // $babyFoodsMenuData=[];
+        // $method='edit';
+        // foreach($menuByDate as $menu){
+        //     if($menu->dish->type==='dish')
+        //     $dishDisplayOrder=$this->setDishBgColorAndDisplayOrder($method,$menu->dish->category);
+        //     $dishesMenuData[] = [
+        //         'id' => $menu->id,
+        //         'menu_category' => $menu->category,
+        //         'dish_name' => $menu->dish->name,
+        //         'dish_gram' => $menu->gram,
+        //         'dish_recipe_url' => $menu->dish->recipe_url,
+        //         'dishDisplayOrder' => $dishDisplayOrder,
+        //     ];
+        //     $babyFoodsMenuData[] = [
+        //         'id' => $menu->id,
+        //         'menu_category' => $menu->category,
+        //         'dish_name' => $menu->dish->name,
+        //         'dish_gram' => $menu->gram,
+        //         'dish_recipe_url' => $menu->dish->recipe_url,
+        //         'dishDisplayOrder' => $dishDisplayOrder,
+        //     ];
+        // }
+
+        $dishesMenuData = collect($dishesMenuData)->sortBy('dishDisplayOrder')->values()->all();
+        $babyFoodsMenuData = collect($babyFoodsMenuData)->sortBy('dishDisplayOrder')->values()->all();
 
         return response()->json([
             'dishesByDate' => $dishesMenuData,
             'babyFoodsByDate' => $babyFoodsMenuData,
         ]);
+    }
+
+    public function setDishBgColorAndDisplayOrder($method,$dishCategory){
+        if($method==='index'){
+            return match ($dishCategory) {
+                '主食', 'エネルギー' => ['#ffb700', 0],
+                '主菜', 'タンパク質' => ['#ff7d55', 1],
+                '副菜', 'ビタミン' => ['#91ff00', 2],
+                default => ['#bbbbbb', 3],
+            };
+        }elseif($method==='edit'){
+            return match ($dishCategory) {
+                '主食', 'エネルギー' => 0,
+                '主菜', 'タンパク質' => 1,
+                '副菜', 'ビタミン' => 2,
+                default => 3,
+            };
+        }
     }
 }

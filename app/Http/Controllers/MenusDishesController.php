@@ -120,7 +120,7 @@ class MenusDishesController extends Controller
             $type = 'babyfood';
         }
 
-        $date = $menuDish->date;
+        $date = $menuDish->menu->date;
 
         $menuDish->delete();
 

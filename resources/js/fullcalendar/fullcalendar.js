@@ -11,7 +11,7 @@ export default function fullCalendar() {
         const $calendarEl = document.getElementById("calendar");
         const initialCalendar =
             $calendarEl.dataset.initialView || "dayGridMonth";
-        const menus = JSON.parse($calendarEl.dataset.menusEvent || "[]");
+        const menusForCalendarEvents = JSON.parse($calendarEl.dataset.menusForCalendarEvents || "[]");
         const currentUrl =
             window.location.origin +
             window.location.pathname +
@@ -20,9 +20,6 @@ export default function fullCalendar() {
         const DISHES_WEEK_URL = $calendarEl.dataset.dishesWeekUrl;
         const BABY_FOODS_MONTH_URL = $calendarEl.dataset.babyfoodsMonthUrl;
         const BABY_FOODS_WEEK_URL = $calendarEl.dataset.babyfoodsWeekUrl;
-        window.dishesByDate = JSON.parse(
-            $calendarEl.dataset.menusByDate || "{}"
-        );
 
         const calendar = new FullCalendar.Calendar($calendarEl, {
             initialView: initialCalendar,
@@ -32,8 +29,8 @@ export default function fullCalendar() {
                 right: "dishesButton,monthButton,babyFoodsButton,weekButton",
             },
             height: "auto",
-            events: menus,
-            eventOrder: "order",
+            events: menusForCalendarEvents,
+            eventOrder: "dishDisplayOrder",
             customButtons: createCustomButtons(
                 currentUrl,
                 DISHES_MONTH_URL,
@@ -74,7 +71,7 @@ export default function fullCalendar() {
                     title: dish.title,
                     start: dish.start,
                     backgroundColor: dish.backgroundColor,
-                    order: dish.order,
+                    displayOrder: dish.displayOrder,
                     extendedProps: { category: dish.category },
                 });
             });
