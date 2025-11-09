@@ -16,9 +16,6 @@ export default function () {
                 formData,
                 {
                     headers: {
-                        "X-CSRF-TOKEN": document.querySelector(
-                            'meta[name="csrf-token"]'
-                        ).content,
                         "Content-Type": "multipart/form-data",
                     },
                 }
@@ -28,8 +25,9 @@ export default function () {
             window.dispatchEvent(
                 new CustomEvent("menu-updated", {
                     detail: {
-                        newCalendarDish:response.data.calendar,
+                        newCalendarDish: response.data.calendar,
                         newModalDish: response.data.modal, // サーバーが返した新規データ
+                        selectedDate: response.data.date,
                     },
                 })
             );

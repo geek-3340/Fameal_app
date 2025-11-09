@@ -35,8 +35,13 @@ class MenusDishesController extends Controller
         // dish情報も一緒に取得して返す
         $menuDish->load('dish'); // リレーションをロード（MenusDishesモデルで定義されている前提）
 
-        $date = $request->date;
+        $menuByAllDay = MenusDishes::with('dish', 'menu')->whereHas('menu', function ($query) {
+            $query->where('user_id', auth()->id());
+        })->whereHas('dish', function ($query) use ($menuDish) {
+            $query->where('type', $menuDish->dish->type);
+        })->get();
 
+        $date = $request->date;
         $menuByDate = MenusDishes::with('dish', 'menu')->whereHas('menu', function ($query) use ($date) {
             $query->where('user_id', auth()->id());
             $query->where('date', $date);
@@ -44,7 +49,10 @@ class MenusDishesController extends Controller
             $query->where('type', $menuDish->dish->type);
         })->get();
 
-        return response()->json($this->getLatestMenusForDate($menuByDate));
+        return response()->json(array_merge(
+            $this->getLatestMenusForDate($menuByDate, $menuByAllDay),
+            ['date' => $date]
+        ));
     }
 
     public function destroy($id)
@@ -67,6 +75,13 @@ class MenusDishesController extends Controller
 
         $menuDish->delete();
 
+        $menuByAllDay = MenusDishes::with('dish', 'menu')->whereHas('menu', function ($query) {
+            $query->where('user_id', auth()->id());
+        })->whereHas('dish', function ($query) use ($type) {
+            $query->where('type', $type);
+        })->get();
+
+
         $menuByDate = MenusDishes::with('dish', 'menu')->whereHas('menu', function ($query) use ($date) {
             $query->where('user_id', auth()->id());
             $query->where('date', $date);
@@ -74,15 +89,19 @@ class MenusDishesController extends Controller
             $query->where('type', $type);
         })->get();
 
-        return response()->json($this->getLatestMenusForDate($menuByDate));
+        return response()->json(array_merge(
+            $this->getLatestMenusForDate($menuByDate, $menuByAllDay),
+            ['date' => $date]
+        ));
     }
 
-    private function getLatestMenusForDate($menuByDate){
+    private function getLatestMenusForDate($menuByDate, $menuByAllDay)
+    {
         $modalLatestMenu = [];
         $calendarLatestMenu = [];
 
         foreach ($menuByDate as $menu) {
-            [$dishBgColor,$dishDisplayOrder]=$this->setDishBgColorAndDisplayOrder($menu->dish->category);
+            [$dishBgColor, $dishDisplayOrder] = $this->setDishBgColorAndDisplayOrder($menu->dish->category);
             $modalLatestMenu[] = [
                 'id' => $menu->id,
                 'menu_category' => $menu->category,
@@ -91,6 +110,9 @@ class MenusDishesController extends Controller
                 'dish_recipe_url' => $menu->dish->recipe_url,
                 'dishDisplayOrder' => $dishDisplayOrder,
             ];
+        }
+        foreach ($menuByAllDay as $menu) {
+            [$dishBgColor, $dishDisplayOrder] = $this->setDishBgColorAndDisplayOrder($menu->dish->category);
             $calendarLatestMenu[] = [
                 'backgroundColor' => $dishBgColor,
                 'title' => $menu->dish->name . ($menu->gram ? ' ' . $menu->gram . 'g' : ''),
@@ -106,7 +128,8 @@ class MenusDishesController extends Controller
         ];
     }
 
-    private function setDishBgColorAndDisplayOrder($dishCategory){
+    private function setDishBgColorAndDisplayOrder($dishCategory)
+    {
         return match ($dishCategory) {
             '主食', 'エネルギー' => ['#ffb700', 0],
             '主菜', 'タンパク質' => ['#ff7d55', 1],

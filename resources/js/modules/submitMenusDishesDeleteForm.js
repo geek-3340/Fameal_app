@@ -1,26 +1,18 @@
 import axios from "axios";
 
 export default function () {
-    const $form = document.getElementById("dish-and-baby-food-delete-form");
+    // 削除ボタンはAlpineによって生成されるため、動的に要素を取得する
+    window.addEventListener("submit", async (e) => {
+        const form = e.target.closest(".dish-and-baby-food-delete-form");
+        if (!form) return;
 
-    if (!$form) return;
-
-    $form.addEventListener("submit", async (e) => {
         e.preventDefault(); // ← ページリロード防止
-
-        const formData = new FormData(e.target);
 
         try {
             const response = await axios.post(
-                $form.action, // Blade側の action="{{ route('menus.dishes.store') }}" をそのまま使える
-                formData,
+                form.action, // Blade側の action="{{ route('menus.dishes.store') }}" をそのまま使える
                 {
-                    headers: {
-                        "X-CSRF-TOKEN": document.querySelector(
-                            'meta[name="csrf-token"]'
-                        ).content,
-                        "Content-Type": "multipart/form-data",
-                    },
+                    _method: "DELETE",
                 }
             );
 
@@ -28,14 +20,15 @@ export default function () {
             window.dispatchEvent(
                 new CustomEvent("menu-updated", {
                     detail: {
-                        newCalendarDish:response.data.calendar,
+                        newCalendarDish: response.data.calendar,
                         newModalDish: response.data.modal, // サーバーが返した新規データ
+                        selectedDate: response.data.date,
                     },
                 })
             );
 
             // フォームをリセット
-            $form.reset();
+            form.reset();
 
             console.log("送信成功:", response.data);
             // ここでモーダルを閉じたり、画面を更新したりする処理を追加

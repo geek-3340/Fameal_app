@@ -13,7 +13,7 @@
                     data-dishes-week-url="{{ route('menus.index', ['category' => 'dishes', 'viewType' => 'week']) }}"
                     data-babyfoods-month-url="{{ route('menus.index', ['category' => 'babyfoods', 'viewType' => 'month']) }}"
                     data-babyfoods-week-url="{{ route('menus.index', ['category' => 'babyfoods', 'viewType' => 'week']) }}"
-                    data-menus-event='@json($menusForCalendarEvents)'>
+                    data-menus-for-calendar-events='@json($menusForCalendarEvents)'>
                 </div>
             </x-contents-board>
             @include('contents.partials.day-modal')

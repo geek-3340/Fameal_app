@@ -29,9 +29,9 @@ class MenusController extends Controller
                 $query->where('type', $type);
             })->get();
 
-        $method='index';
-        $menusForCalendarEvents=$menus->map(function($menu){
-            [$dishBgColor,$dishDisplayOrder]=$this->setDishBgColorAndDisplayOrder($method,$menu->dish->category);
+        $method = 'index';
+        $menusForCalendarEvents = $menus->map(function ($menu) use ($method) {
+            [$dishBgColor, $dishDisplayOrder] = $this->setDishBgColorAndDisplayOrder($method, $menu->dish->category);
             return [
                 'backgroundColor' => $dishBgColor,
                 'title' => $menu->dish->name . ($menu->gram ? ' ' . $menu->gram . 'g' : ''),
@@ -55,14 +55,14 @@ class MenusController extends Controller
             $query->where('date', $date);
         })->get();
 
-        $method='edit';
+        $method = 'edit';
 
-        $dishesMenuData=[];
-        $babyFoodsMenuData=[];
+        $dishesMenuData = [];
+        $babyFoodsMenuData = [];
 
-        foreach($menuByDate as $menu){
-            $dishDisplayOrder=$this->setDishBgColorAndDisplayOrder($method,$menu->dish->category);
-            if($menu->dish->type==='dish'){
+        foreach ($menuByDate as $menu) {
+            $dishDisplayOrder = $this->setDishBgColorAndDisplayOrder($method, $menu->dish->category);
+            if ($menu->dish->type === 'dish') {
                 $dishesMenuData[] = [
                     'id' => $menu->id,
                     'menu_category' => $menu->category,
@@ -71,7 +71,7 @@ class MenusController extends Controller
                     'dish_recipe_url' => $menu->dish->recipe_url,
                     'dishDisplayOrder' => $dishDisplayOrder,
                 ];
-            }elseif($menu->dish->type==='babyfood'){
+            } elseif ($menu->dish->type === 'babyfood') {
                 $babyFoodsMenuData[] = [
                     'id' => $menu->id,
                     'menu_category' => $menu->category,
@@ -87,18 +87,18 @@ class MenusController extends Controller
             'dishesByDate' => collect($dishesMenuData)->sortBy('dishDisplayOrder')->values(),
             'babyFoodsByDate' => collect($babyFoodsMenuData)->sortBy('dishDisplayOrder')->values(),
         ]);
-
     }
 
-    private function setDishBgColorAndDisplayOrder($method,$dishCategory){
-        if($method==='index'){
+    private function setDishBgColorAndDisplayOrder($method, $dishCategory)
+    {
+        if ($method === 'index') {
             return match ($dishCategory) {
                 '主食', 'エネルギー' => ['#ffb700', 0],
                 '主菜', 'タンパク質' => ['#ff7d55', 1],
                 '副菜', 'ビタミン' => ['#91ff00', 2],
                 default => ['#bbbbbb', 3],
             };
-        }elseif($method==='edit'){
+        } elseif ($method === 'edit') {
             return match ($dishCategory) {
                 '主食', 'エネルギー' => 0,
                 '主菜', 'タンパク質' => 1,

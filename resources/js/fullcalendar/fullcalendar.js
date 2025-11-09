@@ -5,13 +5,16 @@ import createDayCellHeaderContent from "./partials/createDayCellHeaderContent";
 import createCategoryBlocksInMenu from "./partials/createCategoryBlocksInMenu";
 import onClickMenuEditLink from "./partials/onClickMenuEditLink";
 import toggleCategoryBlocksVisibility from "./partials/toggleCategoryBlocksVisibility";
+import updateCalendarMenu from "./partials/updateCalendarMenu";
 
 export default function fullCalendar() {
     document.addEventListener("DOMContentLoaded", function () {
         const $calendarEl = document.getElementById("calendar");
         const initialCalendar =
             $calendarEl.dataset.initialView || "dayGridMonth";
-        const menusForCalendarEvents = JSON.parse($calendarEl.dataset.menusForCalendarEvents || "[]");
+        const menusForCalendarEvents = JSON.parse(
+            $calendarEl.dataset.menusForCalendarEvents || "[]"
+        );
         const currentUrl =
             window.location.origin +
             window.location.pathname +
@@ -55,27 +58,7 @@ export default function fullCalendar() {
 
         calendar.render();
 
-
-        window.calendar = calendar;
-        window.addEventListener("menu-updated", (e) => {
-            if (!window.calendar) return;
-            document
-                .querySelectorAll(".fc-event")
-                .forEach((dish) => dish.remove());
-            // 該当日のイベントを削除
-            window.calendar.removeAllEvents();
-            const newEvents = e.detail.newCalendarDish;
-            newEvents.forEach((dish) => {
-                window.calendar.addEvent({
-                    id: dish.id,
-                    title: dish.title,
-                    start: dish.start,
-                    backgroundColor: dish.backgroundColor,
-                    displayOrder: dish.displayOrder,
-                    extendedProps: { category: dish.category },
-                });
-            });
-        });
+        updateCalendarMenu(calendar);
 
         updateActiveCustomButton(
             DISHES_MONTH_URL,

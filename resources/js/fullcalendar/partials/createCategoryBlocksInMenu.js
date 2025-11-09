@@ -45,16 +45,3 @@ export default function (arg, initialView) {
         $eventsContainer.appendChild($menuCategoryBlock);
     }
 }
-
-function dateFormat(date) {
-    return date.toLocaleDateString("ja-JP", {
-        weekday: "short",
-        month: "short",
-        day: "numeric",
-    });
-}
-function jst(date) {
-    return new Date(date.getTime() + 9 * 60 * 60 * 1000)
-        .toISOString()
-        .split("T")[0];
-}

@@ -8,7 +8,8 @@
     "
     @menu-updated.window="
         dishes = $event.detail.newModalDish;
-    ">
+    "
+    >
     <div x-show="open" x-cloak @keydown.escape.window="open = false"
         class="fixed inset-0 flex items-center justify-center bg-main bg-opacity-50 z-50">
         <x-contents-board type="modal" class="bg-white" @click.away="open = false">
@@ -98,7 +99,7 @@
                                                     </a>
                                                 </template>
                                             </div>
-                                            <form id="dish-and-baby-food-delete-form"
+                                            <form class="dish-and-baby-food-delete-form"
                                                 :action="`/menus-dishes/${dish.id}`" method="post">
                                                 @csrf
                                                 @method('DELETE')
