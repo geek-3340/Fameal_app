@@ -25,6 +25,6 @@ class Dishes extends Model
     }
     public function ingredients()
     {
-        return $this->hasMany(Ingredients::class);
+        return $this->hasMany(Ingredients::class, 'dish_id');
     }
 }

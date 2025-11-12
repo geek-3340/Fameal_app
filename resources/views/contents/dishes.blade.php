@@ -18,7 +18,7 @@
 
                 @foreach ($categoryGroups as $group)
                     <label>
-                        <input type="radio" name="category" :value="{{ $group['category'] }}" class="hidden peer"
+                        <input type="radio" name="category" value="{{ $group['category'] }}" class="hidden peer"
                             {{ $group['checked'] }}>
                         <span
                             class="cursor-pointer px-8 py-1 rounded-xl border-2 border-{{ $group['color'] }} peer-checked:bg-{{ $group['color'] }} peer-checked:bg-opacity-50">

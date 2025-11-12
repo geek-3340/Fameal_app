@@ -6,6 +6,7 @@ import toggleCheckedShoppingListItems from "./modules/toggleCheckedShoppingListI
 import onClickDishEditLinks from "./modules/onClickDishEditLinks";
 import submitMenusDishesStoreForm from "./modules/submitMenusDishesStoreForm";
 import submitMenusDishesDeleteForm from "./modules/submitMenusDishesDeleteForm";
+import setShoppingListFormContents from "./modules/setShoppingListFormContents";
 
 // Alpine.js
 window.Alpine = Alpine;
@@ -21,5 +22,7 @@ submitMenusDishesStoreForm();
 submitMenusDishesDeleteForm();
 
 onClickDishEditLinks();
+
+setShoppingListFormContents();
 
 toggleCheckedShoppingListItems();

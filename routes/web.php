@@ -37,7 +37,7 @@ Route::middleware('auth', 'two_factor')->group(function () {
     Route::post('/dishes', [DishesController::class, 'store'])->name('dishes.store');
     Route::get('/dishes/{id}', [DishesController::class, 'edit'])->name('dish.edit');
     Route::put('/dishes/{id}', [DishesController::class, 'update'])->name('dishes.update');
-    Route::delete('/dishes/{id}', [DishesController::class, 'destroy'])->name('dishes.destroy');
+    Route::delete('/dishes/{dish}', [DishesController::class, 'destroy'])->name('dishes.destroy');
 
     Route::post('/ingredients', [IngredientsController::class, 'store'])->name('ingredients.store');
     Route::delete('/ingredients/{id}', [IngredientsController::class, 'destroy'])->name('ingredients.destroy');
@@ -48,6 +48,7 @@ Route::middleware('auth', 'two_factor')->group(function () {
 
     Route::get('/shopping-list', [ShoppingListController::class, 'index'])->name('shopping.list.index');
     Route::post('/shopping-list', [ShoppingListController::class, 'store'])->name('shopping.list.store');
+    Route::post('/shopping-list/ingredients', [ShoppingListController::class, 'ingredientsStore'])->name('shopping.list.ingredients.store');
     Route::post('/shopping-list/{id}/check-toggle', [ShoppingListController::class, 'checkBoxToggle']);
     Route::delete('/shopping-list/destroy', [ShoppingListController::class, 'destroy'])->name('shopping.list.destroy');
 });
