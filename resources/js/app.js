@@ -7,6 +7,8 @@ import onClickDishEditLinks from "./modules/onClickDishEditLinks";
 import submitMenusDishesStoreForm from "./modules/submitMenusDishesStoreForm";
 import submitMenusDishesDeleteForm from "./modules/submitMenusDishesDeleteForm";
 import setShoppingListFormContents from "./modules/setShoppingListFormContents";
+import submitIngredientsStoreForm from "./modules/submitIngredientsStoreForm";
+import submitIngredientsDeleteForm from "./modules/submitIngredientsDeleteForm";
 
 // Alpine.js
 window.Alpine = Alpine;
@@ -22,6 +24,10 @@ submitMenusDishesStoreForm();
 submitMenusDishesDeleteForm();
 
 onClickDishEditLinks();
+
+submitIngredientsStoreForm();
+
+submitIngredientsDeleteForm();
 
 setShoppingListFormContents();
 

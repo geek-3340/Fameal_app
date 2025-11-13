@@ -4,6 +4,9 @@
         dish = $event.detail.dish;
         ingredients=$event.detail.ingredients;
         open = true;
+    "
+    @ingredients-updated.window="
+        ingredients=$event.detail.newIngredients;
     ">
     <div x-show="open" x-cloak @keydown.escape.window="open = false"
         class="fixed inset-0 flex items-center justify-center bg-main bg-opacity-50 z-50">
@@ -49,7 +52,8 @@
             <div class="w-4/5 border-b border-gray-300 mx-auto mt-4"></div>
 
             {{-- 材料登録フォーム --}}
-            <form action="{{ route('ingredients.store') }}" method="POST" class="w-max mx-auto">
+            <form action="{{ route('ingredients.store') }}" method="POST" id="ingredients-store-form"
+                class="w-max mx-auto">
                 @csrf
                 <x-input-label for="ingredients_name" class="mt-4" :value="__('Ingredient name')" />
                 <x-text-input id="ingredients_name" type="text" name="name" use="secondary"
@@ -71,7 +75,8 @@
                                     <li
                                         class="flex items-center justify-between py-1 border-b border-dashed border-gray-300">
                                         <span x-text="ingredient.name" class="text-sm"></span>
-                                        <form :action="`/ingredients/${ingredient.id}`" method="post" @submit>
+                                        <form :action="`/ingredients/${ingredient.id}`" method="post"
+                                            class="ingredient-delete-form">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit"

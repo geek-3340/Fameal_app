@@ -14,6 +14,7 @@ class ShoppingListController extends Controller
         $listItems = $listItems->sortByDesc('name')->sortBy('is_checked');
         return view('contents', compact('listItems'));
     }
+    
 
     public function store(Request $request)
     {
