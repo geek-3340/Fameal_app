@@ -1,6 +1,6 @@
 <header class="w-full">
     <div class=" w-11/12 h-20 flex justify-between items-center mx-auto border-b border-main">
-        <div class="pl-28 text-main flex items-end max-md:block">
+        <div class="pl-24 text-main flex items-end max-md:block max-md:pl-12">
             <h1 class="mr-4 font-monoton text-4xl leading-none max-md:text-3xl">Fameal</h1>
             <p class="max-md:text-sm">親子献立カレンダーアプリ</p>
         </div>
@@ -15,7 +15,7 @@
                         ログイン
                     </x-link-button>
                 @endauth
-                <x-link-button href="{{ route('register') }}" type="register" class="ml-4">
+                <x-link-button href="{{ route('register') }}" type="register" class="ml-4 max-md:ml-2">
                     新規登録
                 </x-link-button>
             @else

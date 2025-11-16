@@ -1,7 +1,7 @@
-<div class="flex mx-auto w-11/12">
+<div class="flex mx-auto w-11/12 max-md:block">
 
     {{-- 離乳食登録フォーム --}}
-    <x-contents-board type="two-contents" class="mx-0 mr-8">
+    <x-contents-board type="two-contents" class="mx-0 mr-8 max-md:mx-auto">
         <h2 class=" text-xl text-center font-bold mb-8">離乳食登録</h2>
         <form action="{{ route('babyfoods.store') }}" method="POST">
             @csrf
@@ -18,25 +18,25 @@
 
                 @foreach ($categoryGroups as $group)
                     <label>
-                        <input type="radio" name="category" :value="{{ $group['category'] }}" class="hidden peer"
+                        <input type="radio" name="category" value="{{ $group['category'] }}" class="hidden peer"
                             {{ $group['checked'] }}>
                         <span
-                            class="cursor-pointer px-4 py-1 rounded-xl border-2 border-{{ $group['color'] }} peer-checked:bg-{{ $group['color'] }} peer-checked:bg-opacity-50">
+                            class="cursor-pointer px-4 py-1 rounded-xl border-2 border-{{ $group['color'] }} max-md:text-sm max-md:px-2 peer-checked:bg-{{ $group['color'] }} peer-checked:bg-opacity-50">
                             {{ $group['category'] }}
                         </span>
                     </label>
                 @endforeach
             </div>
-            <x-input-label for="babyfood_name">
-                食材名
-            </x-input-label>
-            <div class="flex justify-between">
-                <x-text-input id="babyfood_name" type="text" name="name" :value="old('babyfood_name')" class="w-4/5 mt-1 mr-2"
+            <div class="w-max mx-auto">
+                <x-input-label for="babyfood_name">
+                    食材名
+                </x-input-label>
+                <x-text-input id="babyfood_name" type="text" name="name" :value="old('babyfood_name')" class="w-80 mt-1"
                     required />
-                <x-button>
-                    {{ __('Register dish') }}
-                </x-button>
             </div>
+            <x-button class="!block mx-auto !mt-4 max-md:px-8">
+                {{ __('Register dish') }}
+            </x-button>
             <x-input-error :messages="$errors->get('babyfood_name')" class="mt-2" />
         </form>
     </x-contents-board>

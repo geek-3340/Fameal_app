@@ -3,11 +3,11 @@
 @php
     $use = match ($use) {
         'primary'
-            => 'inline-block px-4 py-2 text-white font-semibold text-base bg-button-primary rounded-full hover:bg-button-primaryhover transition-colors duration-200',
+            => 'inline-block px-4 py-2 text-white font-semibold text-base bg-button-primary rounded-full hover:bg-button-primaryhover transition-colors duration-200 max-md:text-sm max-md:px-3 max-md:py-2',
         'register'
-            => 'inline-block px-4 py-2 text-white font-semibold text-base bg-button-secondary rounded-full hover:bg-button-secondaryhover transition-colors duration-200',
+            => 'inline-block px-4 py-2 text-white font-semibold text-base bg-button-secondary rounded-full hover:bg-button-secondaryhover transition-colors duration-200 max-md:text-sm max-md:px-3 max-md:py-2',
         'danger'
-            => 'inline-block px-4 py-2 text-white font-semibold text-base bg-button-danger rounded-full hover:bg-button-dangerhover transition-colors duration-200',
+            => 'inline-block px-4 py-2 text-white font-semibold text-base bg-button-danger rounded-full hover:bg-button-dangerhover transition-colors duration-200 max-md:text-sm max-md:px-3 max-md:py-2',
     };
     $width = match ($width) {
         'auto' => 'w-auto',

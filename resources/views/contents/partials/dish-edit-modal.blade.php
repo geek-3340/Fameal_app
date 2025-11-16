@@ -29,7 +29,7 @@
                             <input type="radio" name="category" :value="'{{ $label }}'" class="hidden peer"
                                 x-model="dish.category">
                             <span
-                                class="cursor-pointer px-8 py-1 rounded-xl border-2 border-{{ $color }} peer-checked:bg-{{ $color }} peer-checked:bg-opacity-50">
+                                class="cursor-pointer px-8 py-1 rounded-xl border-2 border-{{ $color }} max-md:text-sm max-md:px-4 peer-checked:bg-{{ $color }} peer-checked:bg-opacity-50">
                                 {{ $label }}
                             </span>
                         </label>
@@ -44,7 +44,7 @@
                         x-model="dish.recipe_url" />
                 </div>
                 <x-input-error :messages="$errors->get('dish_name')" class="mt-2" />
-                <x-button class="!block mx-auto !mt-4">
+                <x-button class="!block mx-auto !mt-4 max-md:px-8">
                     {{ __('Save') }}
                 </x-button>
             </form>

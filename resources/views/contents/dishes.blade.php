@@ -1,7 +1,7 @@
-<div class="flex mx-auto w-11/12">
+<div class="flex mx-auto w-11/12 max-md:block">
 
     {{-- 料理登録フォーム --}}
-    <x-contents-board type="two-contents" class="mx-0 mr-8">
+    <x-contents-board type="two-contents" class="mx-0 mr-8 max-md:mx-auto">
         <h1 class=" text-xl text-center font-bold mb-8">料理登録</h1>
         <form action="{{ route('dishes.store') }}" method="POST">
             @csrf
@@ -21,7 +21,7 @@
                         <input type="radio" name="category" value="{{ $group['category'] }}" class="hidden peer"
                             {{ $group['checked'] }}>
                         <span
-                            class="cursor-pointer px-8 py-1 rounded-xl border-2 border-{{ $group['color'] }} peer-checked:bg-{{ $group['color'] }} peer-checked:bg-opacity-50">
+                            class="cursor-pointer px-8 py-1 rounded-xl border-2 border-{{ $group['color'] }} max-md:text-sm max-md:px-4 peer-checked:bg-{{ $group['color'] }} peer-checked:bg-opacity-50">
                             {{ $group['category'] }}
                         </span>
                     </label>
@@ -35,7 +35,7 @@
                 <x-text-input id="dish_recipe_url" type="url" name="recipe_url" :value="old('dish_recipe_url')"
                     class="w-80 mt-1" />
             </div>
-            <x-button class="!block mx-auto !mt-4">
+            <x-button class="!block mx-auto !mt-4 max-md:px-8">
                 {{ __('Register dish') }}
             </x-button>
             <x-input-error :messages="$errors->get('dish_name')" class="mt-2" />
@@ -48,7 +48,7 @@
         @if ($dishes->count() === 0)
             <div class="text-gray-400">料理登録はありません。</div>
         @else
-            <p class="text-graytext text-center">料理名をクリックして料理編集・材料登録</p>
+            <p class="text-graytext text-center mb-4">料理名をクリックして料理編集・材料登録</p>
 
             @php
                 $dishGroups = [

@@ -4,37 +4,40 @@
     {{-- 買い物リスト追加フォーム --}}
     <form action="{{ route('shopping.list.store') }}" method="POST" class="mb-4">
         @csrf
-        <div class="flex justify-between w-4/5 mx-auto">
+        <div class="flex justify-between w-4/5 mx-auto max-md:w-full">
             <x-text-input id="shopping_list_name" type="text" name="name" :value="old('shopping_list_name')" class="w-4/5 mr-2"
                 required />
-            <x-button class="w-1/5">
-                追　加
+            <x-button class="w-[25%]">
+                追加
             </x-button>
         </div>
         <x-input-error :messages="$errors->get('shopping_list_name')" class="mt-2" />
     </form>
+    <hr class="mb-4 md:hidden">
     <form action="/shopping-list/ingredients" method="POST">
         @csrf
-        <div class="flex items-center justify-between w-4/5 mx-auto mb-4">
+        <div class="flex items-center justify-between w-4/5 mx-auto mb-4 max-md:block max-md:w-full">
             <input type="hidden" name="start" id="start">
             <input type="hidden" name="end" id="end">
-            <div class="flex">
+            <div class="flex max-md:items-center max-md:justify-center">
                 <button type="button" id="prevWeek"
                     class="text-white font-bold bg-main w-8 h-8 rounded-md hover:bg-button-primaryhover transition-colors duration-200">
                     ＜</button>
-                <span id="weekDisplay" class="block text-lg font-semibold mx-2 w-[300px] text-center"></span>
+                <span id="weekDisplay" class="block text-lg font-semibold mx-2 w-[300px] text-center max-md:text-base max-md:w-max"></span>
                 <button type="button" id="nextWeek"
                     class="text-white font-bold bg-main w-8 h-8 rounded-md hover:bg-button-primaryhover transition-colors duration-200">
                     ＞</button>
             </div>
-            <x-button type="submit" use="register">材料を追加</x-button>
+            <x-button type="submit" use="register" class="max-md:block max-md:mx-auto max-md:mt-4">材料を追加</x-button>
         </div>
     </form>
-    <form action="{{ route('shopping.list.destroy') }}" method="post" class="flex justify-end w-4/5 mx-auto mb-8">
+    <hr class="mb-4 md:hidden">
+    <form action="{{ route('shopping.list.destroy') }}" method="post" class="flex justify-end w-4/5 mx-auto mb-8 max-md:block max-md:w-full max-md:text-center max-md:mb-4">
         @csrf
         @method('DELETE')
         <x-button use="danger">チェック項目削除</x-button>
     </form>
+    <hr class="mb-4 md:hidden">
 
 
     {{-- 買い物リスト一覧表示 --}}
@@ -43,7 +46,7 @@
     @else
         <ul>
             @foreach ($listItems as $listItem)
-                <li class="mx-auto mb-2 p-2 border border-gray-200 rounded-lg flex w-4/5">
+                <li class="mx-auto mb-2 p-2 border border-gray-200 rounded-lg flex w-4/5 max-md:w-full">
                     <input type="checkbox" data-id="{{ $listItem->id }}" {{ $listItem->is_checked ? 'checked' : '' }}
                         class="rounded-xl w-6 h-6 mr-4 border-gray-300 text-main focus:outline-none focus:ring-0 focus:ring-offset-0">
                     <p class="{{ $listItem->is_checked ? 'line-through text-gray-400' : '' }}">{{ $listItem->name }}
