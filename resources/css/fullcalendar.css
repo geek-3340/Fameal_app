@@ -9,14 +9,30 @@ FullCalendar styles
 }
 
 /* toolbar */
+@media screen and (max-width: 768px) {
+    .fc .fc-header-toolbar {
+        display: block;
+        margin-bottom: 4px !important;
+    }
+}
 .fc .fc-toolbar-chunk div {
     display: flex; /* 年月とprev nextを横並び */
     align-items: center;
+}
+@media screen and (max-width: 768px) {
+    .fc .fc-toolbar-chunk div {
+        margin-bottom: 8px;
+    }
 }
 .fc .fc-toolbar-title {
     font-weight: 600;
     font-size: 32px;
     margin-right: 4px;
+}
+@media screen and (max-width: 768px) {
+    .fc .fc-toolbar-title {
+        font-size: 24px;
+    }
 }
 .fc .fc-prev-button,
 .fc .fc-next-button {
@@ -47,6 +63,11 @@ FullCalendar styles
     gap: 4px; /* ボタン間の隙間 */
     column-gap: 16px; /* 縦の隙間 */
 }
+@media screen and (max-width: 768px) {
+    .fc-button-group {
+        grid-template-columns: repeat(4, auto); /* 横2列 */
+    }
+}
 .fc .fc-monthButton-button,
 .fc .fc-weekButton-button,
 .fc .fc-dishesButton-button,
@@ -59,6 +80,17 @@ FullCalendar styles
     margin: 2px;
     display: flex;
     gap: 4px;
+}
+@media screen and (max-width: 768px) {
+    .fc .fc-monthButton-button,
+    .fc .fc-weekButton-button,
+    .fc .fc-dishesButton-button,
+    .fc .fc-babyFoodsButton-button {
+        font-size: 14px;
+        padding: 4px 8px;
+        align-items: center;
+        width: max-content;
+    }
 }
 .fc .fc-monthButton-button:hover,
 .fc .fc-monthButton-button:active,

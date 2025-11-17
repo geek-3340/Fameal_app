@@ -6,6 +6,7 @@ import createCategoryBlocksInMenu from "./partials/createCategoryBlocksInMenu";
 import onClickMenuEditLink from "./partials/onClickMenuEditLink";
 import toggleCategoryBlocksVisibility from "./partials/toggleCategoryBlocksVisibility";
 import updateCalendarMenu from "./partials/updateCalendarMenu";
+import setCustomButtons from "./partials/setCustomButtons";
 
 export default function fullCalendar() {
     document.addEventListener("DOMContentLoaded", function () {
@@ -28,8 +29,8 @@ export default function fullCalendar() {
             initialView: initialCalendar,
             locale: "ja",
             headerToolbar: {
-                left: "title,prev,next",
-                right: "dishesButton,monthButton,babyFoodsButton,weekButton",
+                left: "prev,title,next",
+                right: setCustomButtons(),
             },
             height: "auto",
             events: menusForCalendarEvents,

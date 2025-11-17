@@ -7,7 +7,7 @@
         @elseif(request()->routeIs('shopping.list.index'))
             @include('contents.shopping-list')
         @else
-            <x-contents-board type="content">
+            <x-contents-board type="content" class="max-md:shadow-none max-md:p-0">
                 <div id="calendar" data-initial-view="{{ $viewType === 'week' ? 'dayGridWeek' : 'dayGridMonth' }}"
                     data-dishes-month-url="{{ route('menus.index', ['category' => 'dishes', 'viewType' => 'month']) }}"
                     data-dishes-week-url="{{ route('menus.index', ['category' => 'dishes', 'viewType' => 'week']) }}"
