@@ -21,7 +21,7 @@ export default function (active) {
                     </g>
                 </g>
             </svg>
-            <p>料　理</p>
+            <p class="max-md:hidden">料　理</p>
         `;
     } else {
         return `
@@ -45,7 +45,7 @@ export default function (active) {
                     </g>
                 </g>
             </svg>
-            <p>料　理</p>
+            <p class="max-md:hidden">料　理</p>
         `;
     }
 }

@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="mx-auto my-8 w-3/5">
+    <div class="mx-auto my-8 w-3/5 max-md:w-11/12">
         <h1 class="text-3xl font-bold text-center max-md:text-xl">
             <span class="text-main">献立 × 離乳食</span> 子育てをもっとラクにするアプリ
         </h1>

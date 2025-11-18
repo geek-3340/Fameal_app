@@ -10,7 +10,7 @@ export default function (active) {
                     </path>
                 </g>
             </svg>
-            <p>週表示</p>
+            <p class="max-md:hidden">週表示</p>
         `;
     } else {
         return `
@@ -23,7 +23,7 @@ export default function (active) {
                     </path>
                 </g>
             </svg>
-            <p>週表示</p>
+            <p class="max-md:hidden">週表示</p>
         `;
     }
 }

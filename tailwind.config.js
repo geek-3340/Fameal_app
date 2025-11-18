@@ -24,6 +24,7 @@ export default {
         "peer-checked:bg-customRed",
         "peer-checked:bg-customGreen",
         "peer-checked:bg-gray-400",
+        "max-md:w-1/3",
     ],
 
     theme: {

@@ -10,7 +10,7 @@ export default function (active) {
                         stroke="#ffffff" stroke-width="2" stroke-linecap="round"></path>
                 </g>
             </svg>
-            <p>月表示</p>
+            <p class="max-md:hidden">月表示</p>
         `;
     } else {
         return `
@@ -23,7 +23,7 @@ export default function (active) {
                         stroke="#ffb700" stroke-width="2" stroke-linecap="round"></path>
                 </g>
             </svg>
-            <p>月表示</p>
+            <p class="max-md:hidden">月表示</p>
         `;
     }
 }

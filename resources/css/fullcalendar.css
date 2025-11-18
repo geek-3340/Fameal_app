@@ -22,6 +22,8 @@ FullCalendar styles
 @media screen and (max-width: 768px) {
     .fc .fc-toolbar-chunk div {
         margin-bottom: 8px;
+        justify-content: center;
+        gap: 2px;
     }
 }
 .fc .fc-toolbar-title {
@@ -155,10 +157,18 @@ FullCalendar styles
     justify-content: space-between; /* 日付とカスタムリンクを両端に */
     font-size: 16px;
 }
+@media screen and (max-width: 768px) {
+    .fc .fc-daygrid-day-number {
+        font-size: 14px;
+    }
+    .fc-col-header-cell-cushion {
+        font-size: 14px;
+    }
+}
 
 /* dayGridMonth */
 .fc .fc-dayGridMonth-view .fc-daygrid-day-number {
-    padding: 3px 0 0 10px;
+    padding-left: 8px;
 }
 .fc .fc-dayGridMonth-view .fc-daygrid-day-events {
     margin-bottom: 0;
@@ -177,9 +187,25 @@ FullCalendar styles
     padding: 8px;
     min-height: 80px !important;
 }
+@media screen and (max-width: 768px) {
+    .fc-dayGridWeek-view .fc-daygrid-body .fc-daygrid-day {
+        padding: 4px;
+        min-height: 10px !important;
+    }
+    .fc-dayGridWeek-view .fc-daygrid-body .fc-daygrid-day-number {
+        padding: 0;
+    }
+}
 .fc-dayGridWeek-view .fc-daygrid-day-frame {
     display: flex; /* 日付＆カスタムリンクとイベントを横並び */
     align-items: center;
+    width: 100%;
+}
+@media screen and (max-width: 768px) {
+    .fc-dayGridWeek-view .fc-daygrid-day-frame {
+        display: block; /* 日付＆カスタムリンクとイベントを横並び */
+        align-items: center;
+    }
 }
 .fc-dayGridWeek-view .fc-day-sun {
     border-top: 1px solid #ddd !important;
@@ -212,6 +238,12 @@ FullCalendar styles
 .fc-dayGridWeek-view .fc-daygrid-day-events {
     margin-bottom: 0 !important;
 }
+@media screen and (max-width: 768px) {
+    .fc-dayGridWeek-view .fc-daygrid-day-events {
+        min-height: 20px !important;
+        width: 100%;
+    }
+}
 
 /* events */
 .fc .fc-h-event {
@@ -228,5 +260,26 @@ FullCalendar styles
     color: #3d3d3d;
     font-weight: 600;
     font-size: 12px;
-    text-wrap: initial;
+}
+@media screen and (max-width: 768px) {
+    .fc .fc-dayGridMonth-view .fc-h-event {
+        margin: 3px 5px 3px 5px !important;
+        padding: 2px 4px;
+        min-width: 0;
+        width: inherit;
+        border-radius: 8px;
+        text-wrap: initial;
+        text-align: left;
+        line-height: 1.5;
+    }
+    .fc .fc-dayGridWeek-view .fc-h-event {
+        margin: 3px 5px 3px 5px !important;
+        padding: 2px 4px;
+        min-width: 0;
+        width: inherit;
+        border-radius: 8px;
+        text-wrap: initial;
+        text-align: left;
+        line-height: 1.5;
+    }
 }

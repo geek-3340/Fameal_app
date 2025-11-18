@@ -59,6 +59,15 @@ export default function fullCalendar() {
 
         calendar.render();
 
+        // 画面リサイズを検知してカレンダーを再描画
+        let resizeTimer;
+        window.addEventListener("resize", () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                calendar.render(); // ← これで dayCellContent が再実行される
+            }, 200);
+        });
+
         updateCalendarMenu(calendar);
 
         updateActiveCustomButton(

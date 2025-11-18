@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="pt-20 pl-48 max-md:pl-0">
+    <div class="pt-20 pl-48 max-md:pl-0 max-md:pt-16">
         @if (request()->routeIs('dishes.index'))
             @include('contents.dishes')
         @elseif(request()->routeIs('babyfoods.index'))

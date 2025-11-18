@@ -19,7 +19,7 @@ export default function (active) {
                         fill="#ffffff"></path>
                 </g>
             </svg>
-            <p>離乳食</p>
+            <p class="max-md:hidden">離乳食</p>
         `;
     } else {
         return `
@@ -41,7 +41,7 @@ export default function (active) {
                     fill="#ffb700"></path>
             </g>
         </svg>
-            <p>離乳食</p>
+            <p class="max-md:hidden">離乳食</p>
         `;
     }
 }
