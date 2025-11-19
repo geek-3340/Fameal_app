@@ -1,5 +1,26 @@
 <x-app-layout>
     <div class="mx-auto my-8 w-3/5 max-md:w-11/12">
+        <nav class="flex justify-center mb-8 md:hidden">
+            @if (request()->routeIs('top.page'))
+                @auth
+                    <x-link-button href="{{ route('menus.index', ['category' => 'dishes', 'viewType' => 'month']) }}"
+                        type="primary">
+                        マイページ
+                    </x-link-button>
+                @else
+                    <x-link-button href="{{ route('login') }}" type="primary">
+                        ログイン
+                    </x-link-button>
+                @endauth
+                <x-link-button href="{{ route('register') }}" type="register" class="ml-4 max-md:ml-2">
+                    新規登録
+                </x-link-button>
+            @else
+                <x-link-button href="{{ url()->previous() }}" type="primary">
+                    戻る
+                </x-link-button>
+            @endif
+        </nav>
         <h1 class="text-3xl font-bold text-center max-md:text-xl">
             <span class="text-main">献立 × 離乳食</span> 子育てをもっとラクにするアプリ
         </h1>
@@ -14,7 +35,7 @@
 
             <div class="mt-8 p-4 bg-sub rounded-xl shadow-custom">
                 <p class="text-xl font-bold text-center">主な機能</p>
-                <ul class="grid grid-cols-2 gap-4 mt-4 max-md:grid-cols-1">
+                <ul class="grid grid-cols-2 gap-4 mt-4 max-xl:grid-cols-1">
                     <li class="bg-white rounded-lg p-1 text-center">
                         <h3 class="font-semibold">献立カレンダー機能</h3>
                         <p class="text-sm">料理／離乳食、月／週での表示切替</p>

@@ -3,7 +3,7 @@
         <h1 class="text-center font-bold text-xl">
             {{ __('Profile Menu') }}
         </h1>
-        <div class="flex">
+        <div class="flex max-xl:block">
 
             <x-contents-board>
                 @include('profile.partials.update-profile-information-form')

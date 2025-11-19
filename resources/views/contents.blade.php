@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="pt-20 pl-48 max-md:pl-0 max-md:pt-16">
+    <div class="pt-20 pl-48 max-xl:pl-0 max-xl:pt-16">
         @if (request()->routeIs('dishes.index'))
             @include('contents.dishes')
         @elseif(request()->routeIs('babyfoods.index'))
@@ -7,7 +7,7 @@
         @elseif(request()->routeIs('shopping.list.index'))
             @include('contents.shopping-list')
         @else
-            <x-contents-board type="content" class="max-md:shadow-none max-md:p-0">
+            <x-contents-board type="content" class="max-xl:shadow-none max-xl:p-0">
                 <div id="calendar" data-initial-view="{{ $viewType === 'week' ? 'dayGridWeek' : 'dayGridMonth' }}"
                     data-dishes-month-url="{{ route('menus.index', ['category' => 'dishes', 'viewType' => 'month']) }}"
                     data-dishes-week-url="{{ route('menus.index', ['category' => 'dishes', 'viewType' => 'week']) }}"

@@ -1,10 +1,10 @@
 <header class="w-full">
-    <div class=" w-11/12 h-20 flex justify-between items-center mx-auto border-b border-main max-md:h-16">
-        <div class="pl-24 text-main flex items-end max-md:block max-md:pl-12">
+    <div class=" w-11/12 h-20 flex justify-between items-center mx-auto border-b border-main max-md:h-16 max-md:justify-center">
+        <div class="pl-24 text-main flex items-end max-md:block max-md:pl-0 max-md:text-center">
             <h1 class="mr-4 font-monoton text-4xl leading-none max-md:text-2xl">Fameal</h1>
             <p class="max-md:text-sm">親子献立カレンダーアプリ</p>
         </div>
-        <nav class="flex pr-4">
+        <nav class="flex pr-4 max-md:hidden">
             @if (request()->routeIs('top.page'))
                 @auth
                     <x-link-button href="{{ route('menus.index',['category' => 'dishes','viewType' => 'month']) }}" type="primary">

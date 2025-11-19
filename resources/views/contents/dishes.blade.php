@@ -5,7 +5,7 @@
         <h1 class=" text-xl text-center font-bold mb-8">料理登録</h1>
         <form action="{{ route('dishes.store') }}" method="POST">
             @csrf
-            <div class="mb-4 flex justify-between">
+            <div class="mb-4 flex justify-between max-md:grid max-md:grid-cols-2 max-md:gap-4 max-md:text-center">
 
                 @php
                     $categoryGroups = [
@@ -17,11 +17,11 @@
                 @endphp
 
                 @foreach ($categoryGroups as $group)
-                    <label>
+                    <label class="max-md:w-5/6 max-md:mx-auto">
                         <input type="radio" name="category" value="{{ $group['category'] }}" class="hidden peer"
                             {{ $group['checked'] }}>
                         <span
-                            class="cursor-pointer px-8 py-1 rounded-xl border-2 border-{{ $group['color'] }} max-md:text-sm max-md:px-4 peer-checked:bg-{{ $group['color'] }} peer-checked:bg-opacity-50">
+                            class="cursor-pointer px-8 py-1 rounded-xl border-2 border-{{ $group['color'] }} max-xl:text-sm max-xl:px-4 max-md:block max-md:w-full peer-checked:bg-{{ $group['color'] }} peer-checked:bg-opacity-50">
                             {{ $group['category'] }}
                         </span>
                     </label>
@@ -29,13 +29,13 @@
             </div>
             <div class="w-max mx-auto">
                 <x-input-label for="dish_name" :value="__('Dish name')" />
-                <x-text-input id="dish_name" type="text" name="name" :value="old('dish_name')" class="w-80 mt-1 mb-4"
-                    required />
+                <x-text-input id="dish_name" type="text" name="name" :value="old('dish_name')"
+                    class="w-80 mt-1 mb-4 max-md:w-60" required />
                 <x-input-label for="dish_recipe_url" :value="__('Recipe URL')" />
                 <x-text-input id="dish_recipe_url" type="url" name="recipe_url" :value="old('dish_recipe_url')"
-                    class="w-80 mt-1" />
+                    class="w-80 mt-1 max-md:w-60" />
             </div>
-            <x-button class="!block mx-auto !mt-4 max-md:px-8">
+            <x-button class="!block mx-auto !mt-4 max-xl:px-8">
                 {{ __('Register dish') }}
             </x-button>
             <x-input-error :messages="$errors->get('dish_name')" class="mt-2" />

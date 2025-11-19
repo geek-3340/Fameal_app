@@ -5,7 +5,7 @@
         <h2 class=" text-xl text-center font-bold mb-8">離乳食登録</h2>
         <form action="{{ route('babyfoods.store') }}" method="POST">
             @csrf
-            <div class="mb-4 flex justify-between">
+            <div class="mb-4 flex justify-between max-md:grid max-md:grid-cols-2 max-md:gap-4 max-md:text-center">
 
                 @php
                     $categoryGroups = [
@@ -17,11 +17,11 @@
                 @endphp
 
                 @foreach ($categoryGroups as $group)
-                    <label>
+                    <label class="max-md:w-5/6 max-md:mx-auto">
                         <input type="radio" name="category" value="{{ $group['category'] }}" class="hidden peer"
                             {{ $group['checked'] }}>
                         <span
-                            class="cursor-pointer px-4 py-1 rounded-xl border-2 border-{{ $group['color'] }} max-md:text-sm max-md:px-2 peer-checked:bg-{{ $group['color'] }} peer-checked:bg-opacity-50">
+                            class="cursor-pointer px-4 py-1 rounded-xl border-2 border-{{ $group['color'] }} max-xl:text-sm max-xl:px-2 max-md:block max-md:w-full peer-checked:bg-{{ $group['color'] }} peer-checked:bg-opacity-50">
                             {{ $group['category'] }}
                         </span>
                     </label>
@@ -31,10 +31,10 @@
                 <x-input-label for="babyfood_name">
                     食材名
                 </x-input-label>
-                <x-text-input id="babyfood_name" type="text" name="name" :value="old('babyfood_name')" class="w-80 mt-1"
+                <x-text-input id="babyfood_name" type="text" name="name" :value="old('babyfood_name')" class="w-80 mt-1 max-md:w-60"
                     required />
             </div>
-            <x-button class="!block mx-auto !mt-4 max-md:px-8">
+            <x-button class="!block mx-auto !mt-4 max-xl:px-8">
                 {{ __('Register dish') }}
             </x-button>
             <x-input-error :messages="$errors->get('babyfood_name')" class="mt-2" />

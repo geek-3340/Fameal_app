@@ -23,7 +23,7 @@ FullCalendar styles
     .fc .fc-toolbar-chunk div {
         margin-bottom: 8px;
         justify-content: center;
-        gap: 2px;
+        gap: 16px;
     }
 }
 .fc .fc-toolbar-title {
@@ -62,12 +62,12 @@ FullCalendar styles
 .fc-button-group {
     display: grid !important;
     grid-template-columns: repeat(2, auto); /* 横2列 */
-    gap: 4px; /* ボタン間の隙間 */
+    gap: 8px; /* ボタン間の隙間 */
     column-gap: 16px; /* 縦の隙間 */
 }
 @media screen and (max-width: 768px) {
     .fc-button-group {
-        grid-template-columns: repeat(4, auto); /* 横2列 */
+        grid-template-columns: repeat(4, auto); /* 横4列 */
     }
 }
 .fc .fc-monthButton-button,
@@ -261,15 +261,19 @@ FullCalendar styles
     font-weight: 600;
     font-size: 12px;
 }
+@media screen and (max-width: 1024px) {
+    .fc .fc-dayGridMonth-view .fc-h-event {
+        width: inherit;
+        text-wrap: initial;
+        text-align: left;
+        border-radius: 8px;
+    }
+}
 @media screen and (max-width: 768px) {
     .fc .fc-dayGridMonth-view .fc-h-event {
         margin: 3px 5px 3px 5px !important;
         padding: 2px 4px;
         min-width: 0;
-        width: inherit;
-        border-radius: 8px;
-        text-wrap: initial;
-        text-align: left;
         line-height: 1.5;
     }
     .fc .fc-dayGridWeek-view .fc-h-event {
