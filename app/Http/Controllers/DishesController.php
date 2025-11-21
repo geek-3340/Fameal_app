@@ -10,12 +10,14 @@ class DishesController extends Controller
 {
     public function index()
     {
+        $user=auth()->user();
+        $userName=$user->name;
         $dishes = Dishes::where('user_id', auth()->id())->where('type', 'dish')->get();
         $staples = $dishes->where('category', '主食');
         $mains = $dishes->where('category', '主菜');
         $sides = $dishes->where('category', '副菜');
         $others = $dishes->where('category', 'その他');
-        return view('contents', compact('dishes', 'staples', 'mains', 'sides', 'others'));
+        return view('contents', compact('userName','dishes', 'staples', 'mains', 'sides', 'others'));
     }
 
     public function store(Request $request)

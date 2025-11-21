@@ -7,6 +7,7 @@ import onClickMenuEditLink from "./partials/onClickMenuEditLink";
 import toggleCategoryBlocksVisibility from "./partials/toggleCategoryBlocksVisibility";
 import updateCalendarMenu from "./partials/updateCalendarMenu";
 import setCustomButtons from "./partials/setCustomButtons";
+import onClickDateCell from "./partials/onClickDateCell";
 
 export default function fullCalendar() {
     document.addEventListener("DOMContentLoaded", function () {
@@ -43,6 +44,7 @@ export default function fullCalendar() {
                 BABY_FOODS_WEEK_URL
             ),
             dayCellContent: createDayCellHeaderContent,
+            dateClick:onClickDateCell,
             eventContent(arg) {
                 const $dish = document.createElement("div");
                 $dish.textContent = arg.event.title;

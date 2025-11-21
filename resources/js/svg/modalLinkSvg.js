@@ -1,12 +1,12 @@
 export default function () {
     return `
-    <a href="#" class="text-text decoration-none pt-1 px-2 ml-2 menu-edit-link">
+    <a href="#" class="text-text decoration-none pt-1 px-2 ml-2 max-md:px-0 max-md:m-0 menu-edit-link">
             <svg
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="#9f9f9f"
                 stroke="#9f9f9f"
-                class="w-6 h-6"
+                class="w-6 h-6 max-md:w-5 max-md:h-5"
             >
                 <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                 <g

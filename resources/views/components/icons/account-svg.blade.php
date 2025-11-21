@@ -10,7 +10,7 @@
     </svg>
 @else
     <svg x-show="!openAccountMenu" xmlns="http://www.w3.org/2000/svg" fill="#ffb700" viewBox="0 0 24 24"
-        stroke="#ffb700" class="w-14 h-14 max-md:w-10 max-md:h-10">
+        stroke="#ffb700" class="w-14 h-14 max-xl:w-10 max-xl:h-10">
         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
         <g id="SVGRepo_iconCarrier">
@@ -21,7 +21,7 @@
     </svg>
 
     <svg x-show="openAccountMenu" xmlns="http://www.w3.org/2000/svg" fill="#fff" viewBox="0 0 24 24" stroke="#fff"
-        class="w-14 h-14 max-md:w-10 max-md:h-10">
+        class="w-14 h-14 max-xl:w-10 max-xl:h-10">
         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
         <g id="SVGRepo_iconCarrier">

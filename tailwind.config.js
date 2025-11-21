@@ -25,6 +25,10 @@ export default {
         "peer-checked:bg-customGreen",
         "peer-checked:bg-gray-400",
         "max-md:w-1/3",
+        "max-md:w-5",
+        "max-md:h-5",
+        "max-md:px-0",
+        "max-md:m-0",
     ],
 
     theme: {

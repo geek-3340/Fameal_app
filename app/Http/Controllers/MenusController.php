@@ -10,6 +10,9 @@ class MenusController extends Controller
 {
     public function index($category, $viewType) // 引数$viewTypeはそのままViewへ渡す
     {
+        $user=auth()->user();
+        $userName=$user->name;
+
         // 取得する料理種別の判別フラグ
         $type = '';
         if ($category === 'dishes') {
@@ -42,7 +45,7 @@ class MenusController extends Controller
         });
 
         // contents.blade.phpに整形済みデータを渡して描画
-        return view('contents', compact('viewType', 'dishes', 'type', 'menusForCalendarEvents'));
+        return view('contents', compact('userName','viewType', 'dishes', 'type', 'menusForCalendarEvents'));
     }
 
     // --------------------------------------------------------------------------------------------

@@ -36,7 +36,7 @@
                                 <input type="radio" name="category" value="{{ $category }}" class="hidden peer"
                                     {{ $checked }}>
                                 <span
-                                    class="cursor-pointer px-6 py-1 rounded-xl border-2 border-main peer-checked:bg-main peer-checked:bg-opacity-50">
+                                    class="cursor-pointer px-6 py-1 rounded-xl border-2 border-main max-md:px-2 peer-checked:bg-main peer-checked:bg-opacity-50">
                                     {{ $category }}
                                 </span>
                             </label>

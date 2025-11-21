@@ -9,12 +9,14 @@ class BabyfoodsController extends Controller
 {
     public function index()
     {
+        $user=auth()->user();
+        $userName=$user->name;
         $babyfoods = Dishes::where('user_id', auth()->id())->where('type', 'babyfood')->get();
         $energyFoods = $babyfoods->where('category', 'エネルギー');
         $proteinFoods = $babyfoods->where('category', 'タンパク質');
         $vitaminFoods = $babyfoods->where('category', 'ビタミン');
         $others = $babyfoods->where('category', 'その他');
-        return view('contents', compact('babyfoods', 'energyFoods', 'proteinFoods', 'vitaminFoods', 'others'));
+        return view('contents', compact('userName','babyfoods', 'energyFoods', 'proteinFoods', 'vitaminFoods', 'others'));
     }
 
     public function store(Request $request)

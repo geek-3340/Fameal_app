@@ -193,6 +193,8 @@ FullCalendar styles
         min-height: 10px !important;
     }
     .fc-dayGridWeek-view .fc-daygrid-body .fc-daygrid-day-number {
+        display: flex;
+        gap: 8px;
         padding: 0;
     }
 }
@@ -203,7 +205,7 @@ FullCalendar styles
 }
 @media screen and (max-width: 768px) {
     .fc-dayGridWeek-view .fc-daygrid-day-frame {
-        display: block; /* 日付＆カスタムリンクとイベントを横並び */
+        display: block; /* 日付＆カスタムリンクとイベントを縦並び */
         align-items: center;
     }
 }
