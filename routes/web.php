@@ -44,7 +44,7 @@ Route::middleware('auth', 'two_factor')->group(function () {
 
     Route::get('/babyfoods', [BabyfoodsController::class, 'index'])->name('babyfoods.index');
     Route::post('/babyfoods', [BabyfoodsController::class, 'store'])->name('babyfoods.store');
-    Route::delete('/babyfoods/{id}', [BabyfoodsController::class, 'destroy'])->name('babyfoods.destroy');
+    Route::delete('/babyfoods/{babyfood}', [BabyfoodsController::class, 'destroy'])->name('babyfoods.destroy');
 
     Route::get('/shopping-list', [ShoppingListController::class, 'index'])->name('shopping.list.index');
     Route::post('/shopping-list', [ShoppingListController::class, 'store'])->name('shopping.list.store');

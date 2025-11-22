@@ -5,6 +5,7 @@
         <h2 class=" text-xl text-center font-bold mb-8">離乳食登録</h2>
         <form action="{{ route('babyfoods.store') }}" method="POST">
             @csrf
+            <input type="hidden" name="type" value="babyfood">
             <div class="mb-4 flex justify-between max-md:grid max-md:grid-cols-2 max-md:gap-4 max-md:text-center">
 
                 @php
@@ -62,7 +63,7 @@
                     @foreach ($group['babyfoods'] as $babyfood)
                         <div class="mb-2 p-2 border border-{{ $group['color'] }} rounded-lg flex justify-between">
                             <p>{{ $babyfood->name }}</p>
-                            <form action="{{ route('babyfoods.destroy', $babyfood->id) }}" method="post">
+                            <form action="{{ route('babyfoods.destroy', $babyfood) }}" method="post">
                                 @csrf
                                 @method('DELETE')
                                 <button class="mr-2">

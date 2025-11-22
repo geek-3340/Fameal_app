@@ -5,6 +5,7 @@
         <h1 class=" text-xl text-center font-bold mb-8">料理登録</h1>
         <form action="{{ route('dishes.store') }}" method="POST">
             @csrf
+            <input type="hidden" name="type" value="dish">
             <div class="mb-4 flex justify-between max-md:grid max-md:grid-cols-2 max-md:gap-4 max-md:text-center">
 
                 @php

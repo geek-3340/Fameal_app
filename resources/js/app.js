@@ -10,11 +10,9 @@ import setShoppingListFormContents from "./modules/setShoppingListFormContents";
 import submitIngredientsStoreForm from "./modules/submitIngredientsStoreForm";
 import submitIngredientsDeleteForm from "./modules/submitIngredientsDeleteForm";
 
-// Alpine.js
 window.Alpine = Alpine;
 Alpine.start();
 
-// FullCalendar
 fullCalendar();
 
 updateActiveNavButton();

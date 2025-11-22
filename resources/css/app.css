@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* モーダル・サイドメニューの初期非表示 */
 [x-cloak] {
     display: none !important;
 }

@@ -26,6 +26,7 @@ export default function fullCalendar() {
         const BABY_FOODS_MONTH_URL = $calendarEl.dataset.babyfoodsMonthUrl;
         const BABY_FOODS_WEEK_URL = $calendarEl.dataset.babyfoodsWeekUrl;
 
+        // FullCalendarの初期化
         const calendar = new FullCalendar.Calendar($calendarEl, {
             initialView: initialCalendar,
             locale: "ja",
@@ -59,25 +60,30 @@ export default function fullCalendar() {
             },
         });
 
+        // fullCalendarの描画
         calendar.render();
 
-        // 画面リサイズを検知してカレンダーを再描画
+        // fullCalendarのリサイズ対応
         let resizeTimer;
         window.addEventListener("resize", () => {
             clearTimeout(resizeTimer);
             resizeTimer = setTimeout(() => {
-                calendar.render(); // ← これで dayCellContent が再実行される
+                calendar.render();
             }, 200);
         });
 
+        // 献立の追加・編集・削除に伴うカレンダー描画更新処理
         updateCalendarMenu(calendar);
 
+        // カスタムボタンのアクティブ状態更新処理
         updateActiveCustomButton(
             DISHES_MONTH_URL,
             DISHES_WEEK_URL,
             BABY_FOODS_MONTH_URL,
             BABY_FOODS_WEEK_URL
         );
+
+        // 月間カレンダー日付セルのレスポンシブ対応処理
         updateResponsiveMonthCalendar(
             currentUrl,
             DISHES_MONTH_URL,

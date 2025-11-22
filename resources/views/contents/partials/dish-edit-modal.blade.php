@@ -23,6 +23,7 @@
             <form :action="`/dishes/${dish.id}`" method="POST" id="dish-update" class="w-full">
                 @csrf
                 @method('PUT')
+                <input type="hidden" name="type" value="dish">
                 <div class="mb-4 flex justify-between">
                     @foreach (['主食' => 'main', '主菜' => 'customRed', '副菜' => 'customGreen', 'その他' => 'gray-400'] as $label => $color)
                         <label>

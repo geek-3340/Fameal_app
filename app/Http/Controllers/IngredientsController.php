@@ -9,7 +9,6 @@ class IngredientsController extends Controller
 {
     public function store(Request $request)
     {
-        // バリデーションした上で料理名を格納
         $validated = $request->validate([
             'name' => 'required',
             'dish_id' => 'required',
