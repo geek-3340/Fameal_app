@@ -10,13 +10,15 @@ class ShoppingListController extends Controller
 {
     public function index()
     {
-        $user=auth()->user();
-        $userName=$user->name;
+        $user = auth()->user();
+        $userName = $user->name;
         $listItems = ShoppingList::where('user_id', auth()->id())->get();
         $listItems = $listItems->sortByDesc('name')->sortBy('is_checked');
-        return view('contents', compact('userName','listItems'));
+        $response = compact('userName', 'listItems');
+        
+        return view('contents', $response);
     }
-    
+
 
     public function store(Request $request)
     {
@@ -26,7 +28,7 @@ class ShoppingListController extends Controller
         $validated['user_id'] = auth()->id();
         $validated['is_checked'] = false;
         ShoppingList::create($validated);
-        
+
         return back();
     }
 
@@ -65,7 +67,7 @@ class ShoppingListController extends Controller
             ->all();               // 配列に戻す
 
         ShoppingList::insert($ingredients);
-        
+
         return back();
     }
 

@@ -25,8 +25,8 @@ export default function () {
             window.dispatchEvent(
                 new CustomEvent("menu-updated", {
                     detail: {
-                        newCalendarDish: response.data.calendar,
-                        newModalDish: response.data.modal, // サーバーが返した新規データ
+                        newCalendarDishes: response.data.newCalendarDishes,
+                        newModalDishes: response.data.newModalDishes, // サーバーが返した新規データ
                         selectedDate: response.data.date,
                     },
                 })

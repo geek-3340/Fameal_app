@@ -7,7 +7,7 @@
         dishes = @json($type === 'dish')  ? $event.detail.dishesByDate : $event.detail.babyFoodsByDate;
     "
     @menu-updated.window="
-        dishes = $event.detail.newModalDish;
+        dishes = $event.detail.newModalDishes;
     "
     >
     <div x-show="open" x-cloak @keydown.escape.window="open = false"

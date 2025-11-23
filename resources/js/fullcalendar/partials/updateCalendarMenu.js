@@ -5,7 +5,7 @@ export default (calendar) => {
         document.querySelectorAll(".fc-event").forEach((dish) => dish.remove());
         // 該当日のイベントを削除
         window.calendar.removeAllEvents();
-        const newEvents = e.detail.newCalendarDish;
+        const newEvents = e.detail.newCalendarDishes;
         newEvents.forEach((dish) => {
             window.calendar.addEvent({
                 id: dish.id,
