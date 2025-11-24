@@ -14,20 +14,16 @@ class IngredientsController extends Controller
             'dish_id' => 'required',
         ]);
         $newIngredient = Ingredients::create($validated);
-
         $updatedIngredients = Ingredients::where('dish_id', $newIngredient->dish_id)->get();
-
+        
         return response()->json($updatedIngredients);
     }
 
     public function destroy($id)
     {
         $ingredient = Ingredients::find($id);
-
         $dishId = $ingredient->dish_id;
-
         $ingredient->delete();
-
         $updatedIngredients = Ingredients::where('dish_id', $dishId)->get();
 
         return response()->json($updatedIngredients);

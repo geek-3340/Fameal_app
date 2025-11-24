@@ -17,7 +17,7 @@ class DishesController extends Controller
         $mains = $dishes->where('category', '主菜');
         $sides = $dishes->where('category', '副菜');
         $others = $dishes->where('category', 'その他');
-
+        
         $response = compact('userName', 'dishes', 'staples', 'mains', 'sides', 'others');
 
         return view('contents', $response);

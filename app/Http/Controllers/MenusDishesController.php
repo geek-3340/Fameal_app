@@ -8,6 +8,7 @@ use App\Services\MenusDishesService;
 class MenusDishesController extends Controller
 {
     public function __construct(protected MenusDishesService $menusDishesService) {}
+    
     public function store(Request $request)
     {
         $request->validate([
