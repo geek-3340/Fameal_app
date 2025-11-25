@@ -14,9 +14,12 @@ class ShoppingListController extends Controller
     {
         $user = auth()->user();
         $userName = $user->name;
+
         $listItems = ShoppingList::where('user_id', auth()->id())->get();
         $listItems = $listItems->sortByDesc('name')->sortBy('is_checked');
+
         $response = compact('userName', 'listItems');
+
         return view('contents', $response);
     }
 
@@ -28,7 +31,9 @@ class ShoppingListController extends Controller
         ]);
         $validated['user_id'] = auth()->id();
         $validated['is_checked'] = false;
+
         ShoppingList::create($validated);
+
         return back();
     }
 

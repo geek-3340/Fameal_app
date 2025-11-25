@@ -16,10 +16,14 @@ class MenusDishesService
         $menu = $this->menusDishesRepository->firstOrCreateMenu($request);
         $menuDish = $this->menusDishesRepository->createMenusDishes($request, $menu);
         $menuDish->load('dish');
+
         $date = $request->date;
+
         $menuByAllDay = $this->menusDishesRepository->getMenusDishesByAllDay($menuDish->dish->type);
         $menuByDate = $this->menusDishesRepository->getMenusDishesByDate($menuDish->dish->type, $date);
+
         $formattedMenusDishesData = $this->formatMenusDishesData($menuByAllDay, $menuByDate, $date);
+
         return $formattedMenusDishesData;
     }
 
@@ -27,18 +31,24 @@ class MenusDishesService
     {
         $menuDish = $this->menusDishesRepository->findMenuDish($id);
         $menuDish->load(['menu', 'dish']);
+
         $date = $menuDish->menu->date;
+
         $type = '';
         if ($menuDish->dish->type === 'dish') {
             $type = 'dish';
         } else {
             $type = 'babyfood';
         }
+
         $this->authorize('delete', $menuDish);
         $menuDish->delete();
+
         $menuByAllDay = $this->menusDishesRepository->getMenusDishesByAllDay($type);
         $menuByDate = $this->menusDishesRepository->getMenusDishesByDate($type, $date);
+
         $formattedMenusDishesData = $this->formatMenusDishesData($menuByAllDay, $menuByDate, $date);
+        
         return $formattedMenusDishesData;
     }
 

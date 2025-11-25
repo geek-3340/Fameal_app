@@ -15,7 +15,9 @@ class DishesController extends Controller
     {
         $user = auth()->user();
         $userName = $user->name;
+
         $dishes = Dishes::where('user_id', auth()->id())->where('type', 'dish')->get();
+
         $staples = $dishes->where('category', '主食');
         $mains = $dishes->where('category', '主菜');
         $sides = $dishes->where('category', '副菜');
@@ -35,6 +37,7 @@ class DishesController extends Controller
             'recipe_url' => 'nullable|url',
         ]);
         $validated['user_id'] = auth()->id();
+
         Dishes::create($validated);
 
         return back();
@@ -43,9 +46,11 @@ class DishesController extends Controller
     public function edit($id)
     {
         $dish = Dishes::find($id);
+
         $ingredients = Ingredients::with('dish')->whereHas('dish', function ($query) use ($id) {
             $query->where('id', $id);
         })->get();
+
         $response = compact('dish', 'ingredients');
 
         return response()->json($response);
@@ -62,6 +67,7 @@ class DishesController extends Controller
         $validated['user_id'] = auth()->id();
         
         $dish = Dishes::find($id);
+        
         $this->authorize('update',$dish);
         $dish->update($validated);
 

@@ -14,7 +14,9 @@ class BabyfoodsController extends Controller
     {
         $user = auth()->user();
         $userName = $user->name;
+
         $babyfoods = Dishes::where('user_id', auth()->id())->where('type', 'babyfood')->get();
+
         $energyFoods = $babyfoods->where('category', 'エネルギー');
         $proteinFoods = $babyfoods->where('category', 'タンパク質');
         $vitaminFoods = $babyfoods->where('category', 'ビタミン');
@@ -33,6 +35,7 @@ class BabyfoodsController extends Controller
             'category' => 'required',
         ]);
         $validated['user_id'] = auth()->id();
+        
         Dishes::create($validated);
 
         return back();

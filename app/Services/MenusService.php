@@ -10,9 +10,9 @@ class MenusService
 
     public function dataFormatForIndex($category, $viewType)
     {
-        // ユーザー名取得
         $user = auth()->user();
         $userName = $user->name;
+
         // 扱う料理種別の判別フラグ
         $type = '';
         if ($category === 'dishes') {
@@ -20,20 +20,20 @@ class MenusService
         } elseif ($category === 'babyfoods') {
             $type = 'babyfood';
         }
-        // 料理データ取得
+
         $dishes = $this->menusRepository->getDishesByType($type);
-        // 献立データ取得
+
         $menusDishes = $this->menusRepository->getMenusDishesByType($type);
-        // 献立をカレンダー描画用に整形
         $menusForCalendarEvents = $this->formatMenusData($menusDishes);
+
         return compact('viewType', 'userName', 'type', 'dishes',  'menusForCalendarEvents');
     }
 
     public function dataFormatForEdit($date)
     {
-        // 指定日の献立データ取得
         $menuByDate = $this->menusRepository->getMenusDishesByDate($date);
         $formattedDishesData = $this->formatDishesData($menuByDate);
+
         return $formattedDishesData;
     }
 
@@ -42,16 +42,17 @@ class MenusService
     */
     private function formatMenusData($menusDishes)
     {
-        return $menusDishes->map(function ($menuDish) {
-            [$dishBgColor, $dishDisplayOrder] = $this->setDishBgColorAndDisplayOrder('index', $menuDish->dish->category);
-            return [
-                'backgroundColor' => $dishBgColor,
-                'title' => $menuDish->dish->name . ($menuDish->gram ? ' ' . $menuDish->gram . 'g' : ''),
-                'start' => $menuDish->menu->date,
-                'dishDisplayOrder' => $dishDisplayOrder,
-                'category' => $menuDish->category,
-            ];
-        });
+        return
+            $menusDishes->map(function ($menuDish) {
+                [$dishBgColor, $dishDisplayOrder] = $this->setDishBgColorAndDisplayOrder('index', $menuDish->dish->category);
+                return [
+                    'backgroundColor' => $dishBgColor,
+                    'title' => $menuDish->dish->name . ($menuDish->gram ? ' ' . $menuDish->gram . 'g' : ''),
+                    'start' => $menuDish->menu->date,
+                    'dishDisplayOrder' => $dishDisplayOrder,
+                    'category' => $menuDish->category,
+                ];
+            });
     }
 
     private function formatDishesData($menuByDate)

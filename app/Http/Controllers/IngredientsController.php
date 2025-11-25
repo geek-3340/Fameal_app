@@ -16,7 +16,9 @@ class IngredientsController extends Controller
             'name' => 'required',
             'dish_id' => 'required',
         ]);
+
         $newIngredient = Ingredients::create($validated);
+
         $updatedIngredients = Ingredients::where('dish_id', $newIngredient->dish_id)->get();
 
         return response()->json($updatedIngredients);
@@ -25,9 +27,12 @@ class IngredientsController extends Controller
     public function destroy($id)
     {
         $ingredient = Ingredients::find($id);
+
         $dishId = $ingredient->dish_id;
+
         $this->authorize('delete', $ingredient);
         $ingredient->delete();
+        
         $updatedIngredients = Ingredients::where('dish_id', $dishId)->get();
 
         return response()->json($updatedIngredients);
