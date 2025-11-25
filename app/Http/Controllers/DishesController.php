@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Dishes;
 use App\Models\Ingredients;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class DishesController extends Controller
 {
+    use AuthorizesRequests;
+
     public function index()
     {
         $user = auth()->user();
@@ -59,6 +62,7 @@ class DishesController extends Controller
         $validated['user_id'] = auth()->id();
         
         $dish = Dishes::find($id);
+        $this->authorize('update',$dish);
         $dish->update($validated);
 
         return back();
@@ -66,9 +70,7 @@ class DishesController extends Controller
 
     public function destroy(Dishes $dish)
     {
-        if ($dish->user_id !== auth()->id()) {
-            abort(403);
-        }
+        $this->authorize('delete',$dish);
         $dish->delete();
 
         return back();

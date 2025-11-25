@@ -3,9 +3,12 @@
 namespace App\Services;
 
 use App\Repositories\MenusDishesRepository;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class MenusDishesService
 {
+    use AuthorizesRequests;
+
     public function __construct(protected MenusDishesRepository $menusDishesRepository) {}
 
     public function createMenusDishesAndResponseNewData($request)
@@ -31,6 +34,7 @@ class MenusDishesService
         } else {
             $type = 'babyfood';
         }
+        $this->authorize('delete', $menuDish);
         $menuDish->delete();
         $menuByAllDay = $this->menusDishesRepository->getMenusDishesByAllDay($type);
         $menuByDate = $this->menusDishesRepository->getMenusDishesByDate($type, $date);

@@ -38,10 +38,10 @@
                 </div>
                 <div class="w-max mx-auto">
                     <x-input-label for="dish_name" :value="__('Dish name')" />
-                    <x-text-input id="dish_name" type="url" name="name" class="w-80 mt-1 mb-4"
+                    <x-text-input id="dish_name" type="text" name="name" class="w-80 mt-1 mb-4"
                         x-model="dish.name" required />
                     <x-input-label for="dish_recipe_url" :value="__('Recipe URL')" />
-                    <x-text-input id="dish_recipe_url" type="text" name="recipe_url" class="w-80 mt-1"
+                    <x-text-input id="dish_recipe_url" type="url" name="recipe_url" class="w-80 mt-1"
                         x-model="dish.recipe_url" />
                 </div>
                 <x-input-error :messages="$errors->get('dish_name')" class="mt-2" />

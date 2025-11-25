@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Dishes;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class BabyfoodsController extends Controller
 {
+    use AuthorizesRequests;
+
     public function index()
     {
         $user = auth()->user();
@@ -37,11 +40,9 @@ class BabyfoodsController extends Controller
 
     public function destroy(Dishes $babyfood)
     {
-        if ($babyfood->user_id !== auth()->id()) {
-            abort(403);
-        }
+        $this->authorize('delete', $babyfood);
         $babyfood->delete();
-        
+
         return back();
     }
 }

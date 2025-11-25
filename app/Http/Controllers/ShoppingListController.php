@@ -47,6 +47,7 @@ class ShoppingListController extends Controller
 
     public function destroy()
     {
+        // where()でユーザーチェック済みのため、認可不要
         ShoppingList::where('user_id', auth()->id())->where('is_checked', true)->delete();
         return back();
     }
