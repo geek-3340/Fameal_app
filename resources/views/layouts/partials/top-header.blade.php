@@ -1,5 +1,6 @@
 <header class="w-full">
-    <div class=" w-11/12 h-20 flex justify-between items-center mx-auto border-b border-main max-md:h-16 max-md:justify-center">
+    <div
+        class=" w-11/12 h-20 flex justify-between items-center mx-auto border-b border-main max-md:h-16 max-md:justify-center">
         <div class="pl-24 text-main flex items-end max-md:block max-md:pl-0 max-md:text-center">
             <h1 class="mr-4 font-monoton text-4xl leading-none max-md:text-2xl">Fameal</h1>
             <p class="max-md:text-sm">親子献立カレンダーアプリ</p>
@@ -7,7 +8,8 @@
         <nav class="flex pr-4 max-md:hidden">
             @if (request()->routeIs('top.page'))
                 @auth
-                    <x-link-button href="{{ route('menus.index',['category' => 'dishes','viewType' => 'month']) }}" type="primary">
+                    <x-link-button href="{{ route('menus.index', ['category' => 'dishes', 'viewType' => 'month']) }}"
+                        type="primary">
                         マイページ
                     </x-link-button>
                 @else
@@ -24,5 +26,10 @@
                 </x-link-button>
             @endif
         </nav>
+        @if (!request()->routeIs('top.page'))
+            <a href="{{ url()->previous() }}" type="button" class="absolute top-5 right-8 md:hidden">
+                <x-icons.return-back-svg />
+            </a>
+        @endif
     </div>
 </header>

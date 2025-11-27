@@ -26,7 +26,7 @@
         </h1>
 
         <div class="mt-8">
-            <p class="h-full text-center font-semibold leading-relaxed">
+            <p class="w-4/5 h-full mx-auto text-left font-semibold leading-relaxed">
                 「Fameal（ファミール）」は、毎日の献立と離乳食を “ひとつのアプリでまとめて管理できる” 子育て支援アプリです。<br><br>
                 離乳食初期（ゴックン期）〜中期（モグモグ期）に必要な
                 食材ごとの g（グラム）管理と、大人の食事の献立管理はまったく別の作業になりがちです。<br><br>

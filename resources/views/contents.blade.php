@@ -1,5 +1,6 @@
 <x-app-layout>
-    <p class="fixed top-7 right-28 text-lg z-50 font-bold text-white max-xl:top-5">{{$userName}} 様</p>
+    <p class="fixed top-7 right-28 text-lg z-50 font-bold text-white max-xl:top-5 max-md:hidden">{{ $userName }} 様
+    </p>
     <div class="pt-20 pl-48 max-xl:pl-0 max-xl:pt-16">
         @if (request()->routeIs('dishes.index'))
             @include('contents.dishes')

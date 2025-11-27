@@ -1,9 +1,10 @@
 <nav x-show="openAccountMenu" x-cloak @click.away="openAccountMenu = false"
-    @keydown.escape.window="openAccountMenu = false" x-transition:enter="transition ease-out duration-300"
+    @keydown.escape.window="openAccountMenu = false"
+    x-transition:enter="transition ease-out duration-300 max-md:transition-none"
     x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0"
-    x-transition:leave="transition ease-in duration-200" x-transition:leave-start="translate-x-0"
+    x-transition:leave="transition ease-in duration-200 max-md:transition-none" x-transition:leave-start="translate-x-0"
     x-transition:leave-end="translate-x-full"
-    class="fixed z-40 top-0 right-0 flex flex-col w-48 h-screen pl-5 bg-main shadow-lg rounded-l-xl">
+    class="fixed z-40 top-0 right-0 flex flex-col w-48 h-screen pl-5 bg-main shadow-lg rounded-l-xl max-md:w-screen max-md:rounded-none max-md:text-center max-md:pl-0">
     <a href="{{ route('profile.edit') }}" class="text-white text-xl font-bold mt-28 mb-4">
         {{ __('Profile Menu') }}
     </a>
