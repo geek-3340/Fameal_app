@@ -32,7 +32,7 @@ class BabyfoodsController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'type' => 'required|string|in:dish,babyfood',
-            'category' => 'required|string|in:エネルギー, タンパク質,ビタミン,その他',
+            'category' => 'required|string|in:エネルギー,タンパク質,ビタミン,その他',
         ]);
         $validated['user_id'] = auth()->id();
 

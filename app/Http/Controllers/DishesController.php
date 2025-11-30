@@ -33,7 +33,7 @@ class DishesController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'type' => 'required|string|in:dish,babyfood',
-            'category' => 'required|string|in:主食, 主菜,副菜,その他',
+            'category' => 'required|string|in:主食,主菜,副菜,その他',
             'recipe_url' => 'nullable|url|max:255',
         ]);
         $validated['user_id'] = auth()->id();
@@ -61,7 +61,7 @@ class DishesController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'type' => 'required|string|in:dish,babyfood',
-            'category' => 'required|string|in:主食, 主菜,副菜,その他',
+            'category' => 'required|string|in:主食,主菜,副菜,その他',
             'recipe_url' => 'nullable|url|max:255',
         ]);
         $validated['user_id'] = auth()->id();
