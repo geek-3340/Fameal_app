@@ -30,12 +30,12 @@ class BabyfoodsController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required',
-            'type' => 'required',
-            'category' => 'required',
+            'name' => 'required|string|max:255',
+            'type' => 'required|string|in:dish,babyfood',
+            'category' => 'required|string|in:エネルギー, タンパク質,ビタミン,その他',
         ]);
         $validated['user_id'] = auth()->id();
-        
+
         Dishes::create($validated);
 
         return back();

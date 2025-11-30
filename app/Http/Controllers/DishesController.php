@@ -22,7 +22,7 @@ class DishesController extends Controller
         $mains = $dishes->where('category', '主菜');
         $sides = $dishes->where('category', '副菜');
         $others = $dishes->where('category', 'その他');
-        
+
         $response = compact('userName', 'dishes', 'staples', 'mains', 'sides', 'others');
 
         return view('contents', $response);
@@ -31,10 +31,10 @@ class DishesController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required',
-            'type' => 'required',
-            'category' => 'required',
-            'recipe_url' => 'nullable|url',
+            'name' => 'required|string|max:255',
+            'type' => 'required|string|in:dish,babyfood',
+            'category' => 'required|string|in:主食, 主菜,副菜,その他',
+            'recipe_url' => 'nullable|url|max:255',
         ]);
         $validated['user_id'] = auth()->id();
 
@@ -59,16 +59,16 @@ class DishesController extends Controller
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
-            'name' => 'required',
-            'type' => 'required',
-            'category' => 'required',
-            'recipe_url' => 'nullable|url',
+            'name' => 'required|string|max:255',
+            'type' => 'required|string|in:dish,babyfood',
+            'category' => 'required|string|in:主食, 主菜,副菜,その他',
+            'recipe_url' => 'nullable|url|max:255',
         ]);
         $validated['user_id'] = auth()->id();
-        
+
         $dish = Dishes::find($id);
-        
-        $this->authorize('update',$dish);
+
+        $this->authorize('update', $dish);
         $dish->update($validated);
 
         return back();
@@ -76,7 +76,7 @@ class DishesController extends Controller
 
     public function destroy(Dishes $dish)
     {
-        $this->authorize('delete',$dish);
+        $this->authorize('delete', $dish);
         $dish->delete();
 
         return back();

@@ -13,8 +13,8 @@ class IngredientsController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required',
-            'dish_id' => 'required',
+            'name' => 'required|string|max:255',
+            'dish_id' => 'required|integer|exists:dishes,id',
         ]);
 
         $newIngredient = Ingredients::create($validated);
@@ -32,7 +32,7 @@ class IngredientsController extends Controller
 
         $this->authorize('delete', $ingredient);
         $ingredient->delete();
-        
+
         $updatedIngredients = Ingredients::where('dish_id', $dishId)->get();
 
         return response()->json($updatedIngredients);

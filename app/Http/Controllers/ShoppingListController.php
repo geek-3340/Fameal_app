@@ -27,7 +27,7 @@ class ShoppingListController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required',
+            'name' => 'required|string|max:255',
         ]);
         $validated['user_id'] = auth()->id();
         $validated['is_checked'] = false;
