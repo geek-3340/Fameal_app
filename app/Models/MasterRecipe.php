@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class MasterRecipe extends Model
 {
-    //
+    protected $fillable = ['name'];
 }

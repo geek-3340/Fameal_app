@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\SearchController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TwoFactorController;
@@ -13,6 +14,9 @@ use App\Http\Controllers\ShoppingListController;
 Route::get('/', function () {
     return view('top-page');
 })->name('top.page');
+
+Route::get('/search/recipes', [SearchController::class, 'searchRecipes']);
+Route::get('/search/ingredients', [SearchController::class, 'searchIngredients']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/verify-pin', [TwoFactorController::class, 'show'])->name('verify.pin');
@@ -28,7 +32,7 @@ Route::middleware('auth', 'two_factor')->group(function () {
     Route::get('/menus/{category}/{viewType}', [MenusController::class, 'index'])
         ->where(['category' => 'dishes|babyfoods', 'viewType' => 'month|week'])
         ->name('menus.index');
-    Route::get('/menus/{date}',[MenusController::class,'edit'])->name('menus.edit');
+    Route::get('/menus/{date}', [MenusController::class, 'edit'])->name('menus.edit');
 
     Route::post('/menus-dishes', [MenusDishesController::class, 'store'])->name('menus.dishes.store');
     Route::delete('/menus-dishes/{id}', [MenusDishesController::class, 'destroy'])->name('menus.dishes.destroy');

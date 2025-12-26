@@ -1,0 +1,105 @@
+import axios from "axios";
+
+export default function () {
+    document.addEventListener("DOMContentLoaded", () => {
+        // オートコンプリート機能の初期化関数
+        // targetInputId: 入力欄のID
+        // targetListId: 候補リストを表示するulのID
+        // apiUrl: 叩くAPIのURL
+        // minLength: 検索を開始する最小文字数
+        function initAutocomplete(
+            targetInputId,
+            targetListId,
+            apiUrl,
+            minLength = 1
+        ) {
+            const inputElement = document.getElementById(targetInputId);
+            const listElement = document.getElementById(targetListId);
+
+            if (!inputElement || !listElement) return; // 要素がなければ終了
+
+            let debounceTimer;
+
+            // 入力イベント
+            inputElement.addEventListener("input", (e) => {
+                const keyword = e.target.value;
+
+                // リストを一度クリア
+                listElement.innerHTML = "";
+                listElement.style.display = "none";
+
+                // 文字数チェック (料理名は3文字以上などの制限に対応)
+                if (keyword.length < minLength) {
+                    return;
+                }
+
+                // デバウンス処理（入力が止まってから300ms後に通信）
+                clearTimeout(debounceTimer);
+                debounceTimer = setTimeout(() => {
+                    fetchSuggestions(keyword);
+                }, 300);
+            });
+
+            // API通信と描画
+            async function fetchSuggestions(keyword) {
+                try {
+                    const response = await axios.get(apiUrl, {
+                        params: { keyword: keyword },
+                    });
+
+                    const results = response.data;
+                    renderList(results);
+                } catch (error) {
+                    console.error("検索エラー:", error);
+                }
+            }
+
+            // リストの描画
+            function renderList(items) {
+                if (items.length === 0) {
+                    listElement.style.display = "none";
+                    return;
+                }
+
+                items.forEach((item) => {
+                    const li = document.createElement("li");
+                    li.textContent = item.name;
+
+                    // クリック時の動作：入力欄に値をセットしてリストを消す
+                    li.addEventListener("click", () => {
+                        inputElement.value = item.name;
+                        listElement.innerHTML = "";
+                        listElement.style.display = "none";
+                    });
+
+                    listElement.appendChild(li);
+                });
+
+                listElement.style.display = "block";
+            }
+
+            // 外部クリックでリストを閉じる
+            document.addEventListener("click", (e) => {
+                if (
+                    !inputElement.contains(e.target) &&
+                    !listElement.contains(e.target)
+                ) {
+                    listElement.style.display = "none";
+                }
+            });
+        }
+
+        // --- 実行 ---
+
+        // 1. 料理名 (3文字以上で発火)
+        initAutocomplete("recipe-input", "recipe-list", "/search/recipes", 3);
+
+        // 2. 材料名 (1文字以上で発火)
+        initAutocomplete(
+            "ingredient-input",
+            "ingredient-list",
+            "/search/ingredients",
+            1
+        );
+    });
+}

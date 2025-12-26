@@ -9,6 +9,7 @@ import submitMenusDishesDeleteForm from "./modules/submitMenusDishesDeleteForm";
 import setShoppingListFormContents from "./modules/setShoppingListFormContents";
 import submitIngredientsStoreForm from "./modules/submitIngredientsStoreForm";
 import submitIngredientsDeleteForm from "./modules/submitIngredientsDeleteForm";
+import autoComplete from "./modules/autoComplete";
 
 window.Alpine = Alpine;
 Alpine.start();
@@ -30,3 +31,5 @@ submitIngredientsDeleteForm();
 setShoppingListFormContents();
 
 toggleCheckedShoppingListItems();
+
+autoComplete();

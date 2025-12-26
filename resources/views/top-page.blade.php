@@ -25,6 +25,8 @@
             <span class="text-main">献立 × 離乳食</span> 子育てをもっとラクにするアプリ
         </h1>
 
+        <x-auto-complete-list />
+
         <div class="mt-8">
             <p class="w-4/5 h-full mx-auto text-left font-semibold leading-relaxed">
                 「Fameal（ファミール）」は、毎日の献立と離乳食を “ひとつのアプリでまとめて管理できる” 子育て支援アプリです。<br><br>
