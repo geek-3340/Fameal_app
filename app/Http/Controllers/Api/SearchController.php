@@ -12,30 +12,20 @@ class SearchController extends Controller
     public function searchRecipes(Request $request)
     {
         $keyword = $request->input('keyword');
-
-        // キーワードが空の場合は空の配列を返す
         if (empty($keyword)) {
             return response()->json([]);
         }
-
-        // 
-        $results = MasterRecipe::where('name', 'LIKE', "%{$keyword}%")->limit(10)->get(['id', 'name']);
-
-        return response()->json($results);
+        $recipes = MasterRecipe::where('name', 'LIKE', "%{$keyword}%")->get();
+        return response()->json($recipes);
     }
 
     public function searchIngredients(Request $request)
     {
         $keyword = $request->input('keyword');
-
-        // キーワードが空の場合は空の配列を返す
         if (empty($keyword)) {
             return response()->json([]);
         }
-
-        // 
-        $results = MasterIngredient::where('name', 'LIKE', "%{$keyword}%")->limit(10)->get(['id', 'name']);
-
-        return response()->json($results);
+        $ingredients = MasterIngredient::where('name', 'LIKE', "%{$keyword}%")->get();
+        return response()->json($ingredients);
     }
 }

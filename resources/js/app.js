@@ -22,6 +22,8 @@ submitMenusDishesStoreForm();
 
 submitMenusDishesDeleteForm();
 
+autoComplete();
+
 onClickDishEditLinks();
 
 submitIngredientsStoreForm();
@@ -31,5 +33,3 @@ submitIngredientsDeleteForm();
 setShoppingListFormContents();
 
 toggleCheckedShoppingListItems();
-
-autoComplete();

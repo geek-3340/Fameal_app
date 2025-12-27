@@ -15,6 +15,7 @@ Route::get('/', function () {
     return view('top-page');
 })->name('top.page');
 
+// AutoComplete API
 Route::get('/search/recipes', [SearchController::class, 'searchRecipes']);
 Route::get('/search/ingredients', [SearchController::class, 'searchIngredients']);
 
