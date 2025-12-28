@@ -6,7 +6,7 @@
         @csrf
         <div class="flex justify-between w-4/5 mx-auto max-xl:w-full">
             <x-text-input id="shopping_list_name" type="text" name="name" :value="old('shopping_list_name')" class="w-4/5 mr-2"
-                required />
+                required autocomplete="off" />
             <x-button class="w-[25%]">
                 追加
             </x-button>
@@ -23,7 +23,8 @@
                 <button type="button" id="prevWeek"
                     class="text-white font-bold bg-main w-8 h-8 rounded-md hover:bg-button-primaryhover transition-colors duration-200">
                     ＜</button>
-                <span id="weekDisplay" class="block text-lg font-semibold mx-2 w-[300px] text-center max-xl:text-base max-xl:w-max"></span>
+                <span id="weekDisplay"
+                    class="block text-lg font-semibold mx-2 w-[300px] text-center max-xl:text-base max-xl:w-max"></span>
                 <button type="button" id="nextWeek"
                     class="text-white font-bold bg-main w-8 h-8 rounded-md hover:bg-button-primaryhover transition-colors duration-200">
                     ＞</button>
@@ -32,7 +33,8 @@
         </div>
     </form>
     <hr class="mb-4 md:hidden">
-    <form action="{{ route('shopping.list.destroy') }}" method="post" class="flex justify-end w-4/5 mx-auto mb-8 max-xl:block max-xl:w-full max-xl:text-center max-xl:mb-4">
+    <form action="{{ route('shopping.list.destroy') }}" method="post"
+        class="flex justify-end w-4/5 mx-auto mb-8 max-xl:block max-xl:w-full max-xl:text-center max-xl:mb-4">
         @csrf
         @method('DELETE')
         <x-button use="danger">チェック項目削除</x-button>

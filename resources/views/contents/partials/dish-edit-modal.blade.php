@@ -39,10 +39,10 @@
                 <div class="w-max mx-auto">
                     <x-input-label for="dish_name" :value="__('Dish name')" />
                     <x-text-input id="dish_name" type="text" name="name" class="w-80 mt-1 mb-4"
-                        x-model="dish.name" required />
+                        x-model="dish.name" required autocomplete="off" />
                     <x-input-label for="dish_recipe_url" :value="__('Recipe URL')" />
                     <x-text-input id="dish_recipe_url" type="url" name="recipe_url" class="w-80 mt-1"
-                        x-model="dish.recipe_url" />
+                        x-model="dish.recipe_url" autocomplete="off" />
                 </div>
                 <x-input-error :messages="$errors->get('dish_name')" class="mt-2" />
                 <x-button class="!block mx-auto !mt-4 max-md:px-8">
@@ -57,8 +57,8 @@
                 class="w-max mx-auto">
                 @csrf
                 <x-input-label for="ingredients_name" class="mt-4" :value="__('Ingredient name')" />
-                <x-text-input id="ingredients_name" type="text" name="name" use="secondary"
-                    class="w-60 mt-1 mr-1" />
+                <x-text-input id="ingredients_name" type="text" name="name" use="secondary" class="w-60 mt-1 mr-1"
+                    autocomplete="off" />
                 <input type="hidden" name="dish_id" :value="dish.id">
                 <x-button use="register">
                     {{ __('Register Ingredients') }}

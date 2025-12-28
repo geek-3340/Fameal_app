@@ -2,15 +2,18 @@
 
 namespace Database\Seeders;
 
-use App\Models\MasterIngredient;
+use App\Models\MasterBabyFood;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class MasterIngredientSeeder extends Seeder
+class MasterBabyFoodSeeder extends Seeder
 {
+    /**
+     * Run the database seeds.
+     */
     public function run(): void
     {
-        $ingredients = [
+        $babyFoods = [
             ['name' => '軟飯'],
             ['name' => 'うどん'],
             ['name' => 'そば'],
@@ -32,8 +35,8 @@ class MasterIngredientSeeder extends Seeder
             // ... 必要なだけ記述
         ];
 
-        MasterIngredient::upsert(
-            $ingredients,
+        MasterBabyFood::upsert(
+            $babyFoods,
             ['name'],
             []
         );

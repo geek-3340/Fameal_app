@@ -14,6 +14,13 @@ import autoComplete from "./modules/autoComplete";
 window.Alpine = Alpine;
 Alpine.start();
 
+// 以下、モジュールの並び順で実行がされないことがある
+// 原因を調査中のため、一旦ここにまとめる
+
+// 特定のページでのみ動作するモジュールもあり
+// そういったモジュールは他のページが読み込まれた際にスルーされるように
+// しなくてはならないかもしれないので注意
+
 fullCalendar();
 
 updateActiveNavButton();

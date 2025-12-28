@@ -16,6 +16,7 @@ export default {
         "hover:text-customRed",
         "hover:text-customGreen",
         "hover:text-gray-400",
+        "hover:bg-gray-200",
         "border-main",
         "border-customRed",
         "border-customGreen",

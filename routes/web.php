@@ -17,6 +17,7 @@ Route::get('/', function () {
 
 // AutoComplete API
 Route::get('/search/recipes', [SearchController::class, 'searchRecipes']);
+Route::get('/search/babyfoods', [SearchController::class, 'searchBabyFoods']);
 Route::get('/search/ingredients', [SearchController::class, 'searchIngredients']);
 
 Route::middleware('auth')->group(function () {

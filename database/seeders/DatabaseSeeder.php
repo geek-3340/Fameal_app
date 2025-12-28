@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             MasterRecipeSeeder::class,
+            MasterBabyFoodSeeder::class,
             MasterIngredientSeeder::class,
         ]);
         // User::factory(10)->create();

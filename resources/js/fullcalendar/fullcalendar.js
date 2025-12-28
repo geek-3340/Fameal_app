@@ -11,6 +11,7 @@ import setCustomButtons from "./partials/setCustomButtons";
 export default function fullCalendar() {
     document.addEventListener("DOMContentLoaded", function () {
         const $calendarEl = document.getElementById("calendar");
+        if (!$calendarEl) return;
         const initialCalendar =
             $calendarEl.dataset.initialView || "dayGridMonth";
         const menusForCalendarEvents = JSON.parse(

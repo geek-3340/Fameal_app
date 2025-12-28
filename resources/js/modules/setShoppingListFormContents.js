@@ -13,24 +13,25 @@ export default function () {
         start.setDate(start.getDate() - start.getDay()); // 日曜日
         const end = new Date(start);
         end.setDate(start.getDate() + 6);
+        const startInput = document.getElementById("start");
+        const endInput = document.getElementById("end");
+        const weekDisplay = document.getElementById("weekDisplay");
 
-        document.getElementById("start").value = start
-            .toISOString()
-            .split("T")[0];
-        document.getElementById("end").value = end.toISOString().split("T")[0];
-        document.getElementById(
-            "weekDisplay"
-        ).textContent = `${formatJapaneseDate(start)}〜${formatJapaneseDate(
-            end
-        )}`;
+        if (!startInput || !endInput || !weekDisplay) return;
+        
+        startInput.value = start.toISOString().split("T")[0];
+        endInput.value = end.toISOString().split("T")[0];
+        weekDisplay.textContent = `${formatJapaneseDate(
+            start
+        )}〜${formatJapaneseDate(end)}`;
     }
 
-    document.getElementById("prevWeek").addEventListener("click", () => {
+    document.getElementById("prevWeek")?.addEventListener("click", () => {
         currentDate.setDate(currentDate.getDate() - 7);
         updateWeek();
     });
 
-    document.getElementById("nextWeek").addEventListener("click", () => {
+    document.getElementById("nextWeek")?.addEventListener("click", () => {
         currentDate.setDate(currentDate.getDate() + 7);
         updateWeek();
     });
