@@ -32,7 +32,7 @@
                 <x-input-label for="dish_name" :value="__('Dish name')" />
                 <x-text-input id="dish_name" type="text" name="name" :value="old('dish_name')"
                     class="w-80 mt-1 mb-4 max-md:w-60" required autocomplete="off" />
-                <x-auto-complete-list />
+                <x-suggest-list id="recipes-suggest-list" />
                 <x-input-label for="dish_recipe_url" :value="__('Recipe URL')" />
                 <x-text-input id="dish_recipe_url" type="url" name="recipe_url" :value="old('dish_recipe_url')"
                     class="w-80 mt-1 max-md:w-60" autocomplete="off" />

@@ -34,6 +34,7 @@
                 </x-input-label>
                 <x-text-input id="babyfood_name" type="text" name="name" :value="old('babyfood_name')"
                     class="w-80 mt-1 max-md:w-60" required autocomplete="off" />
+                <x-suggest-list id="babyfoods-suggest-list" />
             </div>
             <x-button class="!block mx-auto !mt-4 max-xl:px-8">
                 {{ __('Register dish') }}
