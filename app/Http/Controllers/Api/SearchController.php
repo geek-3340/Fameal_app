@@ -16,7 +16,18 @@ class SearchController extends Controller
         if (empty($keyword)) {
             return response()->json([]);
         }
-        $recipes = MasterRecipe::where('name', 'LIKE', "%{$keyword}%")->limit(10)->get('name');
+
+        // --- カタカナ判定・変換ロジックを追加 ---
+        // 'C' オプション：全角ひらがなを全角カタカナに変換
+        $katakanaKeyword = mb_convert_kana($keyword, 'C');
+
+        $recipes = MasterRecipe::where(function ($query) use ($keyword, $katakanaKeyword) {
+            $query->where('name', 'LIKE', "%{$keyword}%")          // 元の入力で検索
+                ->orWhere('name', 'LIKE', "%{$katakanaKeyword}%"); // カタカナ変換後で検索
+        })
+            ->limit(10)
+            ->get('name');
+
         return response()->json($recipes);
     }
 
@@ -26,7 +37,18 @@ class SearchController extends Controller
         if (empty($keyword)) {
             return response()->json([]);
         }
-        $babyFoods = MasterBabyFood::where('name', 'LIKE', "%{$keyword}%")->limit(10)->get('name');
+
+        // --- カタカナ判定・変換ロジックを追加 ---
+        // 'C' オプション：全角ひらがなを全角カタカナに変換
+        $katakanaKeyword = mb_convert_kana($keyword, 'C');
+
+        $babyFoods = MasterBabyFood::where(function ($query) use ($keyword, $katakanaKeyword) {
+            $query->where('name', 'LIKE', "%{$keyword}%")          // 元の入力で検索
+                ->orWhere('name', 'LIKE', "%{$katakanaKeyword}%"); // カタカナ変換後で検索
+        })
+            ->limit(10)
+            ->get('name');
+
         return response()->json($babyFoods);
     }
 
@@ -36,7 +58,18 @@ class SearchController extends Controller
         if (empty($keyword)) {
             return response()->json([]);
         }
-        $ingredients = MasterIngredient::where('name', 'LIKE', "%{$keyword}%")->limit(10)->get('name');
+
+        // --- カタカナ判定・変換ロジックを追加 ---
+        // 'C' オプション：全角ひらがなを全角カタカナに変換
+        $katakanaKeyword = mb_convert_kana($keyword, 'C');
+
+        $ingredients = MasterIngredient::where(function ($query) use ($keyword, $katakanaKeyword) {
+            $query->where('name', 'LIKE', "%{$keyword}%")          // 元の入力で検索
+                ->orWhere('name', 'LIKE', "%{$katakanaKeyword}%"); // カタカナ変換後で検索
+        })
+            ->limit(10)
+            ->get('name');
+
         return response()->json($ingredients);
     }
 }

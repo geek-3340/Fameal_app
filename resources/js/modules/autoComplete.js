@@ -24,7 +24,6 @@ export default function () {
             const keyword = e.target.value;
 
             // リストを一度クリア
-            listElement.innerHTML = "";
             listElement.classList.add("hidden");
 
             // 文字数チェック (料理名は3文字以上などの制限に対応)
@@ -48,6 +47,7 @@ export default function () {
 
                 const results = response.data;
                 renderList(results);
+                console.log("検索結果:", results);
             } catch (error) {
                 console.error("検索エラー:", error);
             }
@@ -59,7 +59,7 @@ export default function () {
                 listElement.classList.add("hidden");
                 return;
             }
-
+            listElement.innerHTML = ""; // 既存のリストをクリア
             items.forEach((item) => {
                 const li = document.createElement("li");
                 li.textContent = item.name;
@@ -71,7 +71,6 @@ export default function () {
                     listElement.innerHTML = "";
                     listElement.classList.add("hidden");
                 });
-
                 listElement.appendChild(li);
             });
 
