@@ -6,5 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class MasterRecipe extends Model
 {
-    protected $fillable = ['name'];
+    protected $fillable = [
+        'name',
+        'kana',
+    ];
 }

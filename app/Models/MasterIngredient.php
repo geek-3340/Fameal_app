@@ -6,5 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class MasterIngredient extends Model
 {
-    protected $fillable = ['name'];
+    protected $fillable = [
+        'name',
+        'kana',
+    ];
 }

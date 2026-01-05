@@ -23,7 +23,8 @@ class SearchController extends Controller
 
         $recipes = MasterRecipe::where(function ($query) use ($keyword, $katakanaKeyword) {
             $query->where('name', 'LIKE', "%{$keyword}%")          // 元の入力で検索
-                ->orWhere('name', 'LIKE', "%{$katakanaKeyword}%"); // カタカナ変換後で検索
+                ->orWhere('name', 'LIKE', "%{$katakanaKeyword}%")  // カタカナ変換後で検索
+                ->orWhere('kana', 'LIKE', "%{$katakanaKeyword}%"); // フリガナで検索
         })
             ->limit(10)
             ->get('name');
@@ -44,7 +45,8 @@ class SearchController extends Controller
 
         $babyFoods = MasterBabyFood::where(function ($query) use ($keyword, $katakanaKeyword) {
             $query->where('name', 'LIKE', "%{$keyword}%")          // 元の入力で検索
-                ->orWhere('name', 'LIKE', "%{$katakanaKeyword}%"); // カタカナ変換後で検索
+                ->orWhere('name', 'LIKE', "%{$katakanaKeyword}%")  // カタカナ変換後で検索
+                ->orWhere('kana', 'LIKE', "%{$katakanaKeyword}%"); // フリガナで検索
         })
             ->limit(10)
             ->get('name');
@@ -65,7 +67,8 @@ class SearchController extends Controller
 
         $ingredients = MasterIngredient::where(function ($query) use ($keyword, $katakanaKeyword) {
             $query->where('name', 'LIKE', "%{$keyword}%")          // 元の入力で検索
-                ->orWhere('name', 'LIKE', "%{$katakanaKeyword}%"); // カタカナ変換後で検索
+                ->orWhere('name', 'LIKE', "%{$katakanaKeyword}%")  // カタカナ変換後で検索
+                ->orWhere('kana', 'LIKE', "%{$katakanaKeyword}%"); // フリガナで検索
         })
             ->limit(10)
             ->get('name');

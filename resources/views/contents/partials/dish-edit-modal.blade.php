@@ -37,9 +37,10 @@
                     @endforeach
                 </div>
                 <div class="w-max mx-auto">
-                    <x-input-label for="dish_name" :value="__('Dish name')" />
-                    <x-text-input id="dish_name" type="text" name="name" class="w-80 mt-1 mb-4"
+                    <x-input-label for="dish_name_edit" :value="__('Dish name')" />
+                    <x-text-input id="dish_name_edit" type="text" name="name" class="w-80 mt-1 mb-4"
                         x-model="dish.name" required autocomplete="off" />
+                    <x-suggest-list class="mt-4" id="recipes-edit_suggest-list" />
                     <x-input-label for="dish_recipe_url" :value="__('Recipe URL')" />
                     <x-text-input id="dish_recipe_url" type="url" name="recipe_url" class="w-80 mt-1"
                         x-model="dish.recipe_url" autocomplete="off" />

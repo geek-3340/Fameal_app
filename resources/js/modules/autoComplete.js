@@ -93,5 +93,6 @@ export default function () {
     // 1. 料理名 (3文字以上で発火)
     initAutocomplete("dish_name", "recipes-suggest-list", "/search/recipes", 3);
     initAutocomplete("babyfood_name", "babyfoods-suggest-list", "/search/babyfoods", 1);
+    initAutocomplete("dish_name_edit", "recipes-edit_suggest-list", "/search/recipes", 3);
     initAutocomplete("ingredients_name", "ingredients-suggest-list", "/search/ingredients", 1);
 }
