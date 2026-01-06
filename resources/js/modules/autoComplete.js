@@ -1,20 +1,14 @@
 import axios from "axios";
 
 export default function () {
-    // オートコンプリート機能の初期化関数
-    // targetInputId: 入力欄のID
-    // targetListId: 候補リストを表示するulのID
-    // apiUrl: 叩くAPIのURL
-    // minLength: 検索を開始する最小文字数
     function initAutocomplete(
-        targetInputId,
-        targetListId,
-        apiUrl,
-        minLength = 1
+        targetInputId, // 入力欄のID
+        targetListId,  // 候補リストを表示するulのID
+        apiUrl,        // 叩くAPIのURL
+        minLength = 1  // 検索を開始する最小文字数
     ) {
         const inputElement = document.getElementById(targetInputId);
         const listElement = document.getElementById(targetListId);
-
         if (!inputElement || !listElement) return; // 要素がなければ終了
 
         let debounceTimer;
@@ -23,10 +17,9 @@ export default function () {
         inputElement.addEventListener("input", (e) => {
             const keyword = e.target.value;
 
-            // リストを一度クリア
             listElement.classList.add("hidden");
 
-            // 文字数チェック (料理名は3文字以上などの制限に対応)
+            // 文字数チェック
             if (keyword.length < minLength) {
                 return;
             }
