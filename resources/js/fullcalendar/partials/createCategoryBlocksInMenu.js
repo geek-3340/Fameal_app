@@ -26,19 +26,19 @@ export default function (arg, initialView) {
         } else {
             $menuCategoryBlock.innerHTML = `
             <div class="flex w-full">
-                                <div class="break-first px-4 border-l border-dashed border-gray-300 hidden max-md:p-0 max-md:w-1/3">
+                                <div class="break-first px-4 hidden max-md:p-0 max-md:w-1/3" style="border-left: 1px dashed #d1d5db;">
                                     <h2 class="text-center font-semibold text-sm mt-0">朝食</h2>
                                     <div></div>
                                 </div>
-                                <div class="lunch px-4 border-l border-dashed border-gray-300 hidden max-md:p-0 max-md:w-1/3">
+                                <div class="lunch px-4 hidden max-md:p-0 max-md:w-1/3"  style="border-left: 1px dashed #d1d5db;">
                                     <h2 class="text-center font-semibold text-sm mt-0">昼食</h2>
                                     <div></div>
                                 </div>
-                                <div class="dinner px-4 border-l border-dashed border-gray-300 hidden max-md:p-0 max-md:w-1/3">
+                                <div class="dinner px-4 hidden max-md:p-0 max-md:w-1/3" style="border-left: 1px dashed #d1d5db;">
                                     <h2 class="text-center font-semibold text-sm mt-0">夕食</h2>
                                     <div></div>
                                 </div>
-                                <div class="break-first lunch dinner border-r border-dashed border-gray-300 hidden"></div>
+                                <div class="break-first lunch dinner hidden" style="border-right: 1px dashed #d1d5db;"></div>
                             </div>
                             `;
         }

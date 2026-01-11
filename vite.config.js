@@ -12,4 +12,5 @@ export default defineConfig({
             refresh: true,
         }),
     ],
+    base: "https://fameal-app.fly.dev/", // 本番のHTTPS URLを指定
 });

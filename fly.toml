@@ -1,0 +1,50 @@
+# fly.toml app configuration file generated for fameal-app on 2026-01-09T12:27:08+09:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'fameal-app'
+primary_region = 'nrt'
+console_command = 'php /var/www/html/artisan tinker'
+
+[build]
+  [build.args]
+    NODE_VERSION = '18'
+    PHP_VERSION = '8.2'
+
+[env]
+  APP_NAME = 'Fameal'
+  APP_DEBUG = 'false'
+  APP_ENV = 'production'
+  DB_CONNECTION = 'pgsql'
+  DB_DATABASE = 'laravel'
+  DB_PASSWORD = 'password'
+  DB_PORT = '5432'
+  DB_USERNAME = 'sail'
+  LOG_CHANNEL = 'stderr'
+  LOG_LEVEL = 'info'
+  LOG_STDERR_FORMATTER = 'Monolog\Formatter\JsonFormatter'
+  SESSION_DRIVER = 'cookie'
+  SESSION_SECURE_COOKIE = 'true'
+  MAIL_MAILER = 'smtp'
+  MAIL_HOST = 'smtp.resend.com'
+  MAIL_PORT = '587'
+  MAIL_USERNAME = 'resend'
+  MAIL_ENCRYPTION = 'tls'
+  MAIL_FROM_ADDRESS = 'onboarding@resend.dev'
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = 'stop'
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ['app']
+
+[[vm]]
+  memory = '256mb'
+  cpus = 1
+  memory_mb = 256
+
+[deploy]
+  release_command = 'php artisan migrate --seed --force'
