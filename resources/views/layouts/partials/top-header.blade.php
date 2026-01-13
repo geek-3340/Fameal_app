@@ -16,10 +16,10 @@
                     <x-link-button href="{{ route('login') }}" type="primary">
                         ログイン
                     </x-link-button>
+                    <x-link-button href="{{ route('register') }}" type="register" class="ml-4 max-md:ml-2">
+                        新規登録
+                    </x-link-button>
                 @endauth
-                <x-link-button href="{{ route('register') }}" type="register" class="ml-4 max-md:ml-2">
-                    新規登録
-                </x-link-button>
             @else
                 <x-link-button href="{{ url()->previous() }}" type="primary">
                     戻る
