@@ -29,9 +29,11 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        $user = Auth::user();
-        $user->generateTwoFactorCode();
-        return redirect()->route('verify.pin');
+        return redirect()->intended(route('menus.index', ['category' => 'dishes','viewType' => 'month']));
+
+        // $user = Auth::user();
+        // $user->generateTwoFactorCode();
+        // return redirect()->route('verify.pin');
     }
 
     /**
