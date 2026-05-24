@@ -37,6 +37,8 @@ Fly.io: **[https://fameal-app.fly.dev/]**
 ### インフラ・開発環境
 - Docker（Laravel Sail）
 - PostgreSQL
+- Fly.io
+- AWS（EC2 , RDS）
 
 ### その他ツール
 - fullcalendar
