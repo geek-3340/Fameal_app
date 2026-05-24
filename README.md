@@ -1,7 +1,7 @@
 # Fameal - 親子献立カレンダーアプリ
 
 ## 🌐 サイトURL
-AWS： **[https://18.182.119.72]**
+AWS： **[https://18.182.119.72]** <br>
 Fly.io: **[https://fameal-app.fly.dev/]**
 
 ## 📖 概要
