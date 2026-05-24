@@ -1,7 +1,8 @@
 # Fameal - 親子献立カレンダーアプリ
 
 ## 🌐 サイトURL
-**[https://fameal-app.fly.dev/]**
+AWS： **[https://18.182.119.72]**
+Fly.io: **[https://fameal-app.fly.dev/]**
 
 ## 📖 概要
 「Fameal」は、離乳食期のお子様を持つご家庭向けの、親子の献立と買い物リストを効率的に管理するアプリケーションです。
@@ -49,3 +50,8 @@
 
 ### 画面設計
 <img src="docs/画面設計書.png" width="800" alt="Figma画面設計">
+
+<br>
+
+### インフラ構成図（AWS）
+<img src="docs/インフラ構成図.png" width="800" alt="インフラ構成図">
