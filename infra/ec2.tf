@@ -28,6 +28,49 @@ resource "aws_instance" "app" {
     subnet_id              = aws_subnet.public[0].id
     vpc_security_group_ids = [aws_security_group.ec2.id]
     key_name               = var.ec2_key_name
+    iam_instance_profile   = aws_iam_instance_profile.ec2.name # 追加
+
+    user_data = <<-EOF
+        #!/bin/bash
+        set -e
+        
+        # システムパッケージ更新
+        apt-get update
+        apt-get install -y software-properties-common ca-certificates curl gnupg lsb-release unzip
+        
+        # PHP 8.3 リポジトリ追加
+        add-apt-repository -y ppa:ondrej/php
+        apt-get update
+        
+        # PHP 8.3 と必要な拡張
+        apt-get install -y \
+        php8.3-fpm php8.3-cli php8.3-pgsql php8.3-mbstring \
+        php8.3-xml php8.3-curl php8.3-zip php8.3-bcmath php8.3-gd \
+        php8.3-intl
+        
+        # Composer
+        curl -sS https://getcomposer.org/installer | php
+        mv composer.phar /usr/local/bin/composer
+        
+        # Node.js 20
+        curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
+        apt-get install -y nodejs
+        
+        # Nginx
+        apt-get install -y nginx
+        
+        # PostgreSQL クライアント (psql 動作確認用)
+        apt-get install -y postgresql-client
+        
+        # アプリ配置ディレクトリ
+        mkdir -p /var/www
+        chown -R ubuntu:ubuntu /var/www
+        
+        # 完了マーカー
+        touch /var/log/fameal-userdata-done
+    EOF
+
+    user_data_replace_on_change = false
 
     root_block_device {
         volume_size = 8
