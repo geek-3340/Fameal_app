@@ -1,19 +1,19 @@
-output "ec2_public_ip" {
-    description = "EC2 public IP (Elastic IP)"
-    value       = aws_eip.app.public_ip
+output "vpc_id" {
+    description = "作成したVPCのID"
+    value       = aws_vpc.main.id
 }
 
-output "ec2_instance_id" {
-    description = "EC2 instance ID"
-    value       = aws_instance.app.id
+output "public_subnet_ids" {
+    description = "パブリックサブネットのID一覧"
+    value       = aws_subnet.public[*].id
 }
 
-output "rds_endpoint" {
-    description = "RDS endpoint (hostname:port)"
-    value       = aws_db_instance.main.endpoint
+output "private_subnet_ids" {
+    description = "プライベートサブネットのID一覧"
+    value       = aws_subnet.private[*].id
 }
 
-output "rds_secret_arn" {
-    description = "Secrets Manager ARN for DB credentials"
-    value       = aws_secretsmanager_secret.db.arn
+output "igw_id" {
+    description = "インターネットゲートウェイのID"
+    value       = aws_internet_gateway.main.id
 }

@@ -1,0 +1,14 @@
+# Terraformが落としてくるプロバイダ等（巨大、再取得可能）
+.terraform/
+.terraform.lock.hcl
+
+# stateファイル（DBパスワード等が平文で入る。絶対に上げない）
+*.tfstate
+*.tfstate.*
+
+# 変数の実値（パスワード等を入れる）
+*.tfvars
+*.tfvars.json
+
+# クラッシュログ
+crash.log
