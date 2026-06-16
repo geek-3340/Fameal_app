@@ -11,9 +11,9 @@ terraform {
     }
 }
 /* 補足
-なぜ terraform {} ブロックが providers.tf と backend.tf に分かれて2個あるの？と思うかもしれません。
-Terraformは複数ファイルの terraform ブロックを自動でマージしてくれるので、役割ごとにファイルを分けて書けます。
-「バージョン宣言」と「state保存先」は関心が違うので分けておくと読みやすい、というだけです。
+なぜ terraform {} ブロックが providers.tf と backend.tf に分かれて2個あるのか？
+Terraformは複数ファイルの terraform ブロックを自動でマージしてくれるので、役割ごとにファイルを分けて書ける
+「バージョン宣言」と「state保存先」は関心が違うので分けておくと読みやすい
 */
 
 # プロバイダーの設定
