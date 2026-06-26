@@ -43,6 +43,7 @@ resource "aws_vpc_security_group_egress_rule" "ec2_all" {
 # RDS用セキュリティグループ
 # ーーーーーーーーーーーーーーーーーーーー
 
+# SG本体の宣言
 resource "aws_security_group" "rds" {
     name        = "${var.project}-rds-sg"
     description = "Fameal RDS: allow 5432 from EC2 SG only"
